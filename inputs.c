@@ -34,7 +34,9 @@ while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC))
 }
 		GPIOPinTypeGPIOInput(GPIO_PORTA_BASE,GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	ROM_GPIOPadConfigSet(GPIO_PORTA_BASE,GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7,GPIO_STRENGTH_6MA,GPIO_PIN_TYPE_STD_WPU);
-		ROM_GPIODirModeSet(GPIO_PORTC_BASE,GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7,GPIO_DIR_MODE_IN);
+		GPIOPinTypeGPIOInput(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
+	ROM_GPIOPadConfigSet(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
+		//ROM_GPIODirModeSet(GPIO_PORTC_BASE,GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7,GPIO_DIR_MODE_IN);
 }
 void portf_int(void (*pfnIntHandler)(void)){
 		GPIOIntDisable(GPIO_PORTF_BASE, GPIO_PIN_4 | GPIO_PIN_0);		// Disable interrupt for PF4 (in case it was enabled)
@@ -60,8 +62,15 @@ void porta_int(void (*pfnIntHandler)(void)){
 		GPIOIntEnable(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);		// Enable interrupt for PF4
 }
 void portc_int(void (*pfnIntHandler)(void)){
-	GPIOIntRegister(GPIO_PORTC_BASE, pfnIntHandler);		// Register our handler function for port C
+	/*GPIOIntRegister(GPIO_PORTC_BASE, pfnIntHandler);		// Register our handler function for port C
 		GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);		// Clear pending interrupts
 		GPIOIntTypeSet(GPIO_PORTC_BASE,GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, GPIO_RISING_EDGE);
 		GPIOIntEnable(GPIO_PORTC_BASE, GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);		// Enable interrupt
+	*/
+	GPIOIntDisable(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);		// Disable interrupt for PF4 (in case it was enabled)
+		GPIOIntClear(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);		// Clear pending interrupts for PF4
+		GPIOIntRegister(GPIO_PORTC_BASE, pfnIntHandler);		// Register our handler function for port F
+		GPIOIntTypeSet(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5, GPIO_FALLING_EDGE);		
+		GPIOIntTypeSet(GPIO_PORTC_BASE,GPIO_PIN_6, GPIO_BOTH_EDGES);		// Configure PF4 for falling edge trigger
+		GPIOIntEnable(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);		// Enable interrupt for PF4
 }

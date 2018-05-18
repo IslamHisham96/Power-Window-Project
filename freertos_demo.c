@@ -176,16 +176,28 @@ Window_Stop(void){
 void
 Window_Handler(void){
 	//for PortA
-	UARTprintf("entered\n");
+	UARTprintf("entered_a\n");
+	int32_t s;
+	char ss[40];
 	uint32_t status = GPIOIntStatus(DRIVER_PORT, true);
 	if(status & DRIVER_UP & DRIVER_DOWN){
 		Window_Stop();
 	}
 	else if(status & DRIVER_UP){
+		
+	UARTprintf("derp\n");
 		Window_Up();
 	}
 	else if(status & DRIVER_DOWN){
+	UARTprintf("herp\n");
+		s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
+		sprintf(ss,"%d\n",s);
+		UARTprintf(ss);
 		Window_Down();
+		s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
+		sprintf(ss,"%d\n",s);
+		UARTprintf(ss);
+		
 	}
 	else if(status & LOCK){
 		p_enable = !p_enable;
@@ -208,7 +220,35 @@ Window_Handler(void){
 	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
 }
-
+void
+Limit_Handler(void){
+	//for PortC
+	static TickType_t xTimeISRLastExecuted_C = 0;
+	//char ss[40];
+	TickType_t xTimeNow_C, xTimeBetweenInterrupts_C;
+	xTimeNow_C = xTaskGetTickCountFromISR();
+	xTimeBetweenInterrupts_C = xTimeNow_C - xTimeISRLastExecuted_C;
+//			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
+//			UARTprintf(ss);
+	if(xTimeBetweenInterrupts_C > 200){
+	UARTprintf("entered_c\n");
+	uint32_t status = GPIOIntStatus(LIMIT_PORT, true);
+	if(status & LIMIT_UP & LIMIT_DOWN){
+		
+	}
+	else if(status & LIMIT_UP){
+		
+	}
+	else if(status & LIMIT_DOWN){
+		
+	}
+	else if(status & ENGINE){
+		
+	}
+}
+	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
+	xTimeISRLastExecuted_C = xTimeNow_C;
+}
 void
 Main_Task(void * pvParameters)
 {
@@ -230,8 +270,9 @@ main(void)
 		init_input();
 		init_output();
 		porta_int(Window_Handler);
-		portf_int(Window_Handler);
-    //
+		//portf_int(Window_Handler);
+    portc_int(Limit_Handler);
+		//
     // Initialize the UART and configure it for 115,200, 8-N-1 operation.
     //
 		
@@ -266,15 +307,15 @@ main(void)
     //
     // Start the scheduler.  This should not return.
     //
-    //vTaskStartScheduler();
+    vTaskStartScheduler();
 
     //
     // In case the scheduler returns for some reason, print an error and loop
     // forever.
     //
 		
-			int32_t s;
-			char ss[40];
+			//int32_t s;
+			//char ss[40];
     while(1)
     {
        //s = GPIOPinRead(GPIO_PORTA_BASE,GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_5 |GPIO_PIN_6 | GPIO_PIN_7);
