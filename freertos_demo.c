@@ -48,6 +48,9 @@
 #define DRIVER_DOWN GPIO_PIN_6
 #define PASSENGER_UP GPIO_PIN_3
 #define PASSENGER_DOWN GPIO_PIN_2
+#define PASSENGER_NEUTRAL 1
+#define DRIVER_NEUTRAL 2
+#define TIMER_TICK 3
 #define LOCK GPIO_PIN_7
 #define LIMIT_UP GPIO_PIN_4
 #define LIMIT_DOWN GPIO_PIN_5
@@ -60,18 +63,190 @@ typedef void (*StateFunction)(int, int);
 
 StateFunction stateMachines[2];
 
+
 void safeSM(int event, int depth){
 
+	state[depth] = safe;
 	switch(event){
 	
 		case ENGINE:
 			break;
 		default:
-			if(depth < stateDepth) stateMachines[state[depth]](event, depth - 1);
+			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
 		
 	}
 
 }
+
+void driverNeutralSM(int event, int depth){
+
+	state[depth] = driverNeutral;
+	
+	switch(event){
+	
+		case DRIVER_UP:
+				//driverUPSM(event, depth);
+				break;
+		case DRIVER_DOWN:
+				//driverDownSM(event, depth);
+				break;
+		default:
+				if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+void passengerNeutralSM(int event, int depth){
+
+	state[depth] = passengerNeutral;
+	
+	switch(event){
+	
+		case PASSENGER_UP:
+				state[depth] = passengerUp;
+				state[depth + 1] = iniPassengerUp;
+				
+				turnRight();
+				//start timer
+				break;
+		case PASSENGER_DOWN:
+				state[depth] = passengerDown;
+				state[depth + 1] = iniPassengerDown;
+		
+				turnLeft();
+				//start timer
+				break;
+		default:
+				if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+void passengerUPSM(int event, int depth){
+
+	state[depth] = passengerUp;
+	
+	switch(event){
+		
+		case LIMIT_UP:
+				state[depth] = passengerNeutral;
+				fastStop();
+				break;
+
+		default:
+			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+void iniPassengerUPSM(int event, int depth){
+
+	state[depth] = iniPassengerUp;
+	
+	switch(event){
+	
+		case TIMER_TICK:
+			 state[depth] = manualPassengerUp;
+				break;
+		case PASSENGER_NEUTRAL:
+				state[depth] = autoPassengerUp;
+				break;
+
+
+		default:
+			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+void manualPassengerUPSM(int event, int depth){
+
+	switch(event){
+	
+		case PASSENGER_NEUTRAL:
+				fastStop();
+				state[depth - 1] = passengerNeutral;
+				break;
+		
+		default:
+			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+void passengerDownSM(int event, int depth){
+
+	switch(event){
+		
+		case LIMIT_DOWN:
+				state[depth] = passengerNeutral;
+				fastStop();
+				break;
+
+		default:
+			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+void iniPassengerDownSM(int event, int depth){
+
+	switch(event){
+	
+		case TIMER_TICK:
+			 state[depth] = manualPassengerDown;
+				break;
+		case PASSENGER_NEUTRAL:
+				state[depth] = autoPassengerDown;
+				break;
+
+		default:
+			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+void manualPassengerDownSM(int event, int depth){
+
+	switch(event){
+	
+		case PASSENGER_NEUTRAL:
+				fastStop();
+				 state[depth - 1] = passengerNeutral;
+				break;
+		
+		default:
+			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+
+}
+
+
+void emergencyDownSM(int event, int depth){
+	
+	switch(event){
+	
+		//case TIME_PASSED:
+				//passengerNeutral state
+				//break;
+		default:
+				if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
+		
+	}
+	
+}
+
+
+
+
 
 
 

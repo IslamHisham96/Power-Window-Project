@@ -7,7 +7,7 @@
 #define passengerUp 3;
 #define driverDown 4;
 #define driverUp 5;
-#define passengerneutral 6;
+#define passengerNeutral 6;
 #define iniPassengerDown 7;
 #define autoPassengerDown 8;
 #define manualPassengerDown 9;
