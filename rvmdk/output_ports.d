@@ -1,7 +1,7 @@
 .\rvmdk\output_ports.o: output_ports.c
 .\rvmdk\output_ports.o: output_ports.h
-.\rvmdk\output_ports.o: E:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
-.\rvmdk\output_ports.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\output_ports.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\rvmdk\output_ports.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\output_ports.o: ..\..\..\..\inc/hw_memmap.h
 .\rvmdk\output_ports.o: ..\..\..\..\driverlib/sysctl.h
 .\rvmdk\output_ports.o: ..\..\..\..\driverlib/rom.h
@@ -10,7 +10,7 @@
 .\rvmdk\output_ports.o: ..\..\..\..\driverlib/pin_map.h
 .\rvmdk\output_ports.o: ..\drivers/buttons.h
 .\rvmdk\output_ports.o: ..\..\..\..\third_party\FreeRTOS\Source\include\FreeRTOS.h
-.\rvmdk\output_ports.o: E:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\rvmdk\output_ports.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
 .\rvmdk\output_ports.o: .\FreeRTOSConfig.h
 .\rvmdk\output_ports.o: ..\..\..\..\third_party\FreeRTOS\Source\include\projdefs.h
 .\rvmdk\output_ports.o: ..\..\..\..\third_party\FreeRTOS\Source\include\portable.h

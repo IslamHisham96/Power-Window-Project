@@ -1,6 +1,6 @@
 .\rvmdk\switch_task.o: switch_task.c
-.\rvmdk\switch_task.o: E:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
-.\rvmdk\switch_task.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\switch_task.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\rvmdk\switch_task.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\switch_task.o: ..\..\..\..\inc/hw_memmap.h
 .\rvmdk\switch_task.o: ..\..\..\..\inc/hw_types.h
 .\rvmdk\switch_task.o: ..\..\..\..\inc/hw_gpio.h
@@ -9,12 +9,12 @@
 .\rvmdk\switch_task.o: ..\..\..\..\driverlib/rom.h
 .\rvmdk\switch_task.o: ..\drivers/buttons.h
 .\rvmdk\switch_task.o: ..\..\..\..\utils/uartstdio.h
-.\rvmdk\switch_task.o: E:\Keil\ARM\ARMCC\bin\..\include\stdarg.h
+.\rvmdk\switch_task.o: C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h
 .\rvmdk\switch_task.o: switch_task.h
 .\rvmdk\switch_task.o: led_task.h
 .\rvmdk\switch_task.o: priorities.h
 .\rvmdk\switch_task.o: ..\..\..\..\third_party\FreeRTOS\Source\include\FreeRTOS.h
-.\rvmdk\switch_task.o: E:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\rvmdk\switch_task.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
 .\rvmdk\switch_task.o: .\FreeRTOSConfig.h
 .\rvmdk\switch_task.o: ..\..\..\..\third_party\FreeRTOS\Source\include\projdefs.h
 .\rvmdk\switch_task.o: ..\..\..\..\third_party\FreeRTOS\Source\include\portable.h

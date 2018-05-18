@@ -1,7 +1,7 @@
 .\rvmdk\port.o: ..\..\..\..\third_party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c
 .\rvmdk\port.o: ..\..\..\..\third_party\FreeRTOS\Source\include\FreeRTOS.h
-.\rvmdk\port.o: E:\Keil\ARM\ARMCC\bin\..\include\stddef.h
-.\rvmdk\port.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\port.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\rvmdk\port.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\port.o: .\FreeRTOSConfig.h
 .\rvmdk\port.o: ..\..\..\..\third_party\FreeRTOS\Source\include\projdefs.h
 .\rvmdk\port.o: ..\..\..\..\third_party\FreeRTOS\Source\include\portable.h

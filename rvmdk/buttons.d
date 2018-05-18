@@ -1,6 +1,6 @@
 .\rvmdk\buttons.o: ..\drivers\buttons.c
-.\rvmdk\buttons.o: E:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
-.\rvmdk\buttons.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\buttons.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\rvmdk\buttons.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\buttons.o: ..\..\..\..\inc/hw_types.h
 .\rvmdk\buttons.o: ..\..\..\..\inc/hw_memmap.h
 .\rvmdk\buttons.o: ..\..\..\..\inc/hw_gpio.h
@@ -10,3 +10,9 @@
 .\rvmdk\buttons.o: ..\..\..\..\driverlib/pin_map.h
 .\rvmdk\buttons.o: ..\..\..\..\driverlib/gpio.h
 .\rvmdk\buttons.o: ..\drivers/buttons.h
+.\rvmdk\buttons.o: .\tm4c123gh6pm.h
+.\rvmdk\buttons.o: ..\..\..\..\driverlib/i2c.h
+.\rvmdk\buttons.o: ..\..\..\..\inc/tm4c123gh6pm.h
+.\rvmdk\buttons.o: ..\..\..\..\inc/hw_i2c.h
+.\rvmdk\buttons.o: ..\..\..\..\driverlib/uart.h
+.\rvmdk\buttons.o: ..\..\..\..\driverlib/interrupt.h

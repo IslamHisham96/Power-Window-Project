@@ -1,7 +1,7 @@
 .\rvmdk\inputs.o: inputs.c
 .\rvmdk\inputs.o: inputs.h
-.\rvmdk\inputs.o: E:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
-.\rvmdk\inputs.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\inputs.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\rvmdk\inputs.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\inputs.o: ..\..\..\..\inc/hw_memmap.h
 .\rvmdk\inputs.o: ..\..\..\..\driverlib/sysctl.h
 .\rvmdk\inputs.o: ..\..\..\..\driverlib/rom.h
@@ -10,7 +10,7 @@
 .\rvmdk\inputs.o: ..\..\..\..\driverlib/pin_map.h
 .\rvmdk\inputs.o: ..\drivers/buttons.h
 .\rvmdk\inputs.o: ..\..\..\..\third_party\FreeRTOS\Source\include\FreeRTOS.h
-.\rvmdk\inputs.o: E:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\rvmdk\inputs.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
 .\rvmdk\inputs.o: .\FreeRTOSConfig.h
 .\rvmdk\inputs.o: ..\..\..\..\third_party\FreeRTOS\Source\include\projdefs.h
 .\rvmdk\inputs.o: ..\..\..\..\third_party\FreeRTOS\Source\include\portable.h
