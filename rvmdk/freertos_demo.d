@@ -30,3 +30,5 @@
 .\rvmdk\freertos_demo.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
 .\rvmdk\freertos_demo.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
 .\rvmdk\freertos_demo.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\rvmdk\freertos_demo.o: StateMachinesFunctions.h
+.\rvmdk\freertos_demo.o: StateNames.h

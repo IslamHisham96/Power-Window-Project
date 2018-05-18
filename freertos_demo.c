@@ -41,6 +41,39 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
+#include "StateMachinesFunctions.h"
+#include "StateNames.h"
+
+#define DRIVER_UP GPIO_PIN_5
+#define DRIVER_DOWN GPIO_PIN_6
+#define PASSENGER_UP GPIO_PIN_3
+#define PASSENGER_DOWN GPIO_PIN_2
+#define LOCK GPIO_PIN_7
+#define LIMIT_UP GPIO_PIN_4
+#define LIMIT_DOWN GPIO_PIN_5
+#define ENGINE GPIO_PIN_6
+
+int stateDepth;
+int state[6];
+
+typedef void (*StateFunction)(int, int);
+
+StateFunction stateMachines[2];
+
+void safeSM(int event, int depth){
+
+	switch(event){
+	
+		case ENGINE:
+			break;
+		default:
+			if(depth < stateDepth) stateMachines[state[depth]](event, depth - 1);
+		
+	}
+
+}
+
+
 
 //*****************************************************************************
 //
@@ -160,6 +193,9 @@ ConfigureUART(void)
 // Initialize FreeRTOS and start the initial set of tasks.
 //
 //*****************************************************************************
+
+
+
 void
 Window_Up(void){
 	turnRight();
