@@ -1,9 +1,9 @@
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\tasks.c
-.\rvmdk\tasks.o: E:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
-.\rvmdk\tasks.o: E:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\rvmdk\tasks.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\rvmdk\tasks.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\FreeRTOS.h
-.\rvmdk\tasks.o: E:\Keil\ARM\ARMCC\bin\..\include\stddef.h
-.\rvmdk\tasks.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\tasks.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\rvmdk\tasks.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\tasks.o: .\FreeRTOSConfig.h
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\projdefs.h
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\portable.h
