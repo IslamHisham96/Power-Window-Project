@@ -16,16 +16,41 @@ After Build - User command #1: fromelf --bin --output .\rvmdk\freertos_demo.bin 
 </pre>
 </body>
 </html>
-in --output .\rvmdk\freertos_demo.bin .\rvmdk\freertos_demo.axf
-".\rvmdk\freertos_demo.axf" - 0 Error(s), 1 Warning(s).
-ned
-                case PASSENGER_NEUTRAL:
-freertos_demo.c(196): error:  #20: identifier "TIMER_TICK" is undefined
-                case TIMER_TICK:
-freertos_demo.c(199): error:  #20: identifier "PASSENGER_NEUTRAL" is undefined
-                case PASSENGER_NEUTRAL:
-freertos_demo.c(214): error:  #20: identifier "PASSENGER_NEUTRAL" is undefined
-                case PASSENGER_NEUTRAL:
-freertos_demo.c: 1 warning, 6 errors
-".\rvmdk\freertos_demo.axf" - 6 Error(s), 1 Warning(s).
+    xSemaphoreGiveFromISR( xTurnRightSemaphore);
+freertos_demo.c(112): error:  #54-D: too few arguments in invocation of macro "xSemaphoreGiveFromISR"
+                                xSemaphoreGiveFromISR( xTurnLeftSemaphore);
+freertos_demo.c(112): error:  #29: expected an expression
+                                xSemaphoreGiveFromISR( xTurnLeftSemaphore);
+freertos_demo.c(131): error:  #54-D: too few arguments in invocation of macro "xSemaphoreGiveFromISR"
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(131): error:  #29: expected an expression
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(166): error:  #54-D: too few arguments in invocation of macro "xSemaphoreGiveFromISR"
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(166): error:  #29: expected an expression
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(185): error:  #54-D: too few arguments in invocation of macro "xSemaphoreGiveFromISR"
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(185): error:  #29: expected an expression
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(218): error:  #54-D: too few arguments in invocation of macro "xSemaphoreGiveFromISR"
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(218): error:  #29: expected an expression
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c: 0 warnings, 12 errors
+".\rvmdk\freertos_demo.axf" - 12 Error(s), 0 Warning(s).
+Target not created
+                     xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(183): error:  #20: identifier "xFastStopSemaphore" is undefined
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(183): error:  #29: expected an expression
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(216): error:  #54-D: too few arguments in invocation of macro "xSemaphoreGiveFromISR"
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(216): error:  #20: identifier "xFastStopSemaphore" is undefined
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c(216): error:  #29: expected an expression
+                                xSemaphoreGiveFromISR(xFastStopSemaphore);
+freertos_demo.c: 0 warnings, 18 errors
+".\rvmdk\freertos_demo.axf" - 18 Error(s), 0 Warning(s).
 Target not created

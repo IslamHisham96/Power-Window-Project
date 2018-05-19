@@ -46,20 +46,19 @@ Section Cross References
     freertos_demo.o(i.main) refers to taskhandlers.o(i.vFastStopHandlerTask) for vFastStopHandlerTask
     freertos_demo.o(i.main) refers to freertos_demo.o(i.Window_Handler) for Window_Handler
     freertos_demo.o(i.main) refers to freertos_demo.o(i.Limit_Handler) for Limit_Handler
-    freertos_demo.o(i.manualPassengerDownSM) refers to output_ports.o(i.fastStop) for fastStop
+    freertos_demo.o(i.manualPassengerDownSM) refers to queue.o(i.xQueueGenericSend) for xQueueGenericSend
     freertos_demo.o(i.manualPassengerDownSM) refers to freertos_demo.o(.bss) for .bss
     freertos_demo.o(i.manualPassengerDownSM) refers to freertos_demo.o(.data) for .data
-    freertos_demo.o(i.manualPassengerUPSM) refers to output_ports.o(i.fastStop) for fastStop
+    freertos_demo.o(i.manualPassengerUPSM) refers to queue.o(i.xQueueGenericSend) for xQueueGenericSend
     freertos_demo.o(i.manualPassengerUPSM) refers to freertos_demo.o(.bss) for .bss
     freertos_demo.o(i.manualPassengerUPSM) refers to freertos_demo.o(.data) for .data
-    freertos_demo.o(i.passengerDownSM) refers to output_ports.o(i.fastStop) for fastStop
+    freertos_demo.o(i.passengerDownSM) refers to queue.o(i.xQueueGenericSend) for xQueueGenericSend
     freertos_demo.o(i.passengerDownSM) refers to freertos_demo.o(.bss) for .bss
     freertos_demo.o(i.passengerDownSM) refers to freertos_demo.o(.data) for .data
-    freertos_demo.o(i.passengerNeutralSM) refers to output_ports.o(i.turnRight) for turnRight
-    freertos_demo.o(i.passengerNeutralSM) refers to output_ports.o(i.turnLeft) for turnLeft
+    freertos_demo.o(i.passengerNeutralSM) refers to queue.o(i.xQueueGenericSend) for xQueueGenericSend
     freertos_demo.o(i.passengerNeutralSM) refers to freertos_demo.o(.bss) for .bss
     freertos_demo.o(i.passengerNeutralSM) refers to freertos_demo.o(.data) for .data
-    freertos_demo.o(i.passengerUPSM) refers to output_ports.o(i.fastStop) for fastStop
+    freertos_demo.o(i.passengerUPSM) refers to queue.o(i.xQueueGenericSend) for xQueueGenericSend
     freertos_demo.o(i.passengerUPSM) refers to freertos_demo.o(.bss) for .bss
     freertos_demo.o(i.passengerUPSM) refers to freertos_demo.o(.data) for .data
     freertos_demo.o(i.safeSM) refers to freertos_demo.o(.bss) for .bss
@@ -787,11 +786,11 @@ Removing Unused input sections from the image.
     Removing freertos_demo.o(i.emergencyDownSM), (40 bytes).
     Removing freertos_demo.o(i.iniPassengerDownSM), (72 bytes).
     Removing freertos_demo.o(i.iniPassengerUPSM), (72 bytes).
-    Removing freertos_demo.o(i.manualPassengerDownSM), (68 bytes).
-    Removing freertos_demo.o(i.manualPassengerUPSM), (68 bytes).
-    Removing freertos_demo.o(i.passengerDownSM), (68 bytes).
-    Removing freertos_demo.o(i.passengerNeutralSM), (108 bytes).
-    Removing freertos_demo.o(i.passengerUPSM), (68 bytes).
+    Removing freertos_demo.o(i.manualPassengerDownSM), (76 bytes).
+    Removing freertos_demo.o(i.manualPassengerUPSM), (76 bytes).
+    Removing freertos_demo.o(i.passengerDownSM), (76 bytes).
+    Removing freertos_demo.o(i.passengerNeutralSM), (120 bytes).
+    Removing freertos_demo.o(i.passengerUPSM), (76 bytes).
     Removing freertos_demo.o(i.safeSM), (56 bytes).
     Removing freertos_demo.o(.bss), (24 bytes).
     Removing freertos_demo.o(.data), (4 bytes).
@@ -1049,7 +1048,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (40 bytes).
     Removing depilogue.o(.text), (190 bytes).
 
-269 unused section(s) (total 14547 bytes) removed from the image.
+269 unused section(s) (total 14591 bytes) removed from the image.
 
 ==============================================================================
 
