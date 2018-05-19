@@ -480,6 +480,16 @@
               <FileType>5</FileType>
               <FilePath>.\output_ports.h</FilePath>
             </File>
+            <File>
+              <FileName>TaskHandlers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskHandlers.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskHandlers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TaskHandlers.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

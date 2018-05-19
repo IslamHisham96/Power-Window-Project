@@ -43,18 +43,9 @@
 #include "string.h"
 #include "StateMachinesFunctions.h"
 #include "StateNames.h"
+#include "TaskHandlers.h"
 
-#define DRIVER_UP GPIO_PIN_5
-#define DRIVER_DOWN GPIO_PIN_6
-#define PASSENGER_UP GPIO_PIN_3
-#define PASSENGER_DOWN GPIO_PIN_2
-#define PASSENGER_NEUTRAL 1
-#define DRIVER_NEUTRAL 2
-#define TIMER_TICK 3
-#define LOCK GPIO_PIN_7
-#define LIMIT_UP GPIO_PIN_4
-#define LIMIT_DOWN GPIO_PIN_5
-#define ENGINE GPIO_PIN_6
+
 
 int stateDepth = 3;
 int state[6];
@@ -470,9 +461,25 @@ Main_Task(void * pvParameters)
 {
 	
 }
+
+SemaphoreHandle_t xTurnRightSemaphore;
+SemaphoreHandle_t xTurnLeftSemaphore;
+SemaphoreHandle_t xFastStopSemaphore;
+
 int
 main(void)
 {
+	
+	
+	//Semaphores creation to synchronize Actuator Tasks with Main Task
+	vSemaphoreCreateBinary( xTurnRightSemaphore );
+	vSemaphoreCreateBinary( xTurnLeftSemaphore );
+	vSemaphoreCreateBinary( xFastStopSemaphore );
+	
+	//Creation of Actuator Tasks with priority higher than Main Task
+	xTaskCreate( vTurnRightHandlerTask, "vTurnRightHandlerTask", 240, NULL, 3, NULL );
+	xTaskCreate( vTurnLeftHandlerTask, "vTurnLeftHandlerTask", 240, NULL, 3, NULL );
+	xTaskCreate( vFastStopHandlerTask, "vFastStopHandlerTask", 240, NULL, 3, NULL );
     //
     // Set the clocking to run at 50 MHz from the PLL.
     //
