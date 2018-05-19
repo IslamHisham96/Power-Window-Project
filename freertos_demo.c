@@ -56,7 +56,7 @@
 #define LIMIT_DOWN GPIO_PIN_5
 #define ENGINE GPIO_PIN_6
 
-int stateDepth;
+int stateDepth = 3;
 int state[6];
 
 typedef void (*StateFunction)(int, int);
@@ -106,13 +106,15 @@ void passengerNeutralSM(int event, int depth){
 		case PASSENGER_UP:
 				state[depth] = passengerUp;
 				state[depth + 1] = iniPassengerUp;
-				
+				stateDepth = 4;
+		
 				turnRight();
 				//start timer
 				break;
 		case PASSENGER_DOWN:
 				state[depth] = passengerDown;
 				state[depth + 1] = iniPassengerDown;
+				stateDepth = 4;
 		
 				turnLeft();
 				//start timer
@@ -126,12 +128,13 @@ void passengerNeutralSM(int event, int depth){
 
 void passengerUPSM(int event, int depth){
 
-	state[depth] = passengerUp;
 	
 	switch(event){
 		
 		case LIMIT_UP:
 				state[depth] = passengerNeutral;
+				stateDepth = 3;
+		
 				fastStop();
 				break;
 
@@ -144,7 +147,6 @@ void passengerUPSM(int event, int depth){
 
 void iniPassengerUPSM(int event, int depth){
 
-	state[depth] = iniPassengerUp;
 	
 	switch(event){
 	
@@ -170,6 +172,7 @@ void manualPassengerUPSM(int event, int depth){
 		case PASSENGER_NEUTRAL:
 				fastStop();
 				state[depth - 1] = passengerNeutral;
+				stateDepth = 3;
 				break;
 		
 		default:
@@ -185,6 +188,7 @@ void passengerDownSM(int event, int depth){
 		
 		case LIMIT_DOWN:
 				state[depth] = passengerNeutral;
+				stateDepth = 3;
 				fastStop();
 				break;
 
@@ -219,7 +223,8 @@ void manualPassengerDownSM(int event, int depth){
 	
 		case PASSENGER_NEUTRAL:
 				fastStop();
-				 state[depth - 1] = passengerNeutral;
+				state[depth - 1] = passengerNeutral;
+				stateDepth = 3;
 				break;
 		
 		default:
