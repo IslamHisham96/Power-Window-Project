@@ -427,12 +427,12 @@ Window_Handler(void){
 	}
 	else if(status & DRIVER_UP){
 		
-	UARTprintf("derp\n");
-		Window_Up();
+	//UARTprintf("derp\n");
+	//	Window_Up();
 		event = DRIVER_UP_EVENT;
 	}
 	else if(status & DRIVER_DOWN){
-	UARTprintf("herp\n");
+	//UARTprintf("herp\n");
 		//s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
 		//sprintf(ss,"%d\n",s);
 		//UARTprintf(ss);
