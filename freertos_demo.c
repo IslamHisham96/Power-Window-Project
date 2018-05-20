@@ -43,6 +43,8 @@
 #include "string.h"
 #include "StateMachinesFunctions.h"
 #include "StateNames.h"
+#include "TaskHandlers.h"
+
 
 #define DRIVER_UP_EVENT 0
 #define DRIVER_DOWN_EVENT 1
@@ -56,7 +58,13 @@
 #define LIMIT_DOWN_EVENT 9
 #define ENGINE_EVENT 10
 
-int stateDepth;
+
+
+
+SemaphoreHandle_t xTurnRightSemaphore;
+SemaphoreHandle_t xTurnLeftSemaphore;
+SemaphoreHandle_t xFastStopSemaphore;
+int stateDepth = 3;
 int state[6];
 
 typedef void (*StateFunction)(int, int);
@@ -106,15 +114,17 @@ void passengerNeutralSM(int event, int depth){
 		case PASSENGER_UP_EVENT:
 				state[depth] = passengerUp;
 				state[depth + 1] = iniPassengerUp;
-				
-				turnRight();
+				stateDepth = 4;
+		
+				xSemaphoreGive( xTurnRightSemaphore);
 				//start timer
 				break;
 		case PASSENGER_DOWN_EVENT:
 				state[depth] = passengerDown;
 				state[depth + 1] = iniPassengerDown;
+				stateDepth = 4;
 		
-				turnLeft();
+				xSemaphoreGive( xTurnLeftSemaphore);
 				//start timer
 				break;
 		default:
@@ -126,13 +136,14 @@ void passengerNeutralSM(int event, int depth){
 
 void passengerUPSM(int event, int depth){
 
-	state[depth] = passengerUp;
 	
 	switch(event){
 		
 		case LIMIT_UP_EVENT:
 				state[depth] = passengerNeutral;
-				fastStop();
+				stateDepth = 3;
+		
+				xSemaphoreGive(xFastStopSemaphore);
 				break;
 
 		default:
@@ -144,7 +155,6 @@ void passengerUPSM(int event, int depth){
 
 void iniPassengerUPSM(int event, int depth){
 
-	state[depth] = iniPassengerUp;
 	
 	switch(event){
 	
@@ -166,10 +176,11 @@ void iniPassengerUPSM(int event, int depth){
 void manualPassengerUPSM(int event, int depth){
 
 	switch(event){
-	
+
 		case PASSENGER_NEUTRAL_EVENT:
-				fastStop();
+				xSemaphoreGive(xFastStopSemaphore);
 				state[depth - 1] = passengerNeutral;
+				stateDepth = 3;
 				break;
 		
 		default:
@@ -185,7 +196,8 @@ void passengerDownSM(int event, int depth){
 		
 		case LIMIT_DOWN_EVENT:
 				state[depth] = passengerNeutral;
-				fastStop();
+				stateDepth = 3;
+				xSemaphoreGive(xFastStopSemaphore);
 				break;
 
 		default:
@@ -217,9 +229,11 @@ void manualPassengerDownSM(int event, int depth){
 
 	switch(event){
 	
+
 		case PASSENGER_NEUTRAL_EVENT:
-				fastStop();
-				 state[depth - 1] = passengerNeutral;
+				xSemaphoreGive(xFastStopSemaphore);
+				state[depth - 1] = passengerNeutral;
+				stateDepth = 3;
 				break;
 		
 		default:
@@ -371,7 +385,6 @@ ConfigureUART(void)
 //*****************************************************************************
 
 
-
 void
 Window_Up(void){
 	turnRight();
@@ -500,9 +513,25 @@ Main_Task(void * pvParameters)
 {
 	
 }
+
+
+
+
+
 int
 main(void)
 {
+	
+	
+	//Semaphores creation to synchronize Actuator Tasks with Main Task
+	vSemaphoreCreateBinary( xTurnRightSemaphore );
+	vSemaphoreCreateBinary( xTurnLeftSemaphore );
+	vSemaphoreCreateBinary( xFastStopSemaphore );
+	
+	//Creation of Actuator Tasks with priority higher than Main Task
+	xTaskCreate( vTurnRightHandlerTask, "vTurnRightHandlerTask", 240, NULL, 3, NULL );
+	xTaskCreate( vTurnLeftHandlerTask, "vTurnLeftHandlerTask", 240, NULL, 3, NULL );
+	xTaskCreate( vFastStopHandlerTask, "vFastStopHandlerTask", 240, NULL, 3, NULL );
     //
     // Set the clocking to run at 50 MHz from the PLL.
     //
