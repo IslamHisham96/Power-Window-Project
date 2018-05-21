@@ -21,4 +21,6 @@ void autoDriverUpSM(int event, int depth);
 void autoDriverDownSM(int event, int depth);
 void autoPassengerUpSM(int event, int depth);
 void autoPassengerDownSM(int event, int depth);
+void dyingSM(int event, int depth);
+void deadSM(int event, int depth);
 #endif

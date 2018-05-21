@@ -51,6 +51,8 @@ Section Cross References
     freertos_demo.o(i.main) refers to statemachinesfunctions.o(i.autoDriverDownSM) for autoDriverDownSM
     freertos_demo.o(i.main) refers to statemachinesfunctions.o(i.autoPassengerUpSM) for autoPassengerUpSM
     freertos_demo.o(i.main) refers to statemachinesfunctions.o(i.autoPassengerDownSM) for autoPassengerDownSM
+    freertos_demo.o(i.main) refers to statemachinesfunctions.o(i.dyingSM) for dyingSM
+    freertos_demo.o(i.main) refers to statemachinesfunctions.o(i.deadSM) for deadSM
     freertos_demo.o(i.main) refers to freertos_demo.o(.data) for .data
     freertos_demo.o(i.main) refers to taskhandlers.o(i.vTurnRightHandlerTask) for vTurnRightHandlerTask
     freertos_demo.o(i.main) refers to taskhandlers.o(i.vTurnLeftHandlerTask) for vTurnLeftHandlerTask
@@ -407,6 +409,7 @@ Section Cross References
     taskhandlers.o(i.vTurnRightHandlerTask) refers to queue.o(i.xQueueGenericReceive) for xQueueGenericReceive
     taskhandlers.o(i.vTurnRightHandlerTask) refers to output_ports.o(i.turnRight) for turnRight
     taskhandlers.o(i.vTurnRightHandlerTask) refers to freertos_demo.o(.data) for xTurnRightSemaphore
+    statemachinesfunctions.o(i.deadSM) refers to statemachinesfunctions.o(.data) for .data
     statemachinesfunctions.o(i.driverDownSM) refers to queue.o(i.xQueueGenericSend) for xQueueGenericSend
     statemachinesfunctions.o(i.driverDownSM) refers to statemachinesfunctions.o(.data) for .data
     statemachinesfunctions.o(i.driverDownSM) refers to freertos_demo.o(.bss) for stateMachines
@@ -419,6 +422,7 @@ Section Cross References
     statemachinesfunctions.o(i.driverUpSM) refers to freertos_demo.o(.data) for xTurnLeftSemaphore
     statemachinesfunctions.o(i.driverUpSM) refers to statemachinesfunctions.o(.data) for .data
     statemachinesfunctions.o(i.driverUpSM) refers to freertos_demo.o(.bss) for stateMachines
+    statemachinesfunctions.o(i.dyingSM) refers to statemachinesfunctions.o(.data) for .data
     statemachinesfunctions.o(i.emergencyDownSM) refers to queue.o(i.xQueueGenericSend) for xQueueGenericSend
     statemachinesfunctions.o(i.emergencyDownSM) refers to freertos_demo.o(.data) for xFastStopSemaphore
     statemachinesfunctions.o(i.emergencyDownSM) refers to statemachinesfunctions.o(.data) for .data
@@ -839,19 +843,19 @@ Image Symbol Table
 
     RESET                                    0x00000000   Section      648  startup_rvmdk.o(RESET)
     ../clib/../cmprslib/zerorunl2.c          0x00000000   Number         0  __dczerorl2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
@@ -936,100 +940,102 @@ Image Symbol Table
     i.autoDriverUpSM                         0x00000b60   Section        0  statemachinesfunctions.o(i.autoDriverUpSM)
     i.autoPassengerDownSM                    0x00000b62   Section        0  statemachinesfunctions.o(i.autoPassengerDownSM)
     i.autoPassengerUpSM                      0x00000b64   Section        0  statemachinesfunctions.o(i.autoPassengerUpSM)
-    i.driverDownSM                           0x00000b68   Section        0  statemachinesfunctions.o(i.driverDownSM)
-    i.driverNeutralSM                        0x00000be0   Section        0  statemachinesfunctions.o(i.driverNeutralSM)
-    i.driverUpSM                             0x00000c5c   Section        0  statemachinesfunctions.o(i.driverUpSM)
-    i.emergencyDownSM                        0x00000cfc   Section        0  statemachinesfunctions.o(i.emergencyDownSM)
-    i.enable                                 0x00000d34   Section        0  output_ports.o(i.enable)
-    i.fastStop                               0x00000d44   Section        0  output_ports.o(i.fastStop)
-    i.iniDriverDownSM                        0x00000d5c   Section        0  statemachinesfunctions.o(i.iniDriverDownSM)
-    i.iniDriverUpSM                          0x00000d80   Section        0  statemachinesfunctions.o(i.iniDriverUpSM)
-    i.iniPassengerDownSM                     0x00000da4   Section        0  statemachinesfunctions.o(i.iniPassengerDownSM)
-    i.init_input                             0x00000dc0   Section        0  inputs.o(i.init_input)
-    i.init_output                            0x00000e74   Section        0  output_ports.o(i.init_output)
-    i.main                                   0x00000ea4   Section        0  freertos_demo.o(i.main)
-    i.manualDriverDownSM                     0x000010a8   Section        0  statemachinesfunctions.o(i.manualDriverDownSM)
-    i.manualDriverUpSM                       0x000010dc   Section        0  statemachinesfunctions.o(i.manualDriverUpSM)
-    i.manualPassengerDownSM                  0x00001110   Section        0  statemachinesfunctions.o(i.manualPassengerDownSM)
-    i.manualPassengerUpSM                    0x00001144   Section        0  statemachinesfunctions.o(i.manualPassengerUpSM)
-    i.passengerDownSM                        0x00001178   Section        0  statemachinesfunctions.o(i.passengerDownSM)
-    i.passengerNeutralSM                     0x000011c8   Section        0  statemachinesfunctions.o(i.passengerNeutralSM)
-    i.passengerUpSM                          0x00001228   Section        0  statemachinesfunctions.o(i.passengerUpSM)
-    i.porta_int                              0x00001298   Section        0  inputs.o(i.porta_int)
-    i.portc_int                              0x000012d8   Section        0  inputs.o(i.portc_int)
-    i.prvAddCurrentTaskToDelayedList         0x0000131c   Section        0  tasks.o(i.prvAddCurrentTaskToDelayedList)
-    prvAddCurrentTaskToDelayedList           0x0000131d   Thumb Code    48  tasks.o(i.prvAddCurrentTaskToDelayedList)
-    i.prvCheckTasksWaitingTermination        0x00001350   Section        0  tasks.o(i.prvCheckTasksWaitingTermination)
-    prvCheckTasksWaitingTermination          0x00001351   Thumb Code    80  tasks.o(i.prvCheckTasksWaitingTermination)
-    i.prvCopyDataFromQueue                   0x000013a8   Section        0  queue.o(i.prvCopyDataFromQueue)
-    prvCopyDataFromQueue                     0x000013a9   Thumb Code    38  queue.o(i.prvCopyDataFromQueue)
-    i.prvCopyDataToQueue                     0x000013ce   Section        0  queue.o(i.prvCopyDataToQueue)
-    prvCopyDataToQueue                       0x000013cf   Thumb Code   110  queue.o(i.prvCopyDataToQueue)
-    i.prvIdleTask                            0x0000143c   Section        0  tasks.o(i.prvIdleTask)
-    prvIdleTask                              0x0000143d   Thumb Code     6  tasks.o(i.prvIdleTask)
-    i.prvResetNextTaskUnblockTime            0x00001444   Section        0  tasks.o(i.prvResetNextTaskUnblockTime)
-    prvResetNextTaskUnblockTime              0x00001445   Thumb Code    26  tasks.o(i.prvResetNextTaskUnblockTime)
-    i.prvTaskExitError                       0x00001464   Section        0  port.o(i.prvTaskExitError)
-    prvTaskExitError                         0x00001465   Thumb Code    16  port.o(i.prvTaskExitError)
-    i.prvUnlockQueue                         0x00001474   Section        0  queue.o(i.prvUnlockQueue)
-    prvUnlockQueue                           0x00001475   Thumb Code   100  queue.o(i.prvUnlockQueue)
-    i.pvPortMalloc                           0x000014d8   Section        0  heap_2.o(i.pvPortMalloc)
-    i.pvTaskIncrementMutexHeldCount          0x0000158c   Section        0  tasks.o(i.pvTaskIncrementMutexHeldCount)
-    i.pxPortInitialiseStack                  0x000015a4   Section        0  port.o(i.pxPortInitialiseStack)
-    i.safeSM                                 0x000015cc   Section        0  statemachinesfunctions.o(i.safeSM)
-    i.turnLeft                               0x00001604   Section        0  output_ports.o(i.turnLeft)
-    i.turnRight                              0x0000161c   Section        0  output_ports.o(i.turnRight)
-    i.uxListRemove                           0x00001634   Section        0  list.o(i.uxListRemove)
-    i.vApplicationStackOverflowHook          0x00001658   Section        0  freertos_demo.o(i.vApplicationStackOverflowHook)
-    i.vFastStopHandlerTask                   0x0000165c   Section        0  taskhandlers.o(i.vFastStopHandlerTask)
-    i.vListInitialise                        0x00001684   Section        0  list.o(i.vListInitialise)
-    i.vListInitialiseItem                    0x0000169a   Section        0  list.o(i.vListInitialiseItem)
-    i.vListInsert                            0x000016a0   Section        0  list.o(i.vListInsert)
-    i.vListInsertEnd                         0x000016d0   Section        0  list.o(i.vListInsertEnd)
-    i.vMainHandlerTask                       0x000016e8   Section        0  taskhandlers.o(i.vMainHandlerTask)
-    i.vPortEnterCritical                     0x0000171c   Section        0  port.o(i.vPortEnterCritical)
-    i.vPortExitCritical                      0x00001738   Section        0  port.o(i.vPortExitCritical)
-    i.vPortFree                              0x0000174c   Section        0  heap_2.o(i.vPortFree)
-    i.vPortSetupTimerInterrupt               0x00001788   Section        0  port.o(i.vPortSetupTimerInterrupt)
-    i.vTaskMissedYield                       0x00001798   Section        0  tasks.o(i.vTaskMissedYield)
-    i.vTaskPlaceOnEventList                  0x000017a4   Section        0  tasks.o(i.vTaskPlaceOnEventList)
-    i.vTaskPriorityInherit                   0x000017f4   Section        0  tasks.o(i.vTaskPriorityInherit)
-    i.vTaskSetTimeOutState                   0x00001878   Section        0  tasks.o(i.vTaskSetTimeOutState)
-    i.vTaskStartScheduler                    0x00001888   Section        0  tasks.o(i.vTaskStartScheduler)
-    i.vTaskSuspendAll                        0x000018dc   Section        0  tasks.o(i.vTaskSuspendAll)
-    i.vTaskSwitchContext                     0x000018ec   Section        0  tasks.o(i.vTaskSwitchContext)
-    i.vTurnLeftHandlerTask                   0x0000195c   Section        0  taskhandlers.o(i.vTurnLeftHandlerTask)
-    i.vTurnRightHandlerTask                  0x00001984   Section        0  taskhandlers.o(i.vTurnRightHandlerTask)
-    i.xPortStartScheduler                    0x000019ac   Section        0  port.o(i.xPortStartScheduler)
-    i.xPortSysTickHandler                    0x000019ec   Section        0  port.o(i.xPortSysTickHandler)
-    i.xQueueGenericCreate                    0x00001a18   Section        0  queue.o(i.xQueueGenericCreate)
-    i.xQueueGenericReceive                   0x00001a60   Section        0  queue.o(i.xQueueGenericReceive)
-    i.xQueueGenericReset                     0x00001b8c   Section        0  queue.o(i.xQueueGenericReset)
-    i.xQueueGenericSend                      0x00001bfc   Section        0  queue.o(i.xQueueGenericSend)
-    i.xQueueGenericSendFromISR               0x00001cfc   Section        0  queue.o(i.xQueueGenericSendFromISR)
-    i.xTaskCheckForTimeOut                   0x00001d5c   Section        0  tasks.o(i.xTaskCheckForTimeOut)
-    i.xTaskGenericCreate                     0x00001da4   Section        0  tasks.o(i.xTaskGenericCreate)
-    i.xTaskGetTickCountFromISR               0x00001f2c   Section        0  tasks.o(i.xTaskGetTickCountFromISR)
-    i.xTaskIncrementTick                     0x00001f38   Section        0  tasks.o(i.xTaskIncrementTick)
-    i.xTaskPriorityDisinherit                0x00001fec   Section        0  tasks.o(i.xTaskPriorityDisinherit)
-    i.xTaskRemoveFromEventList               0x0000205c   Section        0  tasks.o(i.xTaskRemoveFromEventList)
-    i.xTaskResumeAll                         0x000020c0   Section        0  tasks.o(i.xTaskResumeAll)
-    .constdata                               0x00002170   Section       28  uartstdio.o(.constdata)
-    g_pcHex                                  0x00002170   Data           4  uartstdio.o(.constdata)
-    g_ui32UARTBase                           0x00002174   Data          12  uartstdio.o(.constdata)
-    g_ui32UARTPeriph                         0x00002180   Data          12  uartstdio.o(.constdata)
-    .constdata                               0x0000218c   Section      552  gpio.o(.constdata)
-    g_ppui32GPIOIntMapBlizzard               0x0000218c   Data         192  gpio.o(.constdata)
-    g_ppui32GPIOIntMapSnowflake              0x0000224c   Data         216  gpio.o(.constdata)
-    g_pui32GPIOBaseAddrs                     0x00002324   Data         144  gpio.o(.constdata)
-    .constdata                               0x000023b4   Section      268  interrupt.o(.constdata)
-    g_pui32Priority                          0x000023b4   Data          32  interrupt.o(.constdata)
-    g_pui32Regs                              0x000023d4   Data         156  interrupt.o(.constdata)
-    g_pui32EnRegs                            0x00002470   Data          20  interrupt.o(.constdata)
-    g_pui32Dii16Regs                         0x00002484   Data          20  interrupt.o(.constdata)
-    g_pui32PendRegs                          0x00002498   Data          20  interrupt.o(.constdata)
-    g_pui32UnpendRegs                        0x000024ac   Data          20  interrupt.o(.constdata)
-    .conststring                             0x000024c0   Section       17  uartstdio.o(.conststring)
+    i.deadSM                                 0x00000b68   Section        0  statemachinesfunctions.o(i.deadSM)
+    i.driverDownSM                           0x00000b88   Section        0  statemachinesfunctions.o(i.driverDownSM)
+    i.driverNeutralSM                        0x00000c00   Section        0  statemachinesfunctions.o(i.driverNeutralSM)
+    i.driverUpSM                             0x00000c7c   Section        0  statemachinesfunctions.o(i.driverUpSM)
+    i.dyingSM                                0x00000d1c   Section        0  statemachinesfunctions.o(i.dyingSM)
+    i.emergencyDownSM                        0x00000d38   Section        0  statemachinesfunctions.o(i.emergencyDownSM)
+    i.enable                                 0x00000d70   Section        0  output_ports.o(i.enable)
+    i.fastStop                               0x00000d80   Section        0  output_ports.o(i.fastStop)
+    i.iniDriverDownSM                        0x00000d98   Section        0  statemachinesfunctions.o(i.iniDriverDownSM)
+    i.iniDriverUpSM                          0x00000dbc   Section        0  statemachinesfunctions.o(i.iniDriverUpSM)
+    i.iniPassengerDownSM                     0x00000de0   Section        0  statemachinesfunctions.o(i.iniPassengerDownSM)
+    i.init_input                             0x00000dfc   Section        0  inputs.o(i.init_input)
+    i.init_output                            0x00000eb0   Section        0  output_ports.o(i.init_output)
+    i.main                                   0x00000ee0   Section        0  freertos_demo.o(i.main)
+    i.manualDriverDownSM                     0x000010f4   Section        0  statemachinesfunctions.o(i.manualDriverDownSM)
+    i.manualDriverUpSM                       0x00001128   Section        0  statemachinesfunctions.o(i.manualDriverUpSM)
+    i.manualPassengerDownSM                  0x0000115c   Section        0  statemachinesfunctions.o(i.manualPassengerDownSM)
+    i.manualPassengerUpSM                    0x00001190   Section        0  statemachinesfunctions.o(i.manualPassengerUpSM)
+    i.passengerDownSM                        0x000011c4   Section        0  statemachinesfunctions.o(i.passengerDownSM)
+    i.passengerNeutralSM                     0x00001214   Section        0  statemachinesfunctions.o(i.passengerNeutralSM)
+    i.passengerUpSM                          0x00001274   Section        0  statemachinesfunctions.o(i.passengerUpSM)
+    i.porta_int                              0x000012e4   Section        0  inputs.o(i.porta_int)
+    i.portc_int                              0x00001324   Section        0  inputs.o(i.portc_int)
+    i.prvAddCurrentTaskToDelayedList         0x00001368   Section        0  tasks.o(i.prvAddCurrentTaskToDelayedList)
+    prvAddCurrentTaskToDelayedList           0x00001369   Thumb Code    48  tasks.o(i.prvAddCurrentTaskToDelayedList)
+    i.prvCheckTasksWaitingTermination        0x0000139c   Section        0  tasks.o(i.prvCheckTasksWaitingTermination)
+    prvCheckTasksWaitingTermination          0x0000139d   Thumb Code    80  tasks.o(i.prvCheckTasksWaitingTermination)
+    i.prvCopyDataFromQueue                   0x000013f4   Section        0  queue.o(i.prvCopyDataFromQueue)
+    prvCopyDataFromQueue                     0x000013f5   Thumb Code    38  queue.o(i.prvCopyDataFromQueue)
+    i.prvCopyDataToQueue                     0x0000141a   Section        0  queue.o(i.prvCopyDataToQueue)
+    prvCopyDataToQueue                       0x0000141b   Thumb Code   110  queue.o(i.prvCopyDataToQueue)
+    i.prvIdleTask                            0x00001488   Section        0  tasks.o(i.prvIdleTask)
+    prvIdleTask                              0x00001489   Thumb Code     6  tasks.o(i.prvIdleTask)
+    i.prvResetNextTaskUnblockTime            0x00001490   Section        0  tasks.o(i.prvResetNextTaskUnblockTime)
+    prvResetNextTaskUnblockTime              0x00001491   Thumb Code    26  tasks.o(i.prvResetNextTaskUnblockTime)
+    i.prvTaskExitError                       0x000014b0   Section        0  port.o(i.prvTaskExitError)
+    prvTaskExitError                         0x000014b1   Thumb Code    16  port.o(i.prvTaskExitError)
+    i.prvUnlockQueue                         0x000014c0   Section        0  queue.o(i.prvUnlockQueue)
+    prvUnlockQueue                           0x000014c1   Thumb Code   100  queue.o(i.prvUnlockQueue)
+    i.pvPortMalloc                           0x00001524   Section        0  heap_2.o(i.pvPortMalloc)
+    i.pvTaskIncrementMutexHeldCount          0x000015d8   Section        0  tasks.o(i.pvTaskIncrementMutexHeldCount)
+    i.pxPortInitialiseStack                  0x000015f0   Section        0  port.o(i.pxPortInitialiseStack)
+    i.safeSM                                 0x00001618   Section        0  statemachinesfunctions.o(i.safeSM)
+    i.turnLeft                               0x00001650   Section        0  output_ports.o(i.turnLeft)
+    i.turnRight                              0x00001668   Section        0  output_ports.o(i.turnRight)
+    i.uxListRemove                           0x00001680   Section        0  list.o(i.uxListRemove)
+    i.vApplicationStackOverflowHook          0x000016a4   Section        0  freertos_demo.o(i.vApplicationStackOverflowHook)
+    i.vFastStopHandlerTask                   0x000016a8   Section        0  taskhandlers.o(i.vFastStopHandlerTask)
+    i.vListInitialise                        0x000016d0   Section        0  list.o(i.vListInitialise)
+    i.vListInitialiseItem                    0x000016e6   Section        0  list.o(i.vListInitialiseItem)
+    i.vListInsert                            0x000016ec   Section        0  list.o(i.vListInsert)
+    i.vListInsertEnd                         0x0000171c   Section        0  list.o(i.vListInsertEnd)
+    i.vMainHandlerTask                       0x00001734   Section        0  taskhandlers.o(i.vMainHandlerTask)
+    i.vPortEnterCritical                     0x00001768   Section        0  port.o(i.vPortEnterCritical)
+    i.vPortExitCritical                      0x00001784   Section        0  port.o(i.vPortExitCritical)
+    i.vPortFree                              0x00001798   Section        0  heap_2.o(i.vPortFree)
+    i.vPortSetupTimerInterrupt               0x000017d4   Section        0  port.o(i.vPortSetupTimerInterrupt)
+    i.vTaskMissedYield                       0x000017e4   Section        0  tasks.o(i.vTaskMissedYield)
+    i.vTaskPlaceOnEventList                  0x000017f0   Section        0  tasks.o(i.vTaskPlaceOnEventList)
+    i.vTaskPriorityInherit                   0x00001840   Section        0  tasks.o(i.vTaskPriorityInherit)
+    i.vTaskSetTimeOutState                   0x000018c4   Section        0  tasks.o(i.vTaskSetTimeOutState)
+    i.vTaskStartScheduler                    0x000018d4   Section        0  tasks.o(i.vTaskStartScheduler)
+    i.vTaskSuspendAll                        0x00001928   Section        0  tasks.o(i.vTaskSuspendAll)
+    i.vTaskSwitchContext                     0x00001938   Section        0  tasks.o(i.vTaskSwitchContext)
+    i.vTurnLeftHandlerTask                   0x000019a8   Section        0  taskhandlers.o(i.vTurnLeftHandlerTask)
+    i.vTurnRightHandlerTask                  0x000019d0   Section        0  taskhandlers.o(i.vTurnRightHandlerTask)
+    i.xPortStartScheduler                    0x000019f8   Section        0  port.o(i.xPortStartScheduler)
+    i.xPortSysTickHandler                    0x00001a38   Section        0  port.o(i.xPortSysTickHandler)
+    i.xQueueGenericCreate                    0x00001a64   Section        0  queue.o(i.xQueueGenericCreate)
+    i.xQueueGenericReceive                   0x00001aac   Section        0  queue.o(i.xQueueGenericReceive)
+    i.xQueueGenericReset                     0x00001bd8   Section        0  queue.o(i.xQueueGenericReset)
+    i.xQueueGenericSend                      0x00001c48   Section        0  queue.o(i.xQueueGenericSend)
+    i.xQueueGenericSendFromISR               0x00001d48   Section        0  queue.o(i.xQueueGenericSendFromISR)
+    i.xTaskCheckForTimeOut                   0x00001da8   Section        0  tasks.o(i.xTaskCheckForTimeOut)
+    i.xTaskGenericCreate                     0x00001df0   Section        0  tasks.o(i.xTaskGenericCreate)
+    i.xTaskGetTickCountFromISR               0x00001f78   Section        0  tasks.o(i.xTaskGetTickCountFromISR)
+    i.xTaskIncrementTick                     0x00001f84   Section        0  tasks.o(i.xTaskIncrementTick)
+    i.xTaskPriorityDisinherit                0x00002038   Section        0  tasks.o(i.xTaskPriorityDisinherit)
+    i.xTaskRemoveFromEventList               0x000020a8   Section        0  tasks.o(i.xTaskRemoveFromEventList)
+    i.xTaskResumeAll                         0x0000210c   Section        0  tasks.o(i.xTaskResumeAll)
+    .constdata                               0x000021bc   Section       28  uartstdio.o(.constdata)
+    g_pcHex                                  0x000021bc   Data           4  uartstdio.o(.constdata)
+    g_ui32UARTBase                           0x000021c0   Data          12  uartstdio.o(.constdata)
+    g_ui32UARTPeriph                         0x000021cc   Data          12  uartstdio.o(.constdata)
+    .constdata                               0x000021d8   Section      552  gpio.o(.constdata)
+    g_ppui32GPIOIntMapBlizzard               0x000021d8   Data         192  gpio.o(.constdata)
+    g_ppui32GPIOIntMapSnowflake              0x00002298   Data         216  gpio.o(.constdata)
+    g_pui32GPIOBaseAddrs                     0x00002370   Data         144  gpio.o(.constdata)
+    .constdata                               0x00002400   Section      268  interrupt.o(.constdata)
+    g_pui32Priority                          0x00002400   Data          32  interrupt.o(.constdata)
+    g_pui32Regs                              0x00002420   Data         156  interrupt.o(.constdata)
+    g_pui32EnRegs                            0x000024bc   Data          20  interrupt.o(.constdata)
+    g_pui32Dii16Regs                         0x000024d0   Data          20  interrupt.o(.constdata)
+    g_pui32PendRegs                          0x000024e4   Data          20  interrupt.o(.constdata)
+    g_pui32UnpendRegs                        0x000024f8   Data          20  interrupt.o(.constdata)
+    .conststring                             0x0000250c   Section       17  uartstdio.o(.conststring)
     .data                                    0x20000000   Section       24  freertos_demo.o(.data)
     xTimeISRLastExecuted_A                   0x20000000   Data           4  freertos_demo.o(.data)
     xTimeISRLastExecuted_C                   0x20000004   Data           4  freertos_demo.o(.data)
@@ -1060,18 +1066,18 @@ Image Symbol Table
     .data                                    0x20000074   Section       28  statemachinesfunctions.o(.data)
     vtable                                   0x20000400   Section      620  interrupt.o(vtable)
     g_pfnRAMVectors                          0x20000400   Data         620  interrupt.o(vtable)
-    .bss                                     0x2000066c   Section       80  freertos_demo.o(.bss)
-    .bss                                     0x200006bc   Section    30000  heap_2.o(.bss)
-    ucHeap                                   0x200006bc   Data       30000  heap_2.o(.bss)
-    .bss                                     0x20007bec   Section      420  tasks.o(.bss)
-    pxReadyTasksLists                        0x20007bec   Data         320  tasks.o(.bss)
-    xDelayedTaskList1                        0x20007d2c   Data          20  tasks.o(.bss)
-    xDelayedTaskList2                        0x20007d40   Data          20  tasks.o(.bss)
-    xPendingReadyList                        0x20007d54   Data          20  tasks.o(.bss)
-    xTasksWaitingTermination                 0x20007d68   Data          20  tasks.o(.bss)
-    xSuspendedTaskList                       0x20007d7c   Data          20  tasks.o(.bss)
-    STACK                                    0x20007d90   Section      512  startup_rvmdk.o(STACK)
-    StackMem                                 0x20007d90   Data           0  startup_rvmdk.o(STACK)
+    .bss                                     0x2000066c   Section       88  freertos_demo.o(.bss)
+    .bss                                     0x200006c4   Section    30000  heap_2.o(.bss)
+    ucHeap                                   0x200006c4   Data       30000  heap_2.o(.bss)
+    .bss                                     0x20007bf4   Section      420  tasks.o(.bss)
+    pxReadyTasksLists                        0x20007bf4   Data         320  tasks.o(.bss)
+    xDelayedTaskList1                        0x20007d34   Data          20  tasks.o(.bss)
+    xDelayedTaskList2                        0x20007d48   Data          20  tasks.o(.bss)
+    xPendingReadyList                        0x20007d5c   Data          20  tasks.o(.bss)
+    xTasksWaitingTermination                 0x20007d70   Data          20  tasks.o(.bss)
+    xSuspendedTaskList                       0x20007d84   Data          20  tasks.o(.bss)
+    STACK                                    0x20007d98   Section      512  startup_rvmdk.o(STACK)
+    StackMem                                 0x20007d98   Data           0  startup_rvmdk.o(STACK)
 
     Global Symbols
 
@@ -1143,70 +1149,72 @@ Image Symbol Table
     autoDriverUpSM                           0x00000b61   Thumb Code     2  statemachinesfunctions.o(i.autoDriverUpSM)
     autoPassengerDownSM                      0x00000b63   Thumb Code     2  statemachinesfunctions.o(i.autoPassengerDownSM)
     autoPassengerUpSM                        0x00000b65   Thumb Code     2  statemachinesfunctions.o(i.autoPassengerUpSM)
-    driverDownSM                             0x00000b69   Thumb Code   104  statemachinesfunctions.o(i.driverDownSM)
-    driverNeutralSM                          0x00000be1   Thumb Code   106  statemachinesfunctions.o(i.driverNeutralSM)
-    driverUpSM                               0x00000c5d   Thumb Code   142  statemachinesfunctions.o(i.driverUpSM)
-    emergencyDownSM                          0x00000cfd   Thumb Code    46  statemachinesfunctions.o(i.emergencyDownSM)
-    enable                                   0x00000d35   Thumb Code    10  output_ports.o(i.enable)
-    fastStop                                 0x00000d45   Thumb Code    20  output_ports.o(i.fastStop)
-    iniDriverDownSM                          0x00000d5d   Thumb Code    30  statemachinesfunctions.o(i.iniDriverDownSM)
-    iniDriverUpSM                            0x00000d81   Thumb Code    30  statemachinesfunctions.o(i.iniDriverUpSM)
-    iniPassengerDownSM                       0x00000da5   Thumb Code    22  statemachinesfunctions.o(i.iniPassengerDownSM)
-    init_input                               0x00000dc1   Thumb Code   158  inputs.o(i.init_input)
-    init_output                              0x00000e75   Thumb Code    38  output_ports.o(i.init_output)
-    main                                     0x00000ea5   Thumb Code   288  freertos_demo.o(i.main)
-    manualDriverDownSM                       0x000010a9   Thumb Code    42  statemachinesfunctions.o(i.manualDriverDownSM)
-    manualDriverUpSM                         0x000010dd   Thumb Code    42  statemachinesfunctions.o(i.manualDriverUpSM)
-    manualPassengerDownSM                    0x00001111   Thumb Code    44  statemachinesfunctions.o(i.manualPassengerDownSM)
-    manualPassengerUpSM                      0x00001145   Thumb Code    44  statemachinesfunctions.o(i.manualPassengerUpSM)
-    passengerDownSM                          0x00001179   Thumb Code    66  statemachinesfunctions.o(i.passengerDownSM)
-    passengerNeutralSM                       0x000011c9   Thumb Code    84  statemachinesfunctions.o(i.passengerNeutralSM)
-    passengerUpSM                            0x00001229   Thumb Code    96  statemachinesfunctions.o(i.passengerUpSM)
-    porta_int                                0x00001299   Thumb Code    64  inputs.o(i.porta_int)
-    portc_int                                0x000012d9   Thumb Code    62  inputs.o(i.portc_int)
-    pvPortMalloc                             0x000014d9   Thumb Code   172  heap_2.o(i.pvPortMalloc)
-    pvTaskIncrementMutexHeldCount            0x0000158d   Thumb Code    18  tasks.o(i.pvTaskIncrementMutexHeldCount)
-    pxPortInitialiseStack                    0x000015a5   Thumb Code    36  port.o(i.pxPortInitialiseStack)
-    safeSM                                   0x000015cd   Thumb Code    46  statemachinesfunctions.o(i.safeSM)
-    turnLeft                                 0x00001605   Thumb Code    20  output_ports.o(i.turnLeft)
-    turnRight                                0x0000161d   Thumb Code    20  output_ports.o(i.turnRight)
-    uxListRemove                             0x00001635   Thumb Code    36  list.o(i.uxListRemove)
-    vApplicationStackOverflowHook            0x00001659   Thumb Code     2  freertos_demo.o(i.vApplicationStackOverflowHook)
-    vFastStopHandlerTask                     0x0000165d   Thumb Code    36  taskhandlers.o(i.vFastStopHandlerTask)
-    vListInitialise                          0x00001685   Thumb Code    22  list.o(i.vListInitialise)
-    vListInitialiseItem                      0x0000169b   Thumb Code     6  list.o(i.vListInitialiseItem)
-    vListInsert                              0x000016a1   Thumb Code    48  list.o(i.vListInsert)
-    vListInsertEnd                           0x000016d1   Thumb Code    24  list.o(i.vListInsertEnd)
-    vMainHandlerTask                         0x000016e9   Thumb Code    38  taskhandlers.o(i.vMainHandlerTask)
-    vPortEnterCritical                       0x0000171d   Thumb Code    24  port.o(i.vPortEnterCritical)
-    vPortExitCritical                        0x00001739   Thumb Code    16  port.o(i.vPortExitCritical)
-    vPortFree                                0x0000174d   Thumb Code    56  heap_2.o(i.vPortFree)
-    vPortSetupTimerInterrupt                 0x00001789   Thumb Code    16  port.o(i.vPortSetupTimerInterrupt)
-    vTaskMissedYield                         0x00001799   Thumb Code     8  tasks.o(i.vTaskMissedYield)
-    vTaskPlaceOnEventList                    0x000017a5   Thumb Code    70  tasks.o(i.vTaskPlaceOnEventList)
-    vTaskPriorityInherit                     0x000017f5   Thumb Code   124  tasks.o(i.vTaskPriorityInherit)
-    vTaskSetTimeOutState                     0x00001879   Thumb Code    12  tasks.o(i.vTaskSetTimeOutState)
-    vTaskStartScheduler                      0x00001889   Thumb Code    66  tasks.o(i.vTaskStartScheduler)
-    vTaskSuspendAll                          0x000018dd   Thumb Code    10  tasks.o(i.vTaskSuspendAll)
-    vTaskSwitchContext                       0x000018ed   Thumb Code   104  tasks.o(i.vTaskSwitchContext)
-    vTurnLeftHandlerTask                     0x0000195d   Thumb Code    36  taskhandlers.o(i.vTurnLeftHandlerTask)
-    vTurnRightHandlerTask                    0x00001985   Thumb Code    36  taskhandlers.o(i.vTurnRightHandlerTask)
-    xPortStartScheduler                      0x000019ad   Thumb Code    52  port.o(i.xPortStartScheduler)
-    xPortSysTickHandler                      0x000019ed   Thumb Code    38  port.o(i.xPortSysTickHandler)
-    xQueueGenericCreate                      0x00001a19   Thumb Code    72  queue.o(i.xQueueGenericCreate)
-    xQueueGenericReceive                     0x00001a61   Thumb Code   296  queue.o(i.xQueueGenericReceive)
-    xQueueGenericReset                       0x00001b8d   Thumb Code   106  queue.o(i.xQueueGenericReset)
-    xQueueGenericSend                        0x00001bfd   Thumb Code   252  queue.o(i.xQueueGenericSend)
-    xQueueGenericSendFromISR                 0x00001cfd   Thumb Code    96  queue.o(i.xQueueGenericSendFromISR)
-    xTaskCheckForTimeOut                     0x00001d5d   Thumb Code    66  tasks.o(i.xTaskCheckForTimeOut)
-    xTaskGenericCreate                       0x00001da5   Thumb Code   376  tasks.o(i.xTaskGenericCreate)
-    xTaskGetTickCountFromISR                 0x00001f2d   Thumb Code     6  tasks.o(i.xTaskGetTickCountFromISR)
-    xTaskIncrementTick                       0x00001f39   Thumb Code   172  tasks.o(i.xTaskIncrementTick)
-    xTaskPriorityDisinherit                  0x00001fed   Thumb Code   102  tasks.o(i.xTaskPriorityDisinherit)
-    xTaskRemoveFromEventList                 0x0000205d   Thumb Code    88  tasks.o(i.xTaskRemoveFromEventList)
-    xTaskResumeAll                           0x000020c1   Thumb Code   164  tasks.o(i.xTaskResumeAll)
-    Region$$Table$$Base                      0x000024d4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000024f4   Number         0  anon$$obj.o(Region$$Table)
+    deadSM                                   0x00000b69   Thumb Code    26  statemachinesfunctions.o(i.deadSM)
+    driverDownSM                             0x00000b89   Thumb Code   104  statemachinesfunctions.o(i.driverDownSM)
+    driverNeutralSM                          0x00000c01   Thumb Code   106  statemachinesfunctions.o(i.driverNeutralSM)
+    driverUpSM                               0x00000c7d   Thumb Code   142  statemachinesfunctions.o(i.driverUpSM)
+    dyingSM                                  0x00000d1d   Thumb Code    22  statemachinesfunctions.o(i.dyingSM)
+    emergencyDownSM                          0x00000d39   Thumb Code    46  statemachinesfunctions.o(i.emergencyDownSM)
+    enable                                   0x00000d71   Thumb Code    10  output_ports.o(i.enable)
+    fastStop                                 0x00000d81   Thumb Code    20  output_ports.o(i.fastStop)
+    iniDriverDownSM                          0x00000d99   Thumb Code    30  statemachinesfunctions.o(i.iniDriverDownSM)
+    iniDriverUpSM                            0x00000dbd   Thumb Code    30  statemachinesfunctions.o(i.iniDriverUpSM)
+    iniPassengerDownSM                       0x00000de1   Thumb Code    22  statemachinesfunctions.o(i.iniPassengerDownSM)
+    init_input                               0x00000dfd   Thumb Code   158  inputs.o(i.init_input)
+    init_output                              0x00000eb1   Thumb Code    38  output_ports.o(i.init_output)
+    main                                     0x00000ee1   Thumb Code   296  freertos_demo.o(i.main)
+    manualDriverDownSM                       0x000010f5   Thumb Code    42  statemachinesfunctions.o(i.manualDriverDownSM)
+    manualDriverUpSM                         0x00001129   Thumb Code    42  statemachinesfunctions.o(i.manualDriverUpSM)
+    manualPassengerDownSM                    0x0000115d   Thumb Code    44  statemachinesfunctions.o(i.manualPassengerDownSM)
+    manualPassengerUpSM                      0x00001191   Thumb Code    44  statemachinesfunctions.o(i.manualPassengerUpSM)
+    passengerDownSM                          0x000011c5   Thumb Code    66  statemachinesfunctions.o(i.passengerDownSM)
+    passengerNeutralSM                       0x00001215   Thumb Code    84  statemachinesfunctions.o(i.passengerNeutralSM)
+    passengerUpSM                            0x00001275   Thumb Code    96  statemachinesfunctions.o(i.passengerUpSM)
+    porta_int                                0x000012e5   Thumb Code    64  inputs.o(i.porta_int)
+    portc_int                                0x00001325   Thumb Code    62  inputs.o(i.portc_int)
+    pvPortMalloc                             0x00001525   Thumb Code   172  heap_2.o(i.pvPortMalloc)
+    pvTaskIncrementMutexHeldCount            0x000015d9   Thumb Code    18  tasks.o(i.pvTaskIncrementMutexHeldCount)
+    pxPortInitialiseStack                    0x000015f1   Thumb Code    36  port.o(i.pxPortInitialiseStack)
+    safeSM                                   0x00001619   Thumb Code    48  statemachinesfunctions.o(i.safeSM)
+    turnLeft                                 0x00001651   Thumb Code    20  output_ports.o(i.turnLeft)
+    turnRight                                0x00001669   Thumb Code    20  output_ports.o(i.turnRight)
+    uxListRemove                             0x00001681   Thumb Code    36  list.o(i.uxListRemove)
+    vApplicationStackOverflowHook            0x000016a5   Thumb Code     2  freertos_demo.o(i.vApplicationStackOverflowHook)
+    vFastStopHandlerTask                     0x000016a9   Thumb Code    36  taskhandlers.o(i.vFastStopHandlerTask)
+    vListInitialise                          0x000016d1   Thumb Code    22  list.o(i.vListInitialise)
+    vListInitialiseItem                      0x000016e7   Thumb Code     6  list.o(i.vListInitialiseItem)
+    vListInsert                              0x000016ed   Thumb Code    48  list.o(i.vListInsert)
+    vListInsertEnd                           0x0000171d   Thumb Code    24  list.o(i.vListInsertEnd)
+    vMainHandlerTask                         0x00001735   Thumb Code    38  taskhandlers.o(i.vMainHandlerTask)
+    vPortEnterCritical                       0x00001769   Thumb Code    24  port.o(i.vPortEnterCritical)
+    vPortExitCritical                        0x00001785   Thumb Code    16  port.o(i.vPortExitCritical)
+    vPortFree                                0x00001799   Thumb Code    56  heap_2.o(i.vPortFree)
+    vPortSetupTimerInterrupt                 0x000017d5   Thumb Code    16  port.o(i.vPortSetupTimerInterrupt)
+    vTaskMissedYield                         0x000017e5   Thumb Code     8  tasks.o(i.vTaskMissedYield)
+    vTaskPlaceOnEventList                    0x000017f1   Thumb Code    70  tasks.o(i.vTaskPlaceOnEventList)
+    vTaskPriorityInherit                     0x00001841   Thumb Code   124  tasks.o(i.vTaskPriorityInherit)
+    vTaskSetTimeOutState                     0x000018c5   Thumb Code    12  tasks.o(i.vTaskSetTimeOutState)
+    vTaskStartScheduler                      0x000018d5   Thumb Code    66  tasks.o(i.vTaskStartScheduler)
+    vTaskSuspendAll                          0x00001929   Thumb Code    10  tasks.o(i.vTaskSuspendAll)
+    vTaskSwitchContext                       0x00001939   Thumb Code   104  tasks.o(i.vTaskSwitchContext)
+    vTurnLeftHandlerTask                     0x000019a9   Thumb Code    36  taskhandlers.o(i.vTurnLeftHandlerTask)
+    vTurnRightHandlerTask                    0x000019d1   Thumb Code    36  taskhandlers.o(i.vTurnRightHandlerTask)
+    xPortStartScheduler                      0x000019f9   Thumb Code    52  port.o(i.xPortStartScheduler)
+    xPortSysTickHandler                      0x00001a39   Thumb Code    38  port.o(i.xPortSysTickHandler)
+    xQueueGenericCreate                      0x00001a65   Thumb Code    72  queue.o(i.xQueueGenericCreate)
+    xQueueGenericReceive                     0x00001aad   Thumb Code   296  queue.o(i.xQueueGenericReceive)
+    xQueueGenericReset                       0x00001bd9   Thumb Code   106  queue.o(i.xQueueGenericReset)
+    xQueueGenericSend                        0x00001c49   Thumb Code   252  queue.o(i.xQueueGenericSend)
+    xQueueGenericSendFromISR                 0x00001d49   Thumb Code    96  queue.o(i.xQueueGenericSendFromISR)
+    xTaskCheckForTimeOut                     0x00001da9   Thumb Code    66  tasks.o(i.xTaskCheckForTimeOut)
+    xTaskGenericCreate                       0x00001df1   Thumb Code   376  tasks.o(i.xTaskGenericCreate)
+    xTaskGetTickCountFromISR                 0x00001f79   Thumb Code     6  tasks.o(i.xTaskGetTickCountFromISR)
+    xTaskIncrementTick                       0x00001f85   Thumb Code   172  tasks.o(i.xTaskIncrementTick)
+    xTaskPriorityDisinherit                  0x00002039   Thumb Code   102  tasks.o(i.xTaskPriorityDisinherit)
+    xTaskRemoveFromEventList                 0x000020a9   Thumb Code    88  tasks.o(i.xTaskRemoveFromEventList)
+    xTaskResumeAll                           0x0000210d   Thumb Code   164  tasks.o(i.xTaskResumeAll)
+    Region$$Table$$Base                      0x00002520   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00002540   Number         0  anon$$obj.o(Region$$Table)
     xTurnRightSemaphore                      0x20000008   Data           4  freertos_demo.o(.data)
     xTurnLeftSemaphore                       0x2000000c   Data           4  freertos_demo.o(.data)
     xFastStopSemaphore                       0x20000010   Data           4  freertos_demo.o(.data)
@@ -1214,8 +1222,8 @@ Image Symbol Table
     pxCurrentTCB                             0x20000034   Data           4  tasks.o(.data)
     stateDepth                               0x20000074   Data           4  statemachinesfunctions.o(.data)
     state                                    0x20000078   Data          24  statemachinesfunctions.o(.data)
-    stateMachines                            0x2000066c   Data          80  freertos_demo.o(.bss)
-    __initial_sp                             0x20007f90   Data           0  startup_rvmdk.o(STACK)
+    stateMachines                            0x2000066c   Data          88  freertos_demo.o(.bss)
+    __initial_sp                             0x20007f98   Data           0  startup_rvmdk.o(STACK)
 
 
 
@@ -1225,47 +1233,47 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_IROM (Base: 0x00000000, Size: 0x00002b60, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x00002510])
+  Load Region LR_IROM (Base: 0x00000000, Size: 0x00002bac, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x0000255c])
 
-    Execution Region ER_IROM (Base: 0x00000000, Size: 0x000024f4, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM (Base: 0x00000000, Size: 0x00002540, Max: 0x00040000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000288   Code   RO          601  * RESET               startup_rvmdk.o
-    0x00000288   0x00000000   Code   RO         2420  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x00000288   0x00000004   Code   RO         2431    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x0000028c   0x00000004   Code   RO         2434    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x00000290   0x00000000   Code   RO         2436    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x00000290   0x00000000   Code   RO         2438    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x00000290   0x00000008   Code   RO         2439    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00000298   0x00000000   Code   RO         2441    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x00000298   0x00000000   Code   RO         2443    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x00000298   0x00000004   Code   RO         2432    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000288   0x00000000   Code   RO         2432  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000288   0x00000004   Code   RO         2443    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x0000028c   0x00000004   Code   RO         2446    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x00000290   0x00000000   Code   RO         2448    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x00000290   0x00000000   Code   RO         2450    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x00000290   0x00000008   Code   RO         2451    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000298   0x00000000   Code   RO         2453    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x00000298   0x00000000   Code   RO         2455    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x00000298   0x00000004   Code   RO         2444    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x0000029c   0x000000b6   Code   RO          284    .emb_text           port.o
-    0x00000352   0x00000024   Code   RO         2423    .text               mc_w.l(memcpya.o)
-    0x00000376   0x00000024   Code   RO         2425    .text               mc_w.l(memseta.o)
+    0x00000352   0x00000024   Code   RO         2435    .text               mc_w.l(memcpya.o)
+    0x00000376   0x00000024   Code   RO         2437    .text               mc_w.l(memseta.o)
     0x0000039a   0x00000002   PAD
-    0x0000039c   0x00000024   Code   RO         2448    .text               mc_w.l(init.o)
-    0x000003c0   0x0000005c   Code   RO         2458    .text               mc_w.l(__dczerorl2.o)
+    0x0000039c   0x00000024   Code   RO         2460    .text               mc_w.l(init.o)
+    0x000003c0   0x0000005c   Code   RO         2470    .text               mc_w.l(__dczerorl2.o)
     0x0000041c   0x0000005c   Code   RO            1    i.ConfigureUART     freertos_demo.o
-    0x00000478   0x00000028   Code   RO         1325    i.GPIODirModeSet    driverlib.lib(gpio.o)
-    0x000004a0   0x00000006   Code   RO         1326    i.GPIOIntClear      driverlib.lib(gpio.o)
-    0x000004a6   0x0000000e   Code   RO         1327    i.GPIOIntDisable    driverlib.lib(gpio.o)
-    0x000004b4   0x0000000c   Code   RO         1328    i.GPIOIntEnable     driverlib.lib(gpio.o)
-    0x000004c0   0x0000001a   Code   RO         1329    i.GPIOIntRegister   driverlib.lib(gpio.o)
-    0x000004da   0x0000000e   Code   RO         1331    i.GPIOIntStatus     driverlib.lib(gpio.o)
-    0x000004e8   0x00000050   Code   RO         1333    i.GPIOIntTypeSet    driverlib.lib(gpio.o)
-    0x00000538   0x00000138   Code   RO         1337    i.GPIOPadConfigSet  driverlib.lib(gpio.o)
-    0x00000670   0x0000001c   Code   RO         1348    i.GPIOPinTypeGPIOInput  driverlib.lib(gpio.o)
-    0x0000068c   0x0000001c   Code   RO         1349    i.GPIOPinTypeGPIOOutput  driverlib.lib(gpio.o)
-    0x000006a8   0x00000006   Code   RO         1367    i.GPIOPinWrite      driverlib.lib(gpio.o)
+    0x00000478   0x00000028   Code   RO         1337    i.GPIODirModeSet    driverlib.lib(gpio.o)
+    0x000004a0   0x00000006   Code   RO         1338    i.GPIOIntClear      driverlib.lib(gpio.o)
+    0x000004a6   0x0000000e   Code   RO         1339    i.GPIOIntDisable    driverlib.lib(gpio.o)
+    0x000004b4   0x0000000c   Code   RO         1340    i.GPIOIntEnable     driverlib.lib(gpio.o)
+    0x000004c0   0x0000001a   Code   RO         1341    i.GPIOIntRegister   driverlib.lib(gpio.o)
+    0x000004da   0x0000000e   Code   RO         1343    i.GPIOIntStatus     driverlib.lib(gpio.o)
+    0x000004e8   0x00000050   Code   RO         1345    i.GPIOIntTypeSet    driverlib.lib(gpio.o)
+    0x00000538   0x00000138   Code   RO         1349    i.GPIOPadConfigSet  driverlib.lib(gpio.o)
+    0x00000670   0x0000001c   Code   RO         1360    i.GPIOPinTypeGPIOInput  driverlib.lib(gpio.o)
+    0x0000068c   0x0000001c   Code   RO         1361    i.GPIOPinTypeGPIOOutput  driverlib.lib(gpio.o)
+    0x000006a8   0x00000006   Code   RO         1379    i.GPIOPinWrite      driverlib.lib(gpio.o)
     0x000006ae   0x00000002   PAD
-    0x000006b0   0x00000064   Code   RO         2311    i.IntEnable         driverlib.lib(interrupt.o)
-    0x00000714   0x00000034   Code   RO         2323    i.IntRegister       driverlib.lib(interrupt.o)
+    0x000006b0   0x00000064   Code   RO         2323    i.IntEnable         driverlib.lib(interrupt.o)
+    0x00000714   0x00000034   Code   RO         2335    i.IntRegister       driverlib.lib(interrupt.o)
     0x00000748   0x0000006c   Code   RO            2    i.Limit_Handler     freertos_demo.o
-    0x000007b4   0x00000028   Code   RO         1685    i.SysCtlPeripheralEnable  driverlib.lib(sysctl.o)
-    0x000007dc   0x0000002c   Code   RO         1689    i.SysCtlPeripheralReady  driverlib.lib(sysctl.o)
-    0x00000808   0x00000006   Code   RO         2017    i.UARTClockSourceSet  driverlib.lib(uart.o)
+    0x000007b4   0x00000028   Code   RO         1697    i.SysCtlPeripheralEnable  driverlib.lib(sysctl.o)
+    0x000007dc   0x0000002c   Code   RO         1701    i.SysCtlPeripheralReady  driverlib.lib(sysctl.o)
+    0x00000808   0x00000006   Code   RO         2029    i.UARTClockSourceSet  driverlib.lib(uart.o)
     0x0000080e   0x00000002   PAD
     0x00000810   0x0000005c   Code   RO          901    i.UARTStdioConfig   uartstdio.o
     0x0000086c   0x00000012   Code   RO          904    i.UARTprintf        uartstdio.o
@@ -1273,96 +1281,98 @@ Memory Map of the image
     0x00000880   0x000001b4   Code   RO          905    i.UARTvprintf       uartstdio.o
     0x00000a34   0x0000003c   Code   RO          906    i.UARTwrite         uartstdio.o
     0x00000a70   0x00000080   Code   RO            5    i.Window_Handler    freertos_demo.o
-    0x00000af0   0x00000050   Code   RO         1368    i._GPIOIntNumberGet  driverlib.lib(gpio.o)
-    0x00000b40   0x0000000e   Code   RO         2452    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00000b4e   0x00000002   Code   RO         2453    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00000b50   0x0000000e   Code   RO         2454    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00000af0   0x00000050   Code   RO         1380    i._GPIOIntNumberGet  driverlib.lib(gpio.o)
+    0x00000b40   0x0000000e   Code   RO         2464    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00000b4e   0x00000002   Code   RO         2465    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00000b50   0x0000000e   Code   RO         2466    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x00000b5e   0x00000002   Code   RO         1190    i.autoDriverDownSM  statemachinesfunctions.o
     0x00000b60   0x00000002   Code   RO         1191    i.autoDriverUpSM    statemachinesfunctions.o
     0x00000b62   0x00000002   Code   RO         1192    i.autoPassengerDownSM  statemachinesfunctions.o
     0x00000b64   0x00000002   Code   RO         1193    i.autoPassengerUpSM  statemachinesfunctions.o
     0x00000b66   0x00000002   PAD
-    0x00000b68   0x00000078   Code   RO         1194    i.driverDownSM      statemachinesfunctions.o
-    0x00000be0   0x0000007c   Code   RO         1195    i.driverNeutralSM   statemachinesfunctions.o
-    0x00000c5c   0x000000a0   Code   RO         1196    i.driverUpSM        statemachinesfunctions.o
-    0x00000cfc   0x00000038   Code   RO         1197    i.emergencyDownSM   statemachinesfunctions.o
-    0x00000d34   0x00000010   Code   RO         1103    i.enable            output_ports.o
-    0x00000d44   0x00000018   Code   RO         1104    i.fastStop          output_ports.o
-    0x00000d5c   0x00000024   Code   RO         1198    i.iniDriverDownSM   statemachinesfunctions.o
-    0x00000d80   0x00000024   Code   RO         1199    i.iniDriverUpSM     statemachinesfunctions.o
-    0x00000da4   0x0000001c   Code   RO         1200    i.iniPassengerDownSM  statemachinesfunctions.o
-    0x00000dc0   0x000000b4   Code   RO         1069    i.init_input        inputs.o
-    0x00000e74   0x00000030   Code   RO         1105    i.init_output       output_ports.o
-    0x00000ea4   0x00000204   Code   RO            8    i.main              freertos_demo.o
-    0x000010a8   0x00000034   Code   RO         1202    i.manualDriverDownSM  statemachinesfunctions.o
-    0x000010dc   0x00000034   Code   RO         1203    i.manualDriverUpSM  statemachinesfunctions.o
-    0x00001110   0x00000034   Code   RO         1204    i.manualPassengerDownSM  statemachinesfunctions.o
-    0x00001144   0x00000034   Code   RO         1205    i.manualPassengerUpSM  statemachinesfunctions.o
-    0x00001178   0x00000050   Code   RO         1206    i.passengerDownSM   statemachinesfunctions.o
-    0x000011c8   0x00000060   Code   RO         1207    i.passengerNeutralSM  statemachinesfunctions.o
-    0x00001228   0x00000070   Code   RO         1208    i.passengerUpSM     statemachinesfunctions.o
-    0x00001298   0x00000040   Code   RO         1070    i.porta_int         inputs.o
-    0x000012d8   0x00000044   Code   RO         1071    i.portc_int         inputs.o
-    0x0000131c   0x00000034   Code   RO          605    i.prvAddCurrentTaskToDelayedList  tasks.o
-    0x00001350   0x00000058   Code   RO          606    i.prvCheckTasksWaitingTermination  tasks.o
-    0x000013a8   0x00000026   Code   RO          353    i.prvCopyDataFromQueue  queue.o
-    0x000013ce   0x0000006e   Code   RO          354    i.prvCopyDataToQueue  queue.o
-    0x0000143c   0x00000006   Code   RO          607    i.prvIdleTask       tasks.o
-    0x00001442   0x00000002   PAD
-    0x00001444   0x00000020   Code   RO          609    i.prvResetNextTaskUnblockTime  tasks.o
-    0x00001464   0x00000010   Code   RO          285    i.prvTaskExitError  port.o
-    0x00001474   0x00000064   Code   RO          355    i.prvUnlockQueue    queue.o
-    0x000014d8   0x000000b4   Code   RO          172    i.pvPortMalloc      heap_2.o
-    0x0000158c   0x00000018   Code   RO          612    i.pvTaskIncrementMutexHeldCount  tasks.o
-    0x000015a4   0x00000028   Code   RO          286    i.pxPortInitialiseStack  port.o
-    0x000015cc   0x00000038   Code   RO         1209    i.safeSM            statemachinesfunctions.o
-    0x00001604   0x00000018   Code   RO         1106    i.turnLeft          output_ports.o
-    0x0000161c   0x00000018   Code   RO         1107    i.turnRight         output_ports.o
-    0x00001634   0x00000024   Code   RO          248    i.uxListRemove      list.o
-    0x00001658   0x00000002   Code   RO            9    i.vApplicationStackOverflowHook  freertos_demo.o
-    0x0000165a   0x00000002   PAD
-    0x0000165c   0x00000028   Code   RO         1144    i.vFastStopHandlerTask  taskhandlers.o
-    0x00001684   0x00000016   Code   RO          249    i.vListInitialise   list.o
-    0x0000169a   0x00000006   Code   RO          250    i.vListInitialiseItem  list.o
-    0x000016a0   0x00000030   Code   RO          251    i.vListInsert       list.o
-    0x000016d0   0x00000018   Code   RO          252    i.vListInsertEnd    list.o
-    0x000016e8   0x00000034   Code   RO         1145    i.vMainHandlerTask  taskhandlers.o
-    0x0000171c   0x0000001c   Code   RO          288    i.vPortEnterCritical  port.o
-    0x00001738   0x00000014   Code   RO          289    i.vPortExitCritical  port.o
-    0x0000174c   0x0000003c   Code   RO          173    i.vPortFree         heap_2.o
-    0x00001788   0x00000010   Code   RO          290    i.vPortSetupTimerInterrupt  port.o
-    0x00001798   0x0000000c   Code   RO          625    i.vTaskMissedYield  tasks.o
-    0x000017a4   0x00000050   Code   RO          627    i.vTaskPlaceOnEventList  tasks.o
-    0x000017f4   0x00000084   Code   RO          629    i.vTaskPriorityInherit  tasks.o
-    0x00001878   0x00000010   Code   RO          633    i.vTaskSetTimeOutState  tasks.o
-    0x00001888   0x00000054   Code   RO          634    i.vTaskStartScheduler  tasks.o
-    0x000018dc   0x00000010   Code   RO          636    i.vTaskSuspendAll   tasks.o
-    0x000018ec   0x00000070   Code   RO          637    i.vTaskSwitchContext  tasks.o
-    0x0000195c   0x00000028   Code   RO         1146    i.vTurnLeftHandlerTask  taskhandlers.o
-    0x00001984   0x00000028   Code   RO         1147    i.vTurnRightHandlerTask  taskhandlers.o
-    0x000019ac   0x00000040   Code   RO          291    i.xPortStartScheduler  port.o
-    0x000019ec   0x0000002c   Code   RO          292    i.xPortSysTickHandler  port.o
-    0x00001a18   0x00000048   Code   RO          366    i.xQueueGenericCreate  queue.o
-    0x00001a60   0x0000012c   Code   RO          367    i.xQueueGenericReceive  queue.o
-    0x00001b8c   0x00000070   Code   RO          368    i.xQueueGenericReset  queue.o
-    0x00001bfc   0x00000100   Code   RO          369    i.xQueueGenericSend  queue.o
-    0x00001cfc   0x00000060   Code   RO          370    i.xQueueGenericSendFromISR  queue.o
-    0x00001d5c   0x00000048   Code   RO          638    i.xTaskCheckForTimeOut  tasks.o
-    0x00001da4   0x00000188   Code   RO          639    i.xTaskGenericCreate  tasks.o
-    0x00001f2c   0x0000000c   Code   RO          644    i.xTaskGetTickCountFromISR  tasks.o
-    0x00001f38   0x000000b4   Code   RO          645    i.xTaskIncrementTick  tasks.o
-    0x00001fec   0x00000070   Code   RO          648    i.xTaskPriorityDisinherit  tasks.o
-    0x0000205c   0x00000064   Code   RO          649    i.xTaskRemoveFromEventList  tasks.o
-    0x000020c0   0x000000b0   Code   RO          651    i.xTaskResumeAll    tasks.o
-    0x00002170   0x0000001c   Data   RO          907    .constdata          uartstdio.o
-    0x0000218c   0x00000228   Data   RO         1369    .constdata          driverlib.lib(gpio.o)
-    0x000023b4   0x0000010c   Data   RO         2327    .constdata          driverlib.lib(interrupt.o)
-    0x000024c0   0x00000011   Data   RO          908    .conststring        uartstdio.o
-    0x000024d1   0x00000003   PAD
-    0x000024d4   0x00000020   Data   RO         2450    Region$$Table       anon$$obj.o
+    0x00000b68   0x00000020   Code   RO         1194    i.deadSM            statemachinesfunctions.o
+    0x00000b88   0x00000078   Code   RO         1195    i.driverDownSM      statemachinesfunctions.o
+    0x00000c00   0x0000007c   Code   RO         1196    i.driverNeutralSM   statemachinesfunctions.o
+    0x00000c7c   0x000000a0   Code   RO         1197    i.driverUpSM        statemachinesfunctions.o
+    0x00000d1c   0x0000001c   Code   RO         1198    i.dyingSM           statemachinesfunctions.o
+    0x00000d38   0x00000038   Code   RO         1199    i.emergencyDownSM   statemachinesfunctions.o
+    0x00000d70   0x00000010   Code   RO         1103    i.enable            output_ports.o
+    0x00000d80   0x00000018   Code   RO         1104    i.fastStop          output_ports.o
+    0x00000d98   0x00000024   Code   RO         1200    i.iniDriverDownSM   statemachinesfunctions.o
+    0x00000dbc   0x00000024   Code   RO         1201    i.iniDriverUpSM     statemachinesfunctions.o
+    0x00000de0   0x0000001c   Code   RO         1202    i.iniPassengerDownSM  statemachinesfunctions.o
+    0x00000dfc   0x000000b4   Code   RO         1069    i.init_input        inputs.o
+    0x00000eb0   0x00000030   Code   RO         1105    i.init_output       output_ports.o
+    0x00000ee0   0x00000214   Code   RO            8    i.main              freertos_demo.o
+    0x000010f4   0x00000034   Code   RO         1204    i.manualDriverDownSM  statemachinesfunctions.o
+    0x00001128   0x00000034   Code   RO         1205    i.manualDriverUpSM  statemachinesfunctions.o
+    0x0000115c   0x00000034   Code   RO         1206    i.manualPassengerDownSM  statemachinesfunctions.o
+    0x00001190   0x00000034   Code   RO         1207    i.manualPassengerUpSM  statemachinesfunctions.o
+    0x000011c4   0x00000050   Code   RO         1208    i.passengerDownSM   statemachinesfunctions.o
+    0x00001214   0x00000060   Code   RO         1209    i.passengerNeutralSM  statemachinesfunctions.o
+    0x00001274   0x00000070   Code   RO         1210    i.passengerUpSM     statemachinesfunctions.o
+    0x000012e4   0x00000040   Code   RO         1070    i.porta_int         inputs.o
+    0x00001324   0x00000044   Code   RO         1071    i.portc_int         inputs.o
+    0x00001368   0x00000034   Code   RO          605    i.prvAddCurrentTaskToDelayedList  tasks.o
+    0x0000139c   0x00000058   Code   RO          606    i.prvCheckTasksWaitingTermination  tasks.o
+    0x000013f4   0x00000026   Code   RO          353    i.prvCopyDataFromQueue  queue.o
+    0x0000141a   0x0000006e   Code   RO          354    i.prvCopyDataToQueue  queue.o
+    0x00001488   0x00000006   Code   RO          607    i.prvIdleTask       tasks.o
+    0x0000148e   0x00000002   PAD
+    0x00001490   0x00000020   Code   RO          609    i.prvResetNextTaskUnblockTime  tasks.o
+    0x000014b0   0x00000010   Code   RO          285    i.prvTaskExitError  port.o
+    0x000014c0   0x00000064   Code   RO          355    i.prvUnlockQueue    queue.o
+    0x00001524   0x000000b4   Code   RO          172    i.pvPortMalloc      heap_2.o
+    0x000015d8   0x00000018   Code   RO          612    i.pvTaskIncrementMutexHeldCount  tasks.o
+    0x000015f0   0x00000028   Code   RO          286    i.pxPortInitialiseStack  port.o
+    0x00001618   0x00000038   Code   RO         1211    i.safeSM            statemachinesfunctions.o
+    0x00001650   0x00000018   Code   RO         1106    i.turnLeft          output_ports.o
+    0x00001668   0x00000018   Code   RO         1107    i.turnRight         output_ports.o
+    0x00001680   0x00000024   Code   RO          248    i.uxListRemove      list.o
+    0x000016a4   0x00000002   Code   RO            9    i.vApplicationStackOverflowHook  freertos_demo.o
+    0x000016a6   0x00000002   PAD
+    0x000016a8   0x00000028   Code   RO         1144    i.vFastStopHandlerTask  taskhandlers.o
+    0x000016d0   0x00000016   Code   RO          249    i.vListInitialise   list.o
+    0x000016e6   0x00000006   Code   RO          250    i.vListInitialiseItem  list.o
+    0x000016ec   0x00000030   Code   RO          251    i.vListInsert       list.o
+    0x0000171c   0x00000018   Code   RO          252    i.vListInsertEnd    list.o
+    0x00001734   0x00000034   Code   RO         1145    i.vMainHandlerTask  taskhandlers.o
+    0x00001768   0x0000001c   Code   RO          288    i.vPortEnterCritical  port.o
+    0x00001784   0x00000014   Code   RO          289    i.vPortExitCritical  port.o
+    0x00001798   0x0000003c   Code   RO          173    i.vPortFree         heap_2.o
+    0x000017d4   0x00000010   Code   RO          290    i.vPortSetupTimerInterrupt  port.o
+    0x000017e4   0x0000000c   Code   RO          625    i.vTaskMissedYield  tasks.o
+    0x000017f0   0x00000050   Code   RO          627    i.vTaskPlaceOnEventList  tasks.o
+    0x00001840   0x00000084   Code   RO          629    i.vTaskPriorityInherit  tasks.o
+    0x000018c4   0x00000010   Code   RO          633    i.vTaskSetTimeOutState  tasks.o
+    0x000018d4   0x00000054   Code   RO          634    i.vTaskStartScheduler  tasks.o
+    0x00001928   0x00000010   Code   RO          636    i.vTaskSuspendAll   tasks.o
+    0x00001938   0x00000070   Code   RO          637    i.vTaskSwitchContext  tasks.o
+    0x000019a8   0x00000028   Code   RO         1146    i.vTurnLeftHandlerTask  taskhandlers.o
+    0x000019d0   0x00000028   Code   RO         1147    i.vTurnRightHandlerTask  taskhandlers.o
+    0x000019f8   0x00000040   Code   RO          291    i.xPortStartScheduler  port.o
+    0x00001a38   0x0000002c   Code   RO          292    i.xPortSysTickHandler  port.o
+    0x00001a64   0x00000048   Code   RO          366    i.xQueueGenericCreate  queue.o
+    0x00001aac   0x0000012c   Code   RO          367    i.xQueueGenericReceive  queue.o
+    0x00001bd8   0x00000070   Code   RO          368    i.xQueueGenericReset  queue.o
+    0x00001c48   0x00000100   Code   RO          369    i.xQueueGenericSend  queue.o
+    0x00001d48   0x00000060   Code   RO          370    i.xQueueGenericSendFromISR  queue.o
+    0x00001da8   0x00000048   Code   RO          638    i.xTaskCheckForTimeOut  tasks.o
+    0x00001df0   0x00000188   Code   RO          639    i.xTaskGenericCreate  tasks.o
+    0x00001f78   0x0000000c   Code   RO          644    i.xTaskGetTickCountFromISR  tasks.o
+    0x00001f84   0x000000b4   Code   RO          645    i.xTaskIncrementTick  tasks.o
+    0x00002038   0x00000070   Code   RO          648    i.xTaskPriorityDisinherit  tasks.o
+    0x000020a8   0x00000064   Code   RO          649    i.xTaskRemoveFromEventList  tasks.o
+    0x0000210c   0x000000b0   Code   RO          651    i.xTaskResumeAll    tasks.o
+    0x000021bc   0x0000001c   Data   RO          907    .constdata          uartstdio.o
+    0x000021d8   0x00000228   Data   RO         1381    .constdata          driverlib.lib(gpio.o)
+    0x00002400   0x0000010c   Data   RO         2339    .constdata          driverlib.lib(interrupt.o)
+    0x0000250c   0x00000011   Data   RO          908    .conststring        uartstdio.o
+    0x0000251d   0x00000003   PAD
+    0x00002520   0x00000020   Data   RO         2462    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM (Base: 0x20000000, Size: 0x00007f90, Max: 0x00008000, ABSOLUTE, COMPRESSED[0x0000001c])
+    Execution Region RW_IRAM (Base: 0x20000000, Size: 0x00007f98, Max: 0x00008000, ABSOLUTE, COMPRESSED[0x0000001c])
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1371,13 +1381,13 @@ Memory Map of the image
     0x20000030   0x00000004   Data   RW          293    .data               port.o
     0x20000034   0x00000038   Data   RW          654    .data               tasks.o
     0x2000006c   0x00000008   Data   RW          909    .data               uartstdio.o
-    0x20000074   0x0000001c   Data   RW         1210    .data               statemachinesfunctions.o
+    0x20000074   0x0000001c   Data   RW         1212    .data               statemachinesfunctions.o
     0x20000090   0x00000370   PAD
-    0x20000400   0x0000026c   Data   RW         2328    vtable              driverlib.lib(interrupt.o)
-    0x2000066c   0x00000050   Zero   RW           10    .bss                freertos_demo.o
-    0x200006bc   0x00007530   Zero   RW          176    .bss                heap_2.o
-    0x20007bec   0x000001a4   Zero   RW          653    .bss                tasks.o
-    0x20007d90   0x00000200   Zero   RW          599    STACK               startup_rvmdk.o
+    0x20000400   0x0000026c   Data   RW         2340    vtable              driverlib.lib(interrupt.o)
+    0x2000066c   0x00000058   Zero   RW           10    .bss                freertos_demo.o
+    0x200006c4   0x00007530   Zero   RW          176    .bss                heap_2.o
+    0x20007bf4   0x000001a4   Zero   RW          653    .bss                tasks.o
+    0x20007d98   0x00000200   Zero   RW          599    STACK               startup_rvmdk.o
 
 
 ==============================================================================
@@ -1387,7 +1397,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       846        282          0         24         80      25031   freertos_demo.o
+       862        290          0         24         88      25039   freertos_demo.o
        240         12          0         24      30000       4579   heap_2.o
        312         28          0          0          0       1605   inputs.o
        136          0          0          0          0       3346   list.o
@@ -1395,13 +1405,13 @@ Image component sizes
        410         46          0          4          0      15944   port.o
       1084         14          0          0          0      17073   queue.o
        648        622          0          0        512        240   startup_rvmdk.o
-      1120        168          0         28          0      11620   statemachinesfunctions.o
+      1180        178          0         28          0      12615   statemachinesfunctions.o
        172         26          0          0          0       2033   taskhandlers.o
       1698        152          0         56        420      17357   tasks.o
        606         30         45          8          0       4624   uartstdio.o
 
     ----------------------------------------------------------------------
-      7416       1408         80       1024      31012     106033   Object Totals
+      7492       1426         80       1024      31020     107036   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          8          0          3        880          0          0   (incl. Padding)
 
@@ -1448,15 +1458,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      8560       1466        900       1644      31012     111498   Grand Totals
-      8560       1466        900         28      31012     111498   ELF Image Totals (compressed)
-      8560       1466        900         28          0          0   ROM Totals
+      8636       1484        900       1644      31020     112301   Grand Totals
+      8636       1484        900         28      31020     112301   ELF Image Totals (compressed)
+      8636       1484        900         28          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 9460 (   9.24kB)
-    Total RW  Size (RW Data + ZI Data)             32656 (  31.89kB)
-    Total ROM Size (Code + RO Data + RW Data)       9488 (   9.27kB)
+    Total RO  Size (Code + RO Data)                 9536 (   9.31kB)
+    Total RW  Size (RW Data + ZI Data)             32664 (  31.90kB)
+    Total ROM Size (Code + RO Data + RW Data)       9564 (   9.34kB)
 
 ==============================================================================
 

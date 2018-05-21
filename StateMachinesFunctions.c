@@ -12,13 +12,40 @@ int state[6] = {safe, driverNeutral, passengerNeutral,0,0,0};
 
 typedef void (*StateFunction)(int, int);
 
-extern StateFunction stateMachines[20];
+extern StateFunction stateMachines[22];
 
 void autoDriverUpSM(int event, int depth){}
 void autoDriverDownSM(int event, int depth){}
 void autoPassengerUpSM(int event, int depth){}
 void autoPassengerDownSM(int event, int depth){}
 
+
+void dyingSM(int event, int depth){
+
+	switch(event){
+	
+		case TIMER_TICK_EVENT:
+			state[stateDepth - 1] = dead;
+			break;
+
+	}
+
+}
+void deadSM(int event, int depth){
+
+	switch(event){
+	
+		case ENGINE_EVENT:
+			stateDepth = 0;
+			state[stateDepth++] = safe;
+			state[stateDepth++] = driverNeutral;
+			state[stateDepth++] = passengerNeutral;
+			break;
+
+	}
+
+}
+	
 void iniDriverDownSM (int event, int depth){
 
 	switch(event){
@@ -135,12 +162,13 @@ void driverUpSM (int event, int depth){
 
 void safeSM(int event, int depth){
 
-	state[depth] = safe;
+	
 	switch(event){
 	
 		case ENGINE_EVENT:
 			//start timer
-			//go to dead state
+			stateDepth = 0;
+			state[stateDepth++] = dying;
 			break;
 		default:
 			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
