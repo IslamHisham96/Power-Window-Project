@@ -27,9 +27,6 @@
 #define LIMIT_UP GPIO_PIN_4
 #define LIMIT_DOWN GPIO_PIN_5
 #define ENGINE GPIO_PIN_6
-#define PASSENGER_NEUTRAL 8989
-#define DRIVER_NEUTRAL 7878
-#define TIMER_TICK 5656
 
 
 void init_input(void);

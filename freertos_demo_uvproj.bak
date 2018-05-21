@@ -406,6 +406,11 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
+              <FileName>buttons.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drivers\buttons.c</FilePath>
+            </File>
+            <File>
               <FileName>freertos_demo.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\freertos_demo.c</FilePath>
@@ -444,6 +449,11 @@
               <FileName>startup_rvmdk.S</FileName>
               <FileType>2</FileType>
               <FilePath>.\startup_rvmdk.S</FilePath>
+            </File>
+            <File>
+              <FileName>switch_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\switch_task.c</FilePath>
             </File>
             <File>
               <FileName>tasks.c</FileName>

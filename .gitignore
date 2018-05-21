@@ -4,3 +4,5 @@
 *.d
 *.o
 *.axf
+*.htm
+rvmdk/freertos_demo.build_log.htm

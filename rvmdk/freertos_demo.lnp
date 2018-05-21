@@ -12,7 +12,6 @@
 ".\rvmdk\ustdlib.o"
 ".\rvmdk\inputs.o"
 ".\rvmdk\output_ports.o"
-".\rvmdk\taskhandlers.o"
 "..\..\..\..\driverlib\rvmdk\driverlib.lib"
 --library_type=microlib --strict --scatter "freertos_demo.sct"
 

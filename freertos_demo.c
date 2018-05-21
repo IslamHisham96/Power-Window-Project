@@ -46,6 +46,21 @@
 #include "TaskHandlers.h"
 
 
+#define DRIVER_UP_EVENT 0
+#define DRIVER_DOWN_EVENT 1
+#define PASSENGER_UP_EVENT 2
+#define PASSENGER_DOWN_EVENT 3
+#define PASSENGER_NEUTRAL_EVENT 4
+#define DRIVER_NEUTRAL_EVENT 5
+#define TIMER_TICK_EVENT 6
+#define LOCK_EVENT 7
+#define LIMIT_UP_EVENT 8
+#define LIMIT_DOWN_EVENT 9
+#define ENGINE_EVENT 10
+
+
+
+
 SemaphoreHandle_t xTurnRightSemaphore;
 SemaphoreHandle_t xTurnLeftSemaphore;
 SemaphoreHandle_t xFastStopSemaphore;
@@ -62,7 +77,7 @@ void safeSM(int event, int depth){
 	state[depth] = safe;
 	switch(event){
 	
-		case ENGINE:
+		case ENGINE_EVENT:
 			break;
 		default:
 			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
@@ -77,10 +92,10 @@ void driverNeutralSM(int event, int depth){
 	
 	switch(event){
 	
-		case DRIVER_UP:
+		case DRIVER_UP_EVENT:
 				//driverUPSM(event, depth);
 				break;
-		case DRIVER_DOWN:
+		case DRIVER_DOWN_EVENT:
 				//driverDownSM(event, depth);
 				break;
 		default:
@@ -96,7 +111,7 @@ void passengerNeutralSM(int event, int depth){
 	
 	switch(event){
 	
-		case PASSENGER_UP:
+		case PASSENGER_UP_EVENT:
 				state[depth] = passengerUp;
 				state[depth + 1] = iniPassengerUp;
 				stateDepth = 4;
@@ -104,7 +119,7 @@ void passengerNeutralSM(int event, int depth){
 				xSemaphoreGive( xTurnRightSemaphore);
 				//start timer
 				break;
-		case PASSENGER_DOWN:
+		case PASSENGER_DOWN_EVENT:
 				state[depth] = passengerDown;
 				state[depth + 1] = iniPassengerDown;
 				stateDepth = 4;
@@ -124,7 +139,7 @@ void passengerUPSM(int event, int depth){
 	
 	switch(event){
 		
-		case LIMIT_UP:
+		case LIMIT_UP_EVENT:
 				state[depth] = passengerNeutral;
 				stateDepth = 3;
 		
@@ -143,10 +158,10 @@ void iniPassengerUPSM(int event, int depth){
 	
 	switch(event){
 	
-		case TIMER_TICK:
+		case TIMER_TICK_EVENT:
 			 state[depth] = manualPassengerUp;
 				break;
-		case PASSENGER_NEUTRAL:
+		case PASSENGER_NEUTRAL_EVENT:
 				state[depth] = autoPassengerUp;
 				break;
 
@@ -161,8 +176,8 @@ void iniPassengerUPSM(int event, int depth){
 void manualPassengerUPSM(int event, int depth){
 
 	switch(event){
-	
-		case PASSENGER_NEUTRAL:
+
+		case PASSENGER_NEUTRAL_EVENT:
 				xSemaphoreGive(xFastStopSemaphore);
 				state[depth - 1] = passengerNeutral;
 				stateDepth = 3;
@@ -179,7 +194,7 @@ void passengerDownSM(int event, int depth){
 
 	switch(event){
 		
-		case LIMIT_DOWN:
+		case LIMIT_DOWN_EVENT:
 				state[depth] = passengerNeutral;
 				stateDepth = 3;
 				xSemaphoreGive(xFastStopSemaphore);
@@ -196,10 +211,10 @@ void iniPassengerDownSM(int event, int depth){
 
 	switch(event){
 	
-		case TIMER_TICK:
+		case TIMER_TICK_EVENT:
 			 state[depth] = manualPassengerDown;
 				break;
-		case PASSENGER_NEUTRAL:
+		case PASSENGER_NEUTRAL_EVENT:
 				state[depth] = autoPassengerDown;
 				break;
 
@@ -214,7 +229,8 @@ void manualPassengerDownSM(int event, int depth){
 
 	switch(event){
 	
-		case PASSENGER_NEUTRAL:
+
+		case PASSENGER_NEUTRAL_EVENT:
 				xSemaphoreGive(xFastStopSemaphore);
 				state[depth - 1] = passengerNeutral;
 				stateDepth = 3;
@@ -292,6 +308,7 @@ void emergencyDownSM(int event, int depth){
 //
 //*****************************************************************************
 xSemaphoreHandle g_pUARTSemaphore;
+xQueueHandle eventQueue;
 bool p_enable = true;
 
 //*****************************************************************************
@@ -384,56 +401,87 @@ Window_Stop(void){
 void
 Window_Handler(void){
 	//for PortA
+	static TickType_t xTimeISRLastExecuted_A = 0;
+	
+	//initializations
+	//char ss[40];
+	TickType_t xTimeNow_A, xTimeBetweenInterrupts_A;
+	portBASE_TYPE xHigherPriorityTaskWoken_A = pdFALSE;
+	int32_t event=0;
+	
+	//delay by counting ticks
+	xTimeNow_A = xTaskGetTickCountFromISR();
+	xTimeBetweenInterrupts_A = xTimeNow_A - xTimeISRLastExecuted_A;
+	
+	
+//			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
+//			UARTprintf(ss);
+	if(xTimeBetweenInterrupts_A > 200){
 	UARTprintf("entered_a\n");
-	int32_t s;
-	char ss[40];
+	//int32_t s;
+	//char ss[40];
 	uint32_t status = GPIOIntStatus(DRIVER_PORT, true);
 	if(status & DRIVER_UP & DRIVER_DOWN){
-		Window_Stop();
+		//Window_Stop();
+		event = DRIVER_NEUTRAL_EVENT;
 	}
 	else if(status & DRIVER_UP){
 		
-	UARTprintf("derp\n");
-		Window_Up();
+	//UARTprintf("derp\n");
+	//	Window_Up();
+		event = DRIVER_UP_EVENT;
 	}
 	else if(status & DRIVER_DOWN){
-	UARTprintf("herp\n");
-		s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
-		sprintf(ss,"%d\n",s);
-		UARTprintf(ss);
-		Window_Down();
-		s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
-		sprintf(ss,"%d\n",s);
-		UARTprintf(ss);
-		
+	//UARTprintf("herp\n");
+		//s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
+		//sprintf(ss,"%d\n",s);
+		//UARTprintf(ss);
+			//Window_Down();
+		//s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
+		//sprintf(ss,"%d\n",s);
+		//UARTprintf(ss);
+		event = DRIVER_DOWN_EVENT;
 	}
 	else if(status & LOCK){
-		p_enable = !p_enable;
+		//p_enable = !p_enable;
+		event = LOCK_EVENT;
 	}
 	
 	else if(status & PASSENGER_UP & PASSENGER_DOWN){
-		if(p_enable)
-		Window_Stop();
+		//if(p_enable)
+		//Window_Stop();
+		event = PASSENGER_NEUTRAL_EVENT;
 	}
 	
 	else if(status & PASSENGER_UP){
-		if(p_enable)
-		Window_Up();
+		//if(p_enable)
+		//Window_Up();
+		event = PASSENGER_UP_EVENT;
 	}
 	
 	else if(status & PASSENGER_DOWN){
-		if(p_enable)
-		Window_Down();
+		//if(p_enable)
+		//Window_Down();
+		event = PASSENGER_DOWN_EVENT;
 	}
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
+}
 	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
-	GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
+	xTimeISRLastExecuted_A = xTimeNow_A;
+	//GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
 }
 void
 Limit_Handler(void){
 	//for PortC
 	static TickType_t xTimeISRLastExecuted_C = 0;
+	
+	//initializations
 	//char ss[40];
 	TickType_t xTimeNow_C, xTimeBetweenInterrupts_C;
+	portBASE_TYPE xHigherPriorityTaskWoken_C = pdFALSE;
+	int32_t event = 0;
+	
+	//delay by counting ticks
 	xTimeNow_C = xTaskGetTickCountFromISR();
 	xTimeBetweenInterrupts_C = xTimeNow_C - xTimeISRLastExecuted_C;
 //			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
@@ -442,17 +490,20 @@ Limit_Handler(void){
 	UARTprintf("entered_c\n");
 	uint32_t status = GPIOIntStatus(LIMIT_PORT, true);
 	if(status & LIMIT_UP & LIMIT_DOWN){
-		
+		//***************************************************************
+		//Is this legal??
+		//***************************************************************
 	}
 	else if(status & LIMIT_UP){
-		
+		event = LIMIT_UP_EVENT;
 	}
 	else if(status & LIMIT_DOWN){
-		
+		event = LIMIT_DOWN_EVENT;
 	}
 	else if(status & ENGINE){
-		
+		event = ENGINE_EVENT;
 	}
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
 }
 	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
 	xTimeISRLastExecuted_C = xTimeNow_C;
@@ -486,7 +537,9 @@ main(void)
     //
     //ROM_SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ |  SYSCTL_OSC_MAIN);
     ConfigureUART();
-
+	
+		//create event queue with size 1 to send events (may be changed)
+		eventQueue = xQueueCreate(1,sizeof(uint32_t));
     //
     // Print demo introduction.
     //
@@ -504,7 +557,7 @@ main(void)
     // Create a mutex to guard the UART.
     //
     //g_pUARTSemaphore = xSemaphoreCreateMutex();
-
+		
     //
     // Create the LED task.
     //
