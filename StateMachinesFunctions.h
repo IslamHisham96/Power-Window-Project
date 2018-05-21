@@ -17,5 +17,8 @@ void iniDriverUpSM (int, int);
 void manualDriverUpSM (int, int);
 void passengerNeutralSM(int, int);
 void emergencyDownSM (int, int);
-	
+void autoDriverUpSM(int event, int depth);
+void autoDriverDownSM(int event, int depth);
+void autoPassengerUpSM(int event, int depth);
+void autoPassengerDownSM(int event, int depth);
 #endif

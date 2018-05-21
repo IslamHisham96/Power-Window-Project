@@ -258,18 +258,21 @@ main(void)
 	stateMachines[ driverNeutral ] = &driverNeutralSM;
 	stateMachines[ passengerDown ] = &passengerDownSM;
 	stateMachines[ passengerUp ] = &passengerUpSM;
-	//stateMachines[ driverDown ] = &driverDownSM;
-	//stateMachines[ driverUp ] = &driverUpSM;
+	stateMachines[ driverDown ] = &driverDownSM;
+	stateMachines[ driverUp ] = &driverUpSM;
 	stateMachines[ passengerNeutral ] = &passengerNeutralSM;
 	stateMachines[ iniPassengerDown ] = &iniPassengerDownSM;
 	stateMachines[ manualPassengerDown ] = &manualPassengerDownSM;
 	stateMachines[ manualPassengerUp ] = &manualPassengerUpSM;
-	//stateMachines[ iniDriverDown ] = &iniDriverDownSM;
-	//stateMachines[ manualDriverDown ] = &manualDriverDownSM;
-	//stateMachines[ iniDriverUp ] = &iniDriverUpSM;
-	//stateMachines[ manualDriverUp ] = &manualDriverUpSM;
+	stateMachines[ iniDriverDown ] = &iniDriverDownSM;
+	stateMachines[ manualDriverDown ] = &manualDriverDownSM;
+	stateMachines[ iniDriverUp ] = &iniDriverUpSM;
+	stateMachines[ manualDriverUp ] = &manualDriverUpSM;
 	stateMachines[ emergencyDown ] = &emergencyDownSM;
-	
+	stateMachines[ autoDriverUp ] = &autoDriverUpSM;
+	stateMachines[ autoDriverDown ] = &autoDriverDownSM;
+	stateMachines[ autoPassengerUp ] = &autoPassengerUpSM;
+	stateMachines[ autoPassengerDown ] = &autoPassengerDownSM;
 	
 	//Semaphores creation to synchronize Actuator Tasks with Main Task
 	vSemaphoreCreateBinary( xTurnRightSemaphore );
@@ -280,6 +283,9 @@ main(void)
 	xTaskCreate( vTurnRightHandlerTask, "vTurnRightHandlerTask", 240, NULL, 3, NULL );
 	xTaskCreate( vTurnLeftHandlerTask, "vTurnLeftHandlerTask", 240, NULL, 3, NULL );
 	xTaskCreate( vFastStopHandlerTask, "vFastStopHandlerTask", 240, NULL, 3, NULL );
+	
+	//Create Main Task to receive events and pass it to state machine
+	xTaskCreate( vMainHandlerTask, "vFastStopHandlerTask", 240, NULL, 1, NULL );
     //
     // Set the clocking to run at 50 MHz from the PLL.
     //

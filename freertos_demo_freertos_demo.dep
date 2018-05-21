@@ -1,5 +1,5 @@
 Dependencies for Project 'freertos_demo', Target 'freertos_demo': (DO NOT MODIFY !)
-F (.\freertos_demo.c)(0x5B02E3AD)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I. -I.. -I..\..\..\.. -I..\..\..\..\third_party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\third_party\FreeRTOS -I..\..\..\..\third_party\FreeRTOS\Source\include -I..\..\..\..\third_party --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\freertos_demo.o --omf_browse .\rvmdk\freertos_demo.crf --depend .\rvmdk\freertos_demo.d)
+F (.\freertos_demo.c)(0x5B031E46)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I. -I.. -I..\..\..\.. -I..\..\..\..\third_party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\third_party\FreeRTOS -I..\..\..\..\third_party\FreeRTOS\Source\include -I..\..\..\..\third_party --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\freertos_demo.o --omf_browse .\rvmdk\freertos_demo.crf --depend .\rvmdk\freertos_demo.d)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C835D4)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C835D4)
 I (..\..\..\..\inc/hw_memmap.h)(0x5B004801)
@@ -31,7 +31,7 @@ I (..\..\..\..\third_party\FreeRTOS\Source\include\semphr.h)(0x5B004808)
 I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C835D4)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C835D4)
 I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C835D4)
-I (StateMachinesFunctions.h)(0x5B02E490)
+I (StateMachinesFunctions.h)(0x5B031E46)
 I (StateNames.h)(0x5B02CB8E)
 I (TaskHandlers.h)(0x5B02E2B1)
 F (..\..\..\..\third_party\FreeRTOS\Source\portable\MemMang\heap_2.c)(0x5B004808)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I. -I.. -I..\..\..\.. -I..\..\..\..\third_party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\third_party\FreeRTOS -I..\..\..\..\third_party\FreeRTOS\Source\include -I..\..\..\..\third_party --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\heap_2.o --omf_browse .\rvmdk\heap_2.crf --depend .\rvmdk\heap_2.d)
@@ -228,7 +228,7 @@ I (..\..\..\..\driverlib/rom_map.h)(0x5B0047F9)
 I (..\..\..\..\driverlib/pin_map.h)(0x5B0047F9)
 I (..\drivers/buttons.h)(0x5B0047FA)
 F (.\StateNames.h)(0x5B02CB8E)()
-F (.\StateMachinesFunctions.c)(0x5B02F2EB)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I. -I.. -I..\..\..\.. -I..\..\..\..\third_party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\third_party\FreeRTOS -I..\..\..\..\third_party\FreeRTOS\Source\include -I..\..\..\..\third_party --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\statemachinesfunctions.o --omf_browse .\rvmdk\statemachinesfunctions.crf --depend .\rvmdk\statemachinesfunctions.d)
+F (.\StateMachinesFunctions.c)(0x5B031DBC)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I. -I.. -I..\..\..\.. -I..\..\..\..\third_party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\third_party\FreeRTOS -I..\..\..\..\third_party\FreeRTOS\Source\include -I..\..\..\..\third_party --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\statemachinesfunctions.o --omf_browse .\rvmdk\statemachinesfunctions.crf --depend .\rvmdk\statemachinesfunctions.d)
 I (StateNames.h)(0x5B02CB8E)
 I (inputs.h)(0x5B02F1CC)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C835D4)
