@@ -12,6 +12,9 @@
 #include "inc/hw_gpio.h"
 #include "driverlib/sysctl.h"
 #include "drivers/buttons.h"
+
+#ifndef inputs
+#define inputs
 #define DRIVER_PORT GPIO_PORTA_BASE
 #define LOCK_PORT GPIO_PORTA_BASE
 #define PASSENGER_PORT GPIO_PORTA_BASE
@@ -28,8 +31,23 @@
 #define LIMIT_DOWN GPIO_PIN_5
 #define ENGINE GPIO_PIN_6
 
+#define DRIVER_UP_EVENT 0
+#define DRIVER_DOWN_EVENT 1
+#define PASSENGER_UP_EVENT 2
+#define PASSENGER_DOWN_EVENT 3
+#define PASSENGER_NEUTRAL_EVENT 4
+#define DRIVER_NEUTRAL_EVENT 5
+#define TIMER_TICK_EVENT 6
+#define LOCK_EVENT 7
+#define LIMIT_UP_EVENT 8
+#define LIMIT_DOWN_EVENT 9
+#define ENGINE_EVENT 10
+#define OBSTACLE_EVENT 11
+
+
 
 void init_input(void);
 void portf_int(void (*pfnIntHandler)(void));
 void porta_int(void (*pfnIntHandler)(void));
 void portc_int(void (*pfnIntHandler)(void));
+#endif

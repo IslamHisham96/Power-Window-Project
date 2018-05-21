@@ -6,6 +6,20 @@
 extern SemaphoreHandle_t xTurnRightSemaphore;
 extern SemaphoreHandle_t xTurnLeftSemaphore;
 extern SemaphoreHandle_t xFastStopSemaphore;
+extern xQueueHandle eventQueue;
+extern int state[6];
+
+typedef void (*StateFunction)(int, int);
+extern StateFunction stateMachines[20];
+
+void vMainHandlerTask( void *pvParameters ){
+for( ;; )
+{
+	int event;
+	xQueueReceive(eventQueue,&event,portMAX_DELAY );
+	stateMachines[state[0]](event, 0);
+}
+}
 
 void vTurnRightHandlerTask( void *pvParameters )
 {

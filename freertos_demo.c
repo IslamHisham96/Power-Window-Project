@@ -46,297 +46,28 @@
 #include "TaskHandlers.h"
 
 
-#define DRIVER_UP_EVENT 0
-#define DRIVER_DOWN_EVENT 1
-#define PASSENGER_UP_EVENT 2
-#define PASSENGER_DOWN_EVENT 3
-#define PASSENGER_NEUTRAL_EVENT 4
-#define DRIVER_NEUTRAL_EVENT 5
-#define TIMER_TICK_EVENT 6
-#define LOCK_EVENT 7
-#define LIMIT_UP_EVENT 8
-#define LIMIT_DOWN_EVENT 9
-#define ENGINE_EVENT 10
 
+typedef void (*StateFunction)(int, int);
+StateFunction stateMachines[20];
 
 
 
 SemaphoreHandle_t xTurnRightSemaphore;
 SemaphoreHandle_t xTurnLeftSemaphore;
 SemaphoreHandle_t xFastStopSemaphore;
-int stateDepth = 3;
-int state[6];
-
-typedef void (*StateFunction)(int, int);
-
-StateFunction stateMachines[2];
-
-
-void safeSM(int event, int depth){
-
-	state[depth] = safe;
-	switch(event){
-	
-		case ENGINE_EVENT:
-			break;
-		default:
-			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void driverNeutralSM(int event, int depth){
-
-	state[depth] = driverNeutral;
-	
-	switch(event){
-	
-		case DRIVER_UP_EVENT:
-				//driverUPSM(event, depth);
-				break;
-		case DRIVER_DOWN_EVENT:
-				//driverDownSM(event, depth);
-				break;
-		default:
-				if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void passengerNeutralSM(int event, int depth){
-
-	state[depth] = passengerNeutral;
-	
-	switch(event){
-	
-		case PASSENGER_UP_EVENT:
-				state[depth] = passengerUp;
-				state[depth + 1] = iniPassengerUp;
-				stateDepth = 4;
-		
-				xSemaphoreGive( xTurnRightSemaphore);
-				//start timer
-				break;
-		case PASSENGER_DOWN_EVENT:
-				state[depth] = passengerDown;
-				state[depth + 1] = iniPassengerDown;
-				stateDepth = 4;
-		
-				xSemaphoreGive( xTurnLeftSemaphore);
-				//start timer
-				break;
-		default:
-				if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void passengerUPSM(int event, int depth){
-
-	
-	switch(event){
-		
-		case LIMIT_UP_EVENT:
-				state[depth] = passengerNeutral;
-				stateDepth = 3;
-		
-				xSemaphoreGive(xFastStopSemaphore);
-				break;
-
-		default:
-			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void iniPassengerUPSM(int event, int depth){
-
-	
-	switch(event){
-	
-		case TIMER_TICK_EVENT:
-			 state[depth] = manualPassengerUp;
-				break;
-		case PASSENGER_NEUTRAL_EVENT:
-				state[depth] = autoPassengerUp;
-				break;
-
-
-		default:
-			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void manualPassengerUPSM(int event, int depth){
-
-	switch(event){
-
-		case PASSENGER_NEUTRAL_EVENT:
-				xSemaphoreGive(xFastStopSemaphore);
-				state[depth - 1] = passengerNeutral;
-				stateDepth = 3;
-				break;
-		
-		default:
-			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void passengerDownSM(int event, int depth){
-
-	switch(event){
-		
-		case LIMIT_DOWN_EVENT:
-				state[depth] = passengerNeutral;
-				stateDepth = 3;
-				xSemaphoreGive(xFastStopSemaphore);
-				break;
-
-		default:
-			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void iniPassengerDownSM(int event, int depth){
-
-	switch(event){
-	
-		case TIMER_TICK_EVENT:
-			 state[depth] = manualPassengerDown;
-				break;
-		case PASSENGER_NEUTRAL_EVENT:
-				state[depth] = autoPassengerDown;
-				break;
-
-		default:
-			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-void manualPassengerDownSM(int event, int depth){
-
-	switch(event){
-	
-
-		case PASSENGER_NEUTRAL_EVENT:
-				xSemaphoreGive(xFastStopSemaphore);
-				state[depth - 1] = passengerNeutral;
-				stateDepth = 3;
-				break;
-		
-		default:
-			if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-
-}
-
-
-void emergencyDownSM(int event, int depth){
-	
-	switch(event){
-	
-		//case TIME_PASSED:
-				//passengerNeutral state
-				//break;
-		default:
-				if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
-		
-	}
-	
-}
 
 
 
-
-
-
-
-//*****************************************************************************
-//
-//! \addtogroup example_list
-//! <h1>FreeRTOS Example (freertos_demo)</h1>
-//!
-//! This application demonstrates the use of FreeRTOS on Launchpad.
-//!
-//! The application blinks the user-selected LED at a user-selected frequency.
-//! To select the LED press the left button and to select the frequency press
-//! the right button.  The UART outputs the application status at 115,200 baud,
-//! 8-n-1 mode.
-//!
-//! This application utilizes FreeRTOS to perform the tasks in a concurrent
-//! fashion.  The following tasks are created:
-//!
-//! - An LED task, which blinks the user-selected on-board LED at a
-//!   user-selected rate (changed via the buttons).
-//!
-//! - A Switch task, which monitors the buttons pressed and passes the
-//!   information to LED task.
-//!
-//! In addition to the tasks, this application also uses the following FreeRTOS
-//! resources:
-//!
-//! - A Queue to enable information transfer between tasks.
-//!
-//! - A Semaphore to guard the resource, UART, from access by multiple tasks at
-//!   the same time.
-//!
-//! - A non-blocking FreeRTOS Delay to put the tasks in blocked state when they
-//!   have nothing to do.
-//!
-//! For additional details on FreeRTOS, refer to the FreeRTOS web page at:
-//! http://www.freertos.org/
-//
-//*****************************************************************************
-
-
-//*****************************************************************************
-//
-// The mutex that protects concurrent access of UART from multiple tasks.
-//
-//*****************************************************************************
 xSemaphoreHandle g_pUARTSemaphore;
 xQueueHandle eventQueue;
 bool p_enable = true;
 
-//*****************************************************************************
-//
-// The error routine that is called if the driver library encounters an error.
-//
-//*****************************************************************************
-#ifdef DEBUG
-void
-__error__(char *pcFilename, uint32_t ui32Line)
-{
-}
 
-#endif
 
-//*****************************************************************************
-//
-// This hook is called by FreeRTOS when an stack overflow error is detected.
-//
-//*****************************************************************************
+
 void
 vApplicationStackOverflowHook(xTaskHandle *pxTask, char *pcTaskName)
 {
-    //
-    // This function can not return, so loop forever.  Interrupts are disabled
-    // on entry to this function, so no processor interrupts will interrupt
-    // this loop.
-    //
     while(1)
     {
     }
@@ -517,10 +248,27 @@ Main_Task(void * pvParameters)
 
 
 
-
 int
 main(void)
 {
+
+	
+	//Initialize StateMachineArray
+	stateMachines[ safe ] = &safeSM;
+	stateMachines[ driverNeutral ] = &driverNeutralSM;
+	stateMachines[ passengerDown ] = &passengerDownSM;
+	stateMachines[ passengerUp ] = &passengerUpSM;
+	//stateMachines[ driverDown ] = &driverDownSM;
+	//stateMachines[ driverUp ] = &driverUpSM;
+	stateMachines[ passengerNeutral ] = &passengerNeutralSM;
+	stateMachines[ iniPassengerDown ] = &iniPassengerDownSM;
+	stateMachines[ manualPassengerDown ] = &manualPassengerDownSM;
+	stateMachines[ manualPassengerUp ] = &manualPassengerUpSM;
+	//stateMachines[ iniDriverDown ] = &iniDriverDownSM;
+	//stateMachines[ manualDriverDown ] = &manualDriverDownSM;
+	//stateMachines[ iniDriverUp ] = &iniDriverUpSM;
+	//stateMachines[ manualDriverUp ] = &manualDriverUpSM;
+	stateMachines[ emergencyDown ] = &emergencyDownSM;
 	
 	
 	//Semaphores creation to synchronize Actuator Tasks with Main Task

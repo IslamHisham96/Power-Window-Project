@@ -32,3 +32,4 @@
 .\rvmdk\freertos_demo.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
 .\rvmdk\freertos_demo.o: StateMachinesFunctions.h
 .\rvmdk\freertos_demo.o: StateNames.h
+.\rvmdk\freertos_demo.o: TaskHandlers.h
