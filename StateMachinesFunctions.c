@@ -189,7 +189,7 @@ void driverNeutralSM(int event, int depth){
 				stateDepth = 0;
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverUp;
-				state[stateDepth++] = iniDriverUp;
+				state[stateDepth++] = manualDriverUp; //iniDriverUp
 				break;
 		case DRIVER_DOWN_EVENT:
 				xSemaphoreGive(xTurnLeftSemaphore);
@@ -197,7 +197,7 @@ void driverNeutralSM(int event, int depth){
 				stateDepth = 0;
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverDown;
-				state[stateDepth++] = iniDriverDown;
+				state[stateDepth++] = manualDriverDown; //iniDriverDown
 				break;
 		default:
 				if(depth + 1 < stateDepth) stateMachines[state[depth + 1]](event, depth + 1);
