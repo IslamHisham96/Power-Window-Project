@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\rvmdk\freertos_demo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\freertos_demo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 29 23:43:20 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 29 23:49:37 2018
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -372,10 +372,11 @@ Global Symbols
 <P><STRONG><a name="[1c]"></a>deadSM</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, statemachinesfunctions.o(i.deadSM))
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[c]"></a>driverDownSM</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, statemachinesfunctions.o(i.driverDownSM))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = driverDownSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[c]"></a>driverDownSM</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, statemachinesfunctions.o(i.driverDownSM))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = driverDownSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enableAutoTimer
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
@@ -387,10 +388,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[d]"></a>driverUpSM</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, statemachinesfunctions.o(i.driverUpSM))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = driverUpSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[d]"></a>driverUpSM</STRONG> (Thumb, 146 bytes, Stack size 32 bytes, statemachinesfunctions.o(i.driverUpSM))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = driverUpSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enableAutoTimer
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
@@ -416,7 +418,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = enableAutoTimer
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;passengerNeutralSM
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driverUpSM
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driverNeutralSM
+<LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driverDownSM
 </UL>
 
 <P><STRONG><a name="[48]"></a>fastStop</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, output_ports.o(i.fastStop))
@@ -501,22 +505,22 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[a]"></a>passengerDownSM</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, statemachinesfunctions.o(i.passengerDownSM))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = passengerDownSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[a]"></a>passengerDownSM</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, statemachinesfunctions.o(i.passengerDownSM))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = passengerDownSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[e]"></a>passengerNeutralSM</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, statemachinesfunctions.o(i.passengerNeutralSM))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = passengerNeutralSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[e]"></a>passengerNeutralSM</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, statemachinesfunctions.o(i.passengerNeutralSM))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = passengerNeutralSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enableAutoTimer
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[b]"></a>passengerUpSM</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, statemachinesfunctions.o(i.passengerUpSM))
+<P><STRONG><a name="[b]"></a>passengerUpSM</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, statemachinesfunctions.o(i.passengerUpSM))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = passengerUpSM &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend

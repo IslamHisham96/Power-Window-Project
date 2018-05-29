@@ -109,13 +109,15 @@ void driverDownSM (int event, int depth){
 	
 	switch(event){
 	
-	/*	case DRIVER_UP_EVENT:
+		case DRIVER_UP_EVENT:
 			xSemaphoreGive(xTurnRightSemaphore);
+			//start timer
+			enableAutoTimer();
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverUp;
-			state[stateDepth++] = manualDriverUp;
-			break; */
+			state[stateDepth++] = iniDriverUp;
+			break;
 		case LIMIT_DOWN_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
 			stateDepth = 0;
@@ -134,13 +136,15 @@ void driverUpSM (int event, int depth){
 	
 	switch(event){
 	
-	/*	case DRIVER_DOWN_EVENT:
+		case DRIVER_DOWN_EVENT:
 			xSemaphoreGive(xTurnLeftSemaphore);
+			//start timer
+			enableAutoTimer();
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverDown;
-			state[stateDepth++] = manualDriverDown;
-			break; */
+			state[stateDepth++] = iniDriverDown;
+			break; 
 		case LIMIT_UP_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
 			stateDepth = 0;
@@ -215,18 +219,18 @@ void passengerNeutralSM(int event, int depth){
 	switch(event){
 	
 		case PASSENGER_UP_EVENT:
+				xSemaphoreGive( xTurnRightSemaphore);
 				state[depth] = passengerUp;
 				state[depth + 1] = iniPassengerUp;
-				stateDepth++;
-				xSemaphoreGive( xTurnRightSemaphore);
+				stateDepth++;				
 				//start timer
 				enableAutoTimer();
 				break;
 		case PASSENGER_DOWN_EVENT:
+				xSemaphoreGive( xTurnLeftSemaphore);
 				state[depth] = passengerDown;
 				state[depth + 1] = iniPassengerDown;
-				stateDepth++;
-				xSemaphoreGive( xTurnLeftSemaphore);
+				stateDepth++;				
 				//start timer
 				enableAutoTimer();
 				break;
@@ -241,9 +245,9 @@ void passengerUpSM(int event, int depth){
 	switch(event){
 		
 		case LIMIT_UP_EVENT:
+			  xSemaphoreGive(xFastStopSemaphore);
 				state[depth] = passengerNeutral;
-				stateDepth--;
-				xSemaphoreGive(xFastStopSemaphore);
+				stateDepth--;				
 				break;
 		case OBSTACLE_EVENT:
 			xSemaphoreGive(xTurnLeftSemaphore);
@@ -294,9 +298,9 @@ void passengerDownSM(int event, int depth){
 	switch(event){
 		
 		case LIMIT_DOWN_EVENT:
-				state[depth] = passengerNeutral;
-				stateDepth--;
 				xSemaphoreGive(xFastStopSemaphore);
+				state[depth] = passengerNeutral;
+				stateDepth--;			
 				break;
 
 		default:
