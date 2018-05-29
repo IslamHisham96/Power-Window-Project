@@ -281,15 +281,15 @@ Limit_Handler(void){
 	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
 	xTimeISRLastExecuted_C = xTimeNow_C;
 }
-void
-Main_Task(void * pvParameters)
-{
-	
-}
+
 
 void autoTimerHandler(void)
 {
-	//pass the event to the queue
+	int32_t event = AUTO_TIMER_TICK_EVENT;
+	portBASE_TYPE xHigherPriorityTaskWoken_AutoTimer = pdFALSE;
+	
+	UARTprintf("timer\n");
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_AutoTimer);
 	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 }
 
