@@ -164,7 +164,15 @@ Window_Handler(void){
 		
 	//UARTprintf("derp\n");
 	//	Window_Up();
+		if(GPIOPinRead(DRIVER_PORT,DRIVER_UP) == 0){
+		//UARTprintf("pressed\n");
 		event = DRIVER_UP_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = DRIVER_NEUTRAL_EVENT;
+		}
+		UARTprintf("DU\n");
 	}
 	else if(status & DRIVER_DOWN){
 	//UARTprintf("herp\n");
@@ -175,11 +183,20 @@ Window_Handler(void){
 		//s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
 		//sprintf(ss,"%d\n",s);
 		//UARTprintf(ss);
+		if(GPIOPinRead(DRIVER_PORT,DRIVER_DOWN) == 0){
+		//UARTprintf("pressed\n");
 		event = DRIVER_DOWN_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = DRIVER_NEUTRAL_EVENT;
+		}
+		UARTprintf("DD\n");
 	}
 	else if(status & LOCK){
 		//p_enable = !p_enable;
 		event = LOCK_EVENT;
+		UARTprintf("LOCK\n");
 	}
 	
 	else if(status & PASSENGER_UP & PASSENGER_DOWN){
@@ -191,13 +208,29 @@ Window_Handler(void){
 	else if(status & PASSENGER_UP){
 		//if(p_enable)
 		//Window_Up();
+		if(GPIOPinRead(PASSENGER_PORT,PASSENGER_UP) == 0){
+		//UARTprintf("pressed\n");
 		event = PASSENGER_UP_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = PASSENGER_NEUTRAL_EVENT;
+		}
+		UARTprintf("PU\n");
 	}
 	
 	else if(status & PASSENGER_DOWN){
 		//if(p_enable)
 		//Window_Down();
+		if(GPIOPinRead(PASSENGER_PORT,PASSENGER_DOWN) == 0){
+		//UARTprintf("pressed\n");
 		event = PASSENGER_DOWN_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = PASSENGER_NEUTRAL_EVENT;
+		}
+		UARTprintf("PD\n");
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
 }
@@ -231,12 +264,15 @@ Limit_Handler(void){
 	}
 	else if(status & LIMIT_UP){
 		event = LIMIT_UP_EVENT;
+		UARTprintf("LU\n");
 	}
 	else if(status & LIMIT_DOWN){
 		event = LIMIT_DOWN_EVENT;
+		UARTprintf("LD\n");
 	}
 	else if(status & ENGINE){
 		event = ENGINE_EVENT;
+		UARTprintf("ENG\n");
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
 }
