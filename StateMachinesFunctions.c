@@ -109,13 +109,13 @@ void driverDownSM (int event, int depth){
 	
 	switch(event){
 	
-		case DRIVER_UP_EVENT:
+	/*	case DRIVER_UP_EVENT:
 			xSemaphoreGive(xTurnRightSemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverUp;
 			state[stateDepth++] = manualDriverUp;
-			break;
+			break; */
 		case LIMIT_DOWN_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
 			stateDepth = 0;
@@ -134,13 +134,13 @@ void driverUpSM (int event, int depth){
 	
 	switch(event){
 	
-		case DRIVER_DOWN_EVENT:
+	/*	case DRIVER_DOWN_EVENT:
 			xSemaphoreGive(xTurnLeftSemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverDown;
 			state[stateDepth++] = manualDriverDown;
-			break;
+			break; */
 		case LIMIT_UP_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
 			stateDepth = 0;
