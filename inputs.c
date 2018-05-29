@@ -57,8 +57,8 @@ void porta_int(void (*pfnIntHandler)(void)){
 		GPIOIntDisable(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);		// Disable interrupt for PF4 (in case it was enabled)
 		GPIOIntClear(GPIO_PORTA_BASE,GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);		// Clear pending interrupts for PF4
 		GPIOIntRegister(GPIO_PORTA_BASE, pfnIntHandler);		// Register our handler function for port F
-		GPIOIntTypeSet(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6, GPIO_FALLING_EDGE);		
-		GPIOIntTypeSet(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_BOTH_EDGES);		// Configure PF4 for falling edge trigger
+		GPIOIntTypeSet(GPIO_PORTA_BASE, GPIO_PIN_4 , GPIO_FALLING_EDGE);		
+		GPIOIntTypeSet(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, GPIO_BOTH_EDGES);		// Configure PF4 for falling edge trigger
 		GPIOIntEnable(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);		// Enable interrupt for PF4
 }
 void portc_int(void (*pfnIntHandler)(void)){
