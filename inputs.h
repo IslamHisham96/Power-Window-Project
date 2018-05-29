@@ -44,6 +44,7 @@
 #define LIMIT_DOWN_EVENT 9
 #define ENGINE_EVENT 10
 #define OBSTACLE_EVENT 11
+#define AUTO_TIMER_TICK_EVENT 12
 
 
 

@@ -52,7 +52,7 @@ void iniDriverDownSM (int event, int depth){
 
 	switch(event){
 	
-		case TIMER_TICK_EVENT:
+		case AUTO_TIMER_TICK_EVENT:
 			state[stateDepth - 1] = manualDriverDown;
 			break;
 		case DRIVER_NEUTRAL_EVENT:
@@ -81,7 +81,7 @@ void iniDriverUpSM (int event, int depth){
 
 	switch(event){
 	
-		case TIMER_TICK_EVENT:
+		case AUTO_TIMER_TICK_EVENT:
 			state[stateDepth - 1] = manualDriverUp;
 			break;
 		case DRIVER_NEUTRAL_EVENT:
@@ -264,7 +264,7 @@ void iniPassengerUpSM(int event, int depth){
 	
 	switch(event){
 	
-		case TIMER_TICK_EVENT:
+		case AUTO_TIMER_TICK_EVENT:
 			 state[depth] = manualPassengerUp;
 				break;
 		case PASSENGER_NEUTRAL_EVENT:
@@ -310,7 +310,7 @@ void iniPassengerDownSM(int event, int depth){
 
 	switch(event){
 	
-		case TIMER_TICK_EVENT:
+		case AUTO_TIMER_TICK_EVENT:
 			 state[depth] = manualPassengerDown;
 				break;
 		case PASSENGER_NEUTRAL_EVENT:
