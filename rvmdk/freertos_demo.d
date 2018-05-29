@@ -33,3 +33,6 @@
 .\rvmdk\freertos_demo.o: StateMachinesFunctions.h
 .\rvmdk\freertos_demo.o: StateNames.h
 .\rvmdk\freertos_demo.o: TaskHandlers.h
+.\rvmdk\freertos_demo.o: Timers.h
+.\rvmdk\freertos_demo.o: ..\..\..\..\inc/hw_ints.h
+.\rvmdk\freertos_demo.o: ..\..\..\..\driverlib/timer.h

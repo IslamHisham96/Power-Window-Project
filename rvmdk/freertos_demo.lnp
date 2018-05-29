@@ -14,6 +14,7 @@
 ".\rvmdk\output_ports.o"
 ".\rvmdk\taskhandlers.o"
 ".\rvmdk\statemachinesfunctions.o"
+".\rvmdk\timers.o"
 "..\..\..\..\driverlib\rvmdk\driverlib.lib"
 --library_type=microlib --strict --scatter "freertos_demo.sct"
 

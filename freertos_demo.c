@@ -44,6 +44,8 @@
 #include "StateMachinesFunctions.h"
 #include "StateNames.h"
 #include "TaskHandlers.h"
+#include "Timers.h"
+
 
 
 
@@ -249,6 +251,11 @@ Main_Task(void * pvParameters)
 	
 }
 
+void autoTimerHandler(void)
+{
+	//pass the event to the queue
+	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+}
 
 
 
@@ -297,6 +304,10 @@ main(void)
     //
     //ROM_SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ |  SYSCTL_OSC_MAIN);
     ConfigureUART();
+		
+		//timer for automatic
+		
+		configureAutoTimer(autoTimerHandler);
 	
 		//create event queue with size 1 to send events (may be changed)
 		eventQueue = xQueueCreate(1,sizeof(uint32_t));

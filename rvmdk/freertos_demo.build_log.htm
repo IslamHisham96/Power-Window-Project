@@ -23,10 +23,75 @@ compiling inputs.c...
 compiling output_ports.c...
 compiling TaskHandlers.c...
 compiling StateMachinesFunctions.c...
+compiling Timers.c...
 linking...
-Program Size: Code=8636 RO-data=900 RW-data=1644 ZI-data=31020  
+Program Size: Code=8920 RO-data=1060 RW-data=1644 ZI-data=31020  
 After Build - User command #1: fromelf --bin --output .\rvmdk\freertos_demo.bin .\rvmdk\freertos_demo.axf
 ".\rvmdk\freertos_demo.axf" - 0 Error(s), 0 Warning(s).
-</pre>
-</body>
-</html>
+et not created
+StateMachinesFunctions.c...
+compiling Timers.c...
+Timers.c(5): error:  #147-D: declaration is incompatible with "void configureAutoTimer(void)" (declared at line 10 of "Timers.h")
+  void configureAutoTimer(void (*autoTimerHandler)(void))
+Timers.c: 0 warnings, 1 error
+".\rvmdk\freertos_demo.axf" - 3 Error(s), 0 Warning(s).
+Target not created
+oadSet" declared implicitly
+        ROM_TimerLoadSet(TIMER0_BASE, TIMER_A, ROM_SysCtlClockGet());
+Timers.c(20): warning:  #223-D: function "ROM_SysCtlClockGet" declared implicitly
+        ROM_TimerLoadSet(TIMER0_BASE, TIMER_A, ROM_SysCtlClockGet());
+Timers.c(21): warning:  #223-D: function "ROM_TimerEnable" declared implicitly
+        ROM_TimerEnable(TIMER0_BASE, TIMER_A);
+Timers.c: 7 warnings, 0 errors
+linking...
+.\rvmdk\freertos_demo.axf: Error: L6218E: Undefined symbol ROM_IntEnable (referred from timers.o).
+.\rvmdk\freertos_demo.axf: Error: L6218E: Undefined symbol ROM_SysCtlClockGet (referred from timers.o).
+.\rvmdk\freertos_demo.axf: Error: L6218E: Undefined symbol ROM_SysCtlPeripheralEnable (referred from timers.o).
+.\rvmdk\freertos_demo.axf: Error: L6218E: Undefined symbol ROM_TimerConfigure (referred from timers.o).
+.\rvmdk\freertos_demo.axf: Error: L6218E: Undefined symbol ROM_TimerEnable (referred from timers.o).
+.\rvmdk\freertos_demo.axf: Error: L6218E: Undefined symbol ROM_TimerIntEnable (referred from timers.o).
+.\rvmdk\freertos_demo.axf: Error: L6218E: Undefined symbol ROM_TimerLoadSet (referred from timers.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 7 error messages.
+".\rvmdk\freertos_demo.axf" - 7 Error(s), 7 Warning(s).
+Target not created
+rlib/interrupt.h(68): error:  #20: identifier "bool" is undefined
+  extern bool IntMasterDisable(void);
+Timers.c(12): error:  #20: identifier "TIMER0_BASE" is undefined
+         ROM_TimerConfigure(TIMER0_BASE, TIMER_CFG_A_ONE_SHOT);
+Timers.c(19): error:  #20: identifier "TIMER0_BASE" is undefined
+        ROM_TimerLoadSet(TIMER0_BASE, TIMER_A, ROM_SysCtlClockGet());
+Timers.c: 0 warnings, 17 errors
+".\rvmdk\freertos_demo.axf" - 17 Error(s), 0 Warning(s).
+Target not created
+bool" is undefined
+  extern void SysCtlPeripheralClockGating(bool bEnable);
+..\..\..\..\driverlib/sysctl.h(599): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlIntEnable(uint32_t ui32Ints);
+..\..\..\..\driverlib/sysctl.h(600): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlIntDisable(uint32_t ui32Ints);
+..\..\..\..\driverlib/sysctl.h(601): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlIntClear(uint32_t ui32Ints);
+..\..\..\..\driverlib/sysctl.h(602): error:  #20: identifier "uint32_t" is undefined
+  extern uint32_t SysCtlIntStatus(bool bMasked);
+..\..\..\..\driverlib/sysctl.h(602): error:  #20: identifier "bool" is undefined
+  extern uint32_t SysCtlIntStatus(bool bMasked);
+..\..\..\..\driverlib/sysctl.h(603): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlLDOSleepSet(uint32_t ui32Voltage);
+..\..\..\..\driverlib/sysctl.h(604): error:  #20: identifier "uint32_t" is undefined
+  extern uint32_t SysCtlLDOSleepGet(void);
+..\..\..\..\driverlib/sysctl.h(605): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlLDODeepSleepSet(uint32_t ui32Voltage);
+..\..\..\..\driverlib/sysctl.h(606): error:  #20: identifier "uint32_t" is undefined
+  extern uint32_t SysCtlLDODeepSleepGet(void);
+..\..\..\..\driverlib/sysctl.h(607): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlSleepPowerSet(uint32_t ui32Config);
+..\..\..\..\driverlib/sysctl.h(608): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlDeepSleepPowerSet(uint32_t ui32Config);
+..\..\..\..\driverlib/sysctl.h(612): error:  #20: identifier "uint32_t" is undefined
+  extern uint32_t SysCtlResetCauseGet(void);
+..\..\..\..\driverlib/sysctl.h(613): error:  #20: identifier "uint32_t" is undefined
+  extern void SysCtlResetCauseClear(uint32_t ui32Causes);
+Timers.c: 0 warnings, 30 errors
+".\rvmdk\freertos_demo.axf" - 30 Error(s), 0 Warning(s).
+Target not created

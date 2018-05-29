@@ -166,10 +166,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
+      <ColumnNumber>1</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>303</TopLine>
-      <CurrentLine>304</CurrentLine>
+      <TopLine>189</TopLine>
+      <CurrentLine>203</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\freertos_demo.c</PathWithFileName>
       <FilenameWithoutPath>freertos_demo.c</FilenameWithoutPath>
@@ -360,7 +360,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
+      <TopLine>2</TopLine>
       <CurrentLine>3</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\output_ports.c</PathWithFileName>
@@ -438,10 +438,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>21</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>75</TopLine>
-      <CurrentLine>98</CurrentLine>
+      <TopLine>325</TopLine>
+      <CurrentLine>326</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\StateMachinesFunctions.c</PathWithFileName>
       <FilenameWithoutPath>StateMachinesFunctions.c</FilenameWithoutPath>

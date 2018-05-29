@@ -12,5 +12,11 @@
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\mpu_wrappers.h
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\task.h
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\list.h
-.\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\timers.h
+.\rvmdk\tasks.o: .\timers.h
+.\rvmdk\tasks.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\rvmdk\tasks.o: ..\..\..\..\inc/hw_ints.h
+.\rvmdk\tasks.o: ..\..\..\..\inc/hw_memmap.h
+.\rvmdk\tasks.o: ..\..\..\..\driverlib/rom.h
+.\rvmdk\tasks.o: ..\..\..\..\driverlib/sysctl.h
+.\rvmdk\tasks.o: ..\..\..\..\driverlib/timer.h
 .\rvmdk\tasks.o: ..\..\..\..\third_party\FreeRTOS\Source\include\StackMacros.h
