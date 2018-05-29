@@ -152,7 +152,11 @@ Window_Handler(void){
 	//int32_t s;
 	//char ss[40];
 	uint32_t status = GPIOIntStatus(DRIVER_PORT, true);
-	if(status & DRIVER_UP & DRIVER_DOWN){
+	if (status & OBSTACLE){
+		event = OBSTACLE_EVENT;
+		UARTprintf("obstacle\n");
+	}
+	else if(status & DRIVER_UP & DRIVER_DOWN){
 		//Window_Stop();
 		event = DRIVER_NEUTRAL_EVENT;
 	}
@@ -197,7 +201,7 @@ Window_Handler(void){
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
 }
-	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
+	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	xTimeISRLastExecuted_A = xTimeNow_A;
 	//GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
 }
