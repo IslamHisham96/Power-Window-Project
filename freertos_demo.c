@@ -294,7 +294,6 @@ void autoTimerHandler(void)
 }
 
 
-
 int
 main(void)
 {
@@ -353,6 +352,8 @@ main(void)
     UARTprintf("\n\nWelcome to the EK-TM4C123GXL FreeRTOS Demo!\n");
 		init_input();
 		init_output();
+		init_LCD_output();
+		displayString("Neutral");
 		porta_int(Window_Handler);
 		//portf_int(Window_Handler);
     portc_int(Limit_Handler);
