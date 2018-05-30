@@ -9,3 +9,5 @@
 
 void configureAutoTimer(void (*autoTimerHandler)(void));
 void enableAutoTimer(void);
+void configureEngineTimer(void (*engineTimerHandler)(void));
+void enableEngineTimer(void);

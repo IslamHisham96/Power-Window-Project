@@ -495,6 +495,26 @@
               <FileType>1</FileType>
               <FilePath>.\StateMachinesFunctions.c</FilePath>
             </File>
+            <File>
+              <FileName>Delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_State.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\LCD_State.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timers.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -184,6 +184,7 @@ void safeSM(int event, int depth){
 		case ENGINE_EVENT:
 			displayString("dying");
 		//start timer
+			enableEngineTimer();
 			stateDepth = 0;
 			state[stateDepth++] = dying;
 			break;

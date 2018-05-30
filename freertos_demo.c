@@ -45,6 +45,7 @@
 #include "StateNames.h"
 #include "TaskHandlers.h"
 #include "Timers.h"
+#include "LCD_State.h"
 
 
 
@@ -288,11 +289,20 @@ void autoTimerHandler(void)
 	int32_t event = AUTO_TIMER_TICK_EVENT;
 	portBASE_TYPE xHigherPriorityTaskWoken_AutoTimer = pdFALSE;
 	
-	UARTprintf("timer\n");
+	UARTprintf("timer_auto\n");
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_AutoTimer);
 	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 }
 
+void engineTimerHandler(void)
+{
+	int32_t event = ENGINE_EVENT;
+	portBASE_TYPE xHigherPriorityTaskWoken_EngineTimer = pdFALSE;
+	
+	UARTprintf("timer_engine\n");
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_EngineTimer);
+	ROM_TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+}	
 
 int
 main(void)
@@ -343,6 +353,7 @@ main(void)
 		//timer for automatic
 		
 		configureAutoTimer(autoTimerHandler);
+		configureEngineTimer(engineTimerHandler);
 	
 		//create event queue with size 1 to send events (may be changed)
 		eventQueue = xQueueCreate(1,sizeof(uint32_t));
