@@ -286,31 +286,31 @@ Limit_Handler(void){
 
 void autoTimerHandler(void)
 {
+	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	int32_t event = AUTO_TIMER_TICK_EVENT;
-	portBASE_TYPE xHigherPriorityTaskWoken_AutoTimer = pdFALSE;
-	
+	portBASE_TYPE xHigherPriorityTaskWoken_AutoTimer = pdFALSE;	
 	UARTprintf("timer_auto\n");
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_AutoTimer);
-	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+	
 }
 
 void engineTimerHandler(void)
 {
+	ROM_TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
 	int32_t event = ENGINE_TIMER_TICK_EVENT;
 	portBASE_TYPE xHigherPriorityTaskWoken_EngineTimer = pdFALSE;
-	
 	UARTprintf("timer_engine\n");
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_EngineTimer);
-	ROM_TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+	
 }	
 
 void obstacleTimerHandler(void)
 {
+	ROM_TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
 	int32_t event = OBSTACLE_TIMER_TICK_EVENT;
 	portBASE_TYPE xHigherPriorityTaskWoken_ObstacleTimer = pdFALSE;
 	UARTprintf("timer_obstacle\n");
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_ObstacleTimer);
-	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMB_TIMEOUT);
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_ObstacleTimer);	
 	
 }
 

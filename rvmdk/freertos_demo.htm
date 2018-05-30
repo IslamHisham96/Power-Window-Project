@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\rvmdk\freertos_demo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\freertos_demo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 30 22:29:45 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 30 22:57:07 2018
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -438,10 +438,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4e]"></a>configureObstacleTimer</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, timers.o(i.configureObstacleTimer))
+<P><STRONG><a name="[4e]"></a>configureObstacleTimer</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, timers.o(i.configureObstacleTimer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = configureObstacleTimer &rArr; TimerIntRegister &rArr; IntRegister
 </UL>
 <BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerIntRegister
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -460,7 +461,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3f]"></a>delayUs</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, delay.o(i.delayUs))
-<BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureEngineTimer
+<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureObstacleTimer
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureEngineTimer
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureAutoTimer
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_nibble_write
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
@@ -558,7 +560,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;safeSM
 </UL>
 
-<P><STRONG><a name="[53]"></a>enableObstacleTimer</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, timers.o(i.enableObstacleTimer))
+<P><STRONG><a name="[53]"></a>enableObstacleTimer</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, timers.o(i.enableObstacleTimer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = enableObstacleTimer
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;passengerUpSM
@@ -685,7 +687,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[22]"></a>obstacleTimerHandler</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, freertos_demo.o(i.obstacleTimerHandler))
+<P><STRONG><a name="[22]"></a>obstacleTimerHandler</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, freertos_demo.o(i.obstacleTimerHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = obstacleTimerHandler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
