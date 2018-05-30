@@ -27,7 +27,7 @@ void dyingSM(int event, int depth){
 
 	switch(event){
 	
-		case TIMER_TICK_EVENT:
+		case ENGINE_TIMER_TICK_EVENT:
 			state[stateDepth - 1] = dead;
 			displayString("dead");
 			break;
@@ -165,6 +165,7 @@ void driverUpSM (int event, int depth){
 			xSemaphoreGive(xTurnLeftSemaphore);
 			displayString("emergencyDown");
 			//start timer
+			enableObstacleTimer();
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = emergencyDown;
@@ -270,6 +271,7 @@ void passengerUpSM(int event, int depth){
 			xSemaphoreGive(xTurnLeftSemaphore);
 			displayString("emergencyDown");
 			//start timer
+			enableObstacleTimer();
 			stateDepth = 2;
 			state[stateDepth-1] = emergencyDown;
 			break;
@@ -369,7 +371,7 @@ void emergencyDownSM(int event, int depth){
 	
 	switch(event){
 	
-		case TIMER_TICK_EVENT:
+		case OBSTACLE_TIMER_TICK_EVENT:
 		case LIMIT_DOWN_EVENT:
 				xSemaphoreGive(xFastStopSemaphore);
 				displayString("passengerNeutral");

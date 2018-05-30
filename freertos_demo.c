@@ -296,13 +296,23 @@ void autoTimerHandler(void)
 
 void engineTimerHandler(void)
 {
-	int32_t event = ENGINE_EVENT;
+	int32_t event = ENGINE_TIMER_TICK_EVENT;
 	portBASE_TYPE xHigherPriorityTaskWoken_EngineTimer = pdFALSE;
 	
 	UARTprintf("timer_engine\n");
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_EngineTimer);
 	ROM_TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
 }	
+
+void obstacleTimerHandler(void)
+{
+	int32_t event = OBSTACLE_TIMER_TICK_EVENT;
+	portBASE_TYPE xHigherPriorityTaskWoken_ObstacleTimer = pdFALSE;
+	UARTprintf("timer_obstacle\n");
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_ObstacleTimer);
+	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMB_TIMEOUT);
+	
+}
 
 int
 main(void)
@@ -353,6 +363,7 @@ main(void)
 		//timer for automatic
 		
 		configureAutoTimer(autoTimerHandler);
+		configureObstacleTimer(obstacleTimerHandler);
 		configureEngineTimer(engineTimerHandler);
 	
 		//create event queue with size 1 to send events (may be changed)
