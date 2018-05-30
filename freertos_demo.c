@@ -155,6 +155,7 @@ Window_Handler(void){
 	//int32_t s;
 	//char ss[40];
 	uint32_t status = GPIOIntStatus(DRIVER_PORT, true);
+	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	if (status & OBSTACLE){
 		event = OBSTACLE_EVENT;
 		UARTprintf("obstacle\n");
@@ -237,7 +238,7 @@ Window_Handler(void){
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
 }
-	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
+
 	xTimeISRLastExecuted_A = xTimeNow_A;
 	//GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
 }
@@ -260,6 +261,7 @@ Limit_Handler(void){
 	if(xTimeBetweenInterrupts_C > 200){
 	UARTprintf("entered_c\n");
 	uint32_t status = GPIOIntStatus(LIMIT_PORT, true);
+	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
 	if(status & LIMIT_UP & LIMIT_DOWN){
 		//***************************************************************
 		//Is this legal??
@@ -279,7 +281,7 @@ Limit_Handler(void){
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
 }
-	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
+	
 	xTimeISRLastExecuted_C = xTimeNow_C;
 }
 

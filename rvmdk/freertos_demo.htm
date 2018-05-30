@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\rvmdk\freertos_demo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\freertos_demo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 30 22:57:07 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 30 23:07:01 2018
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -185,7 +185,7 @@ Global Symbols
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOInput
 </UL>
 
-<P><STRONG><a name="[46]"></a>GPIOIntClear</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gpio.o(i.GPIOIntClear))
+<P><STRONG><a name="[45]"></a>GPIOIntClear</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gpio.o(i.GPIOIntClear))
 <BR><BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portc_int
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;porta_int
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Window_Handler
@@ -304,14 +304,14 @@ Global Symbols
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 </UL>
 
-<P><STRONG><a name="[25]"></a>Limit_Handler</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, freertos_demo.o(i.Limit_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Limit_Handler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
+<P><STRONG><a name="[25]"></a>Limit_Handler</STRONG> (Thumb, 108 bytes, Stack size 32 bytes, freertos_demo.o(i.Limit_Handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Limit_Handler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCountFromISR
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTprintf
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntStatus
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
@@ -373,15 +373,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTvprintf
 </UL>
 
-<P><STRONG><a name="[24]"></a>Window_Handler</STRONG> (Thumb, 206 bytes, Stack size 32 bytes, freertos_demo.o(i.Window_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Window_Handler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
+<P><STRONG><a name="[24]"></a>Window_Handler</STRONG> (Thumb, 214 bytes, Stack size 40 bytes, freertos_demo.o(i.Window_Handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Window_Handler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCountFromISR
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTprintf
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinRead
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntStatus
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
@@ -406,7 +406,7 @@ Global Symbols
 <P><STRONG><a name="[21]"></a>autoTimerHandler</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, freertos_demo.o(i.autoTimerHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = autoTimerHandler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
 </UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
@@ -570,7 +570,7 @@ Global Symbols
 <P><STRONG><a name="[23]"></a>engineTimerHandler</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, freertos_demo.o(i.engineTimerHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = engineTimerHandler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
 </UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
@@ -690,7 +690,7 @@ Global Symbols
 <P><STRONG><a name="[22]"></a>obstacleTimerHandler</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, freertos_demo.o(i.obstacleTimerHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = obstacleTimerHandler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
 </UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
@@ -724,7 +724,7 @@ Global Symbols
 <P><STRONG><a name="[5d]"></a>porta_int</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, inputs.o(i.porta_int))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = porta_int &rArr; GPIOIntRegister &rArr; IntRegister
 </UL>
-<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
+<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntTypeSet
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntRegister
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntEnable
@@ -736,7 +736,7 @@ Global Symbols
 <P><STRONG><a name="[5e]"></a>portc_int</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, inputs.o(i.portc_int))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = portc_int &rArr; GPIOIntRegister &rArr; IntRegister
 </UL>
-<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
+<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntTypeSet
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntRegister
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntEnable
@@ -1044,7 +1044,7 @@ Global Symbols
 <LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[45]"></a>xQueueGenericSendFromISR</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, queue.o(i.xQueueGenericSendFromISR))
+<P><STRONG><a name="[46]"></a>xQueueGenericSendFromISR</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, queue.o(i.xQueueGenericSendFromISR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = xQueueGenericSendFromISR &rArr; prvCopyDataToQueue &rArr; xTaskPriorityDisinherit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskRemoveFromEventList
@@ -1119,7 +1119,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReset
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvUnlockQueue
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 </UL>
 
@@ -1159,7 +1159,7 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskPriorityDisinherit
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 </UL>
 
