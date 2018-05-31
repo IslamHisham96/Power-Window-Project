@@ -44,6 +44,9 @@
 #include "StateMachinesFunctions.h"
 #include "StateNames.h"
 #include "TaskHandlers.h"
+#include "Timers.h"
+#include "LCD_State.h"
+
 
 
 
@@ -147,12 +150,18 @@ Window_Handler(void){
 	
 //			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
 //			UARTprintf(ss);
+	
+	//UARTprintf("entered_an't\n");
 	if(xTimeBetweenInterrupts_A > 200){
 	UARTprintf("entered_a\n");
 	//int32_t s;
 	//char ss[40];
 	uint32_t status = GPIOIntStatus(DRIVER_PORT, true);
-	if(status & DRIVER_UP & DRIVER_DOWN){
+	if (status & OBSTACLE){
+		event = OBSTACLE_EVENT;
+		UARTprintf("obstacle\n");
+	}
+	else if(status & DRIVER_UP & DRIVER_DOWN){
 		//Window_Stop();
 		event = DRIVER_NEUTRAL_EVENT;
 	}
@@ -160,7 +169,15 @@ Window_Handler(void){
 		
 	//UARTprintf("derp\n");
 	//	Window_Up();
+		if(GPIOPinRead(DRIVER_PORT,DRIVER_UP) == 0){
+		//UARTprintf("pressed\n");
 		event = DRIVER_UP_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = DRIVER_NEUTRAL_EVENT;
+		}
+		UARTprintf("DU\n");
 	}
 	else if(status & DRIVER_DOWN){
 	//UARTprintf("herp\n");
@@ -171,11 +188,20 @@ Window_Handler(void){
 		//s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
 		//sprintf(ss,"%d\n",s);
 		//UARTprintf(ss);
+		if(GPIOPinRead(DRIVER_PORT,DRIVER_DOWN) == 0){
+		//UARTprintf("pressed\n");
 		event = DRIVER_DOWN_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = DRIVER_NEUTRAL_EVENT;
+		}
+		UARTprintf("DD\n");
 	}
 	else if(status & LOCK){
 		//p_enable = !p_enable;
 		event = LOCK_EVENT;
+		UARTprintf("LOCK\n");
 	}
 	
 	else if(status & PASSENGER_UP & PASSENGER_DOWN){
@@ -187,22 +213,38 @@ Window_Handler(void){
 	else if(status & PASSENGER_UP){
 		//if(p_enable)
 		//Window_Up();
+		if(GPIOPinRead(PASSENGER_PORT,PASSENGER_UP) == 0){
+		//UARTprintf("pressed\n");
 		event = PASSENGER_UP_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = PASSENGER_NEUTRAL_EVENT;
+		}
+		UARTprintf("PU\n");
 	}
 	
 	else if(status & PASSENGER_DOWN){
 		//if(p_enable)
 		//Window_Down();
+		if(GPIOPinRead(PASSENGER_PORT,PASSENGER_DOWN) == 0){
+		//UARTprintf("pressed\n");
 		event = PASSENGER_DOWN_EVENT;
+		}
+		else{
+		//UARTprintf("released\n");
+		event = PASSENGER_NEUTRAL_EVENT;
+		}
+		UARTprintf("PD\n");
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
 }
-	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
+	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	xTimeISRLastExecuted_A = xTimeNow_A;
 	//GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
 }
 void
-Limit_Handler(void){
+Engine_Handler(void){
 	//for PortC
 	static TickType_t xTimeISRLastExecuted_C = 0;
 	
@@ -219,6 +261,35 @@ Limit_Handler(void){
 //			UARTprintf(ss);
 	if(xTimeBetweenInterrupts_C > 200){
 	UARTprintf("entered_c\n");
+	uint32_t status = GPIOIntStatus(ENGINE_PORT, true);
+	if(status & ENGINE){
+		event = ENGINE_EVENT;
+		UARTprintf("ENG\n");
+	}
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
+}
+	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_6);
+	xTimeISRLastExecuted_C = xTimeNow_C;
+}
+
+void
+Limit_Handler(void){
+	//for PortF
+	static TickType_t xTimeISRLastExecuted_F = 0;
+	
+	//initializations
+	//char ss[40];
+	TickType_t xTimeNow_F, xTimeBetweenInterrupts_F;
+	portBASE_TYPE xHigherPriorityTaskWoken_F = pdFALSE;
+	int32_t event = 0;
+	
+	//delay by counting ticks
+	xTimeNow_F = xTaskGetTickCountFromISR();
+	xTimeBetweenInterrupts_F = xTimeNow_F - xTimeISRLastExecuted_F;
+//			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
+//			UARTprintf(ss);
+	if(xTimeBetweenInterrupts_F > 200){
+	UARTprintf("entered_f\n");
 	uint32_t status = GPIOIntStatus(LIMIT_PORT, true);
 	if(status & LIMIT_UP & LIMIT_DOWN){
 		//***************************************************************
@@ -227,26 +298,49 @@ Limit_Handler(void){
 	}
 	else if(status & LIMIT_UP){
 		event = LIMIT_UP_EVENT;
+		UARTprintf("LU\n");
 	}
 	else if(status & LIMIT_DOWN){
 		event = LIMIT_DOWN_EVENT;
+		UARTprintf("LD\n");
 	}
-	else if(status & ENGINE){
-		event = ENGINE_EVENT;
-	}
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_F);
 }
-	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
-	xTimeISRLastExecuted_C = xTimeNow_C;
+	
+	GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
+	xTimeISRLastExecuted_F = xTimeNow_F;
 }
-void
-Main_Task(void * pvParameters)
+
+
+void autoTimerHandler(void)
 {
+	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+	int32_t event = AUTO_TIMER_TICK_EVENT;
+	portBASE_TYPE xHigherPriorityTaskWoken_AutoTimer = pdFALSE;	
+	UARTprintf("timer_auto\n");
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_AutoTimer);
 	
 }
 
+void engineTimerHandler(void)
+{
+	ROM_TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+	int32_t event = ENGINE_TIMER_TICK_EVENT;
+	portBASE_TYPE xHigherPriorityTaskWoken_EngineTimer = pdFALSE;
+	UARTprintf("timer_engine\n");
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_EngineTimer);
+	
+}	
 
-
+void obstacleTimerHandler(void)
+{
+	ROM_TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
+	int32_t event = OBSTACLE_TIMER_TICK_EVENT;
+	portBASE_TYPE xHigherPriorityTaskWoken_ObstacleTimer = pdFALSE;
+	UARTprintf("timer_obstacle\n");
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_ObstacleTimer);	
+	
+}
 
 int
 main(void)
@@ -293,6 +387,12 @@ main(void)
     //
     //ROM_SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ |  SYSCTL_OSC_MAIN);
     ConfigureUART();
+		
+		//timer for automatic
+		
+		configureAutoTimer(autoTimerHandler);
+		configureObstacleTimer(obstacleTimerHandler);
+		configureEngineTimer(engineTimerHandler);
 	
 		//create event queue with size 1 to send events (may be changed)
 		eventQueue = xQueueCreate(1,sizeof(uint32_t));
@@ -302,6 +402,8 @@ main(void)
     UARTprintf("\n\nWelcome to the EK-TM4C123GXL FreeRTOS Demo!\n");
 		init_input();
 		init_output();
+		init_LCD_output();
+		displayString("Neutral");
 		porta_int(Window_Handler);
 		//portf_int(Window_Handler);
     portc_int(Limit_Handler);
