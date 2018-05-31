@@ -10,7 +10,7 @@ extern xQueueHandle eventQueue;
 extern int state[6];
 
 typedef void (*StateFunction)(int, int);
-extern StateFunction stateMachines[22];
+extern StateFunction stateMachines[21];
 
 void vMainHandlerTask( void *pvParameters ){
 for( ;; )

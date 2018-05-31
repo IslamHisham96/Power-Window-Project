@@ -21,10 +21,7 @@
 #define autoDriverUp 17
 #define manualDriverUp 18
 #define emergencyDown 19
-#define dying 20
-#define dead 21
-
-
+#define dead 20
 	
 #endif
 

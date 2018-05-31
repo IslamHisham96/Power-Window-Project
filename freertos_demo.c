@@ -51,7 +51,7 @@
 
 
 typedef void (*StateFunction)(int, int);
-StateFunction stateMachines[22];
+StateFunction stateMachines[21];
 
 
 
@@ -356,6 +356,7 @@ main(void)
 	stateMachines[ driverUp ] = &driverUpSM;
 	stateMachines[ passengerNeutral ] = &passengerNeutralSM;
 	stateMachines[ iniPassengerDown ] = &iniPassengerDownSM;
+	stateMachines[ iniPassengerUp ] = &iniPassengerUpSM;
 	stateMachines[ manualPassengerDown ] = &manualPassengerDownSM;
 	stateMachines[ manualPassengerUp ] = &manualPassengerUpSM;
 	stateMachines[ iniDriverDown ] = &iniDriverDownSM;
@@ -367,7 +368,6 @@ main(void)
 	stateMachines[ autoDriverDown ] = &autoDriverDownSM;
 	stateMachines[ autoPassengerUp ] = &autoPassengerUpSM;
 	stateMachines[ autoPassengerDown ] = &autoPassengerDownSM;
-	stateMachines[ dying ] = &dyingSM;
 	stateMachines[ dead ] = &deadSM;
 	
 	//Semaphores creation to synchronize Actuator Tasks with Main Task
