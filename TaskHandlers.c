@@ -2,7 +2,6 @@
 #include "FreeRTOS.h"
 #include "semphr.h"
 #include "output_ports.h"
-
 extern SemaphoreHandle_t xTurnRightSemaphore;
 extern SemaphoreHandle_t xTurnLeftSemaphore;
 extern SemaphoreHandle_t xFastStopSemaphore;

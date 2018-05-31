@@ -16,13 +16,13 @@
 void LCD_init(void)
 {
 		
-		  delayMs(20);                /* initialization sequence */
+		  delayMs(2);                /* initialization sequence */
     LCD_nibble_write(0x30, 0);
-    delayMs(50);
+    delayMs(2);
     LCD_nibble_write(0x30, 0);
-    delayUs(1000);
+    delayUs(40);
     LCD_nibble_write(0x30, 0);
-    delayUs(400);
+    delayUs(40);
 
 
     LCD_command(0x28);          /* set 4-bit data, 2-line, 5x7 font */
@@ -31,7 +31,7 @@ void LCD_init(void)
     LCD_command(0x0F);          /* turn on display, cursor blinking */
 		LCD_command(1);       /* clear display */
 		LCD_command(0x80);    /* lcd cursor location */	
-		delayMs(20);
+		delayMs(2);
 		LCD_command(1);
 		LCD_command(0x80);
 		LCD_command(2);
@@ -47,11 +47,12 @@ void LCD_nibble_write(unsigned char data, unsigned char control)
 	GPIOPinWrite(GPIO_PORTB_BASE,GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, data>>4);
 	//LCD_Control = control | EN;    
 	GPIOPinWrite(GPIO_PORTD_BASE,GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2, control | EN);
-  delayUs(0);
+  delayUs(2);
 	//LCD_Control = 0;
 	GPIOPinWrite(GPIO_PORTD_BASE,GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2, 0);
   //KL_input = 0;
 	GPIOPinWrite(GPIO_PORTB_BASE,GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, 0);
+	delayUs(2);
 }
 
 void LCD_command(unsigned char command)
@@ -59,10 +60,10 @@ void LCD_command(unsigned char command)
     LCD_nibble_write(command & 0xF0, 0);   /* upper nibble first */
     LCD_nibble_write(command << 4, 0);     /* then lower nibble */
     
-    //if (command < 4)
+    if (command < 4)
         delayMs(2);         /* commands 1 and 2 need up to 1.64ms */
-   // else
-       // delayUs(40);        /* all others 40 us */
+    else
+        delayUs(40);        /* all others 40 us */
 }
 
 void LCD_data(unsigned char data)
@@ -70,7 +71,7 @@ void LCD_data(unsigned char data)
     LCD_nibble_write(data & 0xF0, RS);    /* upper nibble first */
     LCD_nibble_write(data << 4, RS);      /* then lower nibble  */
     
-     delayMs(2); 
+     delayUs(40); 
 }
 
 

@@ -9,6 +9,7 @@ void delayUs(long t){
 				 j++;
 			 //Do Nothing
 			 }
+			 j=0;
 			 i++;
 	  }
 }
@@ -22,6 +23,7 @@ void delayMs(long t){
 				 j++;
 			 //Do Nothing
 			 }
+			 j=0;
 			 i++;
 	  }
 }

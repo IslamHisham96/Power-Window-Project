@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\rvmdk\freertos_demo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\freertos_demo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu May 31 19:03:26 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu May 31 23:29:21 2018
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -293,44 +293,45 @@ Global Symbols
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntRegister
 </UL>
 
-<P><STRONG><a name="[42]"></a>LCD_command</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, lcd.o(i.LCD_command))
+<P><STRONG><a name="[42]"></a>LCD_command</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, lcd.o(i.LCD_command))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = LCD_command &rArr; LCD_nibble_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_nibble_write
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
+<BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_nibble_write
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
 </UL>
 
-<P><STRONG><a name="[45]"></a>LCD_data</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, lcd.o(i.LCD_data))
+<P><STRONG><a name="[46]"></a>LCD_data</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, lcd.o(i.LCD_data))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = LCD_data &rArr; LCD_nibble_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_nibble_write
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displayString
 </UL>
 
-<P><STRONG><a name="[46]"></a>LCD_init</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, lcd.o(i.LCD_init))
+<P><STRONG><a name="[47]"></a>LCD_init</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, lcd.o(i.LCD_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LCD_init &rArr; LCD_command &rArr; LCD_nibble_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_nibble_write
+<BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_nibble_write
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_LCD_output
 </UL>
 
-<P><STRONG><a name="[43]"></a>LCD_nibble_write</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, lcd.o(i.LCD_nibble_write))
+<P><STRONG><a name="[43]"></a>LCD_nibble_write</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, lcd.o(i.LCD_nibble_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = LCD_nibble_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
+<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinWrite
 </UL>
-<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
+<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 </UL>
 
@@ -404,11 +405,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTvprintf
 </UL>
 
-<P><STRONG><a name="[24]"></a>Window_Handler</STRONG> (Thumb, 250 bytes, Stack size 32 bytes, freertos_demo.o(i.Window_Handler))
+<P><STRONG><a name="[24]"></a>Window_Handler</STRONG> (Thumb, 324 bytes, Stack size 32 bytes, freertos_demo.o(i.Window_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Window_Handler &rArr; UARTprintf &rArr; UARTvprintf &rArr; UARTwrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCountFromISR
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSendFromISR
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTprintf
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinRead
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntStatus
@@ -442,7 +444,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[4d]"></a>clear</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, lcd_state.o(i.clear))
+<P><STRONG><a name="[4d]"></a>clear</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lcd_state.o(i.clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = clear &rArr; LCD_command &rArr; LCD_nibble_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
@@ -454,7 +456,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = configureAutoTimer &rArr; TimerIntRegister &rArr; IntRegister
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerIntRegister
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -463,7 +465,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = configureEngineTimer &rArr; TimerIntRegister &rArr; IntRegister
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerIntRegister
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -472,7 +474,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = configureObstacleTimer &rArr; TimerIntRegister &rArr; IntRegister
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerIntRegister
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayUs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -484,27 +486,29 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_demo.o(i.main)
 </UL>
-<P><STRONG><a name="[44]"></a>delayMs</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, delay.o(i.delayMs))
+<P><STRONG><a name="[44]"></a>delayMs</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, delay.o(i.delayMs))
 <BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displayString
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Window_Handler
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 </UL>
 
-<P><STRONG><a name="[47]"></a>delayUs</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, delay.o(i.delayUs))
+<P><STRONG><a name="[45]"></a>delayUs</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, delay.o(i.delayUs))
 <BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureObstacleTimer
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureEngineTimer
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureAutoTimer
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_nibble_write
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 </UL>
 
 <P><STRONG><a name="[51]"></a>displayString</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, lcd_state.o(i.displayString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = displayString &rArr; clear &rArr; LCD_command &rArr; LCD_nibble_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
+<BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayMs
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;safeSM
@@ -640,7 +644,7 @@ Global Symbols
 <P><STRONG><a name="[58]"></a>init_LCD_output</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, lcd_state.o(i.init_LCD_output))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = init_LCD_output &rArr; GPIOPinTypeGPIOOutput &rArr; GPIOPadConfigSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
+<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOOutput
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
 </UL>

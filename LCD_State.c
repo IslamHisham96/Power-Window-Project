@@ -21,16 +21,17 @@ void init_LCD_output(void)
 
 void clear(void)
 {
-		LCD_command(0x01);
-		//delayMs(40);
-		LCD_command(0x80);
+	LCD_command(0x0F);          /* turn on display, cursor blinking */
+	LCD_command(0x0F);          /* turn on display, cursor blinking */
+		LCD_command(1);       /* clear display */
+		LCD_command(0x80);    /* lcd cursor location */	
 }
 
 void displayString(char *s)
 {
-	int len,i;
 	clear();
-	delayMs(40);
+	int len,i;
+	delayMs(20);
 	len = strlen(s);
 	for (i = 0; i < len; i++)
 	{

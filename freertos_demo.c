@@ -48,7 +48,7 @@
 #include "LCD_State.h"
 
 
-#define int_diff 25
+#define int_diff 15
 
 typedef void (*StateFunction)(int, int);
 StateFunction stateMachines[21];
@@ -158,16 +158,18 @@ Window_Handler(void){
 	//UARTprintf("derp\n");
 	//	Window_Up();
 		if(GPIOPinRead(DRIVER_PORT,DRIVER_UP) == 0){
-		//UARTprintf("pressed\n");
+		delayMs(2);
+		UARTprintf("pressed\n");
 		event = DRIVER_UP_EVENT;
 		}
 		else{
-		//UARTprintf("released\n");
+		UARTprintf("released\n");
 		event = DRIVER_NEUTRAL_EVENT;
 		}
 		UARTprintf("DU\n");
 	}
 	else if(status & DRIVER_DOWN){
+		delayMs(2);
 	//UARTprintf("herp\n");
 		//s = GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_4| GPIO_PIN_5 |GPIO_PIN_6 );
 		//sprintf(ss,"%d\n",s);
@@ -177,11 +179,11 @@ Window_Handler(void){
 		//sprintf(ss,"%d\n",s);
 		//UARTprintf(ss);
 		if(GPIOPinRead(DRIVER_PORT,DRIVER_DOWN) == 0){
-		//UARTprintf("pressed\n");
+		UARTprintf("pressed\n");
 		event = DRIVER_DOWN_EVENT;
 		}
 		else{
-		//UARTprintf("released\n");
+		UARTprintf("released\n");
 		event = DRIVER_NEUTRAL_EVENT;
 		}
 		UARTprintf("DD\n");
@@ -200,14 +202,15 @@ Window_Handler(void){
 	}
 	
 	else if(status & PASSENGER_UP){
+		delayMs(2);
 		if(p_enable)
 		{
 			if(GPIOPinRead(PASSENGER_PORT,PASSENGER_UP) == 0){
-			//UARTprintf("pressed\n");
+			UARTprintf("pressed\n");
 			event = PASSENGER_UP_EVENT;
 			}
 			else{
-			//UARTprintf("released\n");
+			UARTprintf("released\n");
 			event = PASSENGER_NEUTRAL_EVENT;
 			}
 			UARTprintf("PU\n");
@@ -217,14 +220,15 @@ Window_Handler(void){
 	}
 	
 	else if(status & PASSENGER_DOWN){
+		delayMs(2);
 		if(p_enable)
 		{
 			if(GPIOPinRead(PASSENGER_PORT,PASSENGER_DOWN) == 0){
-			//UARTprintf("pressed\n");
+			UARTprintf("pressed\n");
 			event = PASSENGER_DOWN_EVENT;
 			}
 			else{
-			//UARTprintf("released\n");
+			UARTprintf("released\n");
 			event = PASSENGER_NEUTRAL_EVENT;
 			}
 			UARTprintf("PD\n");

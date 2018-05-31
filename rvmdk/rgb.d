@@ -1,6 +1,6 @@
 .\rvmdk\rgb.o: ..\drivers\rgb.c
-.\rvmdk\rgb.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
-.\rvmdk\rgb.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\rvmdk\rgb.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\rgb.o: E:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
 .\rvmdk\rgb.o: ..\..\..\..\inc/hw_types.h
 .\rvmdk\rgb.o: ..\..\..\..\inc/hw_memmap.h
 .\rvmdk\rgb.o: ..\..\..\..\inc/hw_timer.h
