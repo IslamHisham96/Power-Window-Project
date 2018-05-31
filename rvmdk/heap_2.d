@@ -1,8 +1,8 @@
 .\rvmdk\heap_2.o: ..\..\..\..\third_party\FreeRTOS\Source\portable\MemMang\heap_2.c
-.\rvmdk\heap_2.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\rvmdk\heap_2.o: E:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
 .\rvmdk\heap_2.o: ..\..\..\..\third_party\FreeRTOS\Source\include\FreeRTOS.h
-.\rvmdk\heap_2.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
-.\rvmdk\heap_2.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\heap_2.o: E:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\rvmdk\heap_2.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\heap_2.o: .\FreeRTOSConfig.h
 .\rvmdk\heap_2.o: ..\..\..\..\third_party\FreeRTOS\Source\include\projdefs.h
 .\rvmdk\heap_2.o: ..\..\..\..\third_party\FreeRTOS\Source\include\portable.h

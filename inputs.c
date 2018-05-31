@@ -3,7 +3,9 @@
 void init_input(void)
 {
 		ROM_SysCtlPeripheralEnable(BUTTONS_GPIO_PERIPH);
-
+	while(!SysCtlPeripheralReady(BUTTONS_GPIO_PERIPH))
+{
+}
     //
     // Unlock PF0 so we can change it to a GPIO input
     // Once we have enabled (unlocked) the commit register then re-lock it
@@ -25,7 +27,8 @@ void init_input(void)
 //
 while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOA))
 {
-}SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
+}
+SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
 //
 // Wait for the GPIOA module to be ready.
 //
@@ -34,8 +37,8 @@ while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC))
 }
 		GPIOPinTypeGPIOInput(GPIO_PORTA_BASE,GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	ROM_GPIOPadConfigSet(GPIO_PORTA_BASE,GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7,GPIO_STRENGTH_6MA,GPIO_PIN_TYPE_STD_WPU);
-		GPIOPinTypeGPIOInput(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
-	ROM_GPIOPadConfigSet(GPIO_PORTC_BASE,GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
+		GPIOPinTypeGPIOInput(GPIO_PORTC_BASE,GPIO_PIN_6);
+	ROM_GPIOPadConfigSet(GPIO_PORTC_BASE,GPIO_PIN_6,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
 		//ROM_GPIODirModeSet(GPIO_PORTC_BASE,GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7,GPIO_DIR_MODE_IN);
 }
 void portf_int(void (*pfnIntHandler)(void)){

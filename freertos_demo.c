@@ -150,12 +150,13 @@ Window_Handler(void){
 	
 //			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
 //			UARTprintf(ss);
+	
+	//UARTprintf("entered_an't\n");
 	if(xTimeBetweenInterrupts_A > 200){
 	UARTprintf("entered_a\n");
 	//int32_t s;
 	//char ss[40];
 	uint32_t status = GPIOIntStatus(DRIVER_PORT, true);
-	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	if (status & OBSTACLE){
 		event = OBSTACLE_EVENT;
 		UARTprintf("obstacle\n");
@@ -238,12 +239,12 @@ Window_Handler(void){
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
 }
-
+	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	xTimeISRLastExecuted_A = xTimeNow_A;
 	//GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
 }
 void
-Limit_Handler(void){
+Engine_Handler(void){
 	//for PortC
 	static TickType_t xTimeISRLastExecuted_C = 0;
 	
@@ -260,8 +261,36 @@ Limit_Handler(void){
 //			UARTprintf(ss);
 	if(xTimeBetweenInterrupts_C > 200){
 	UARTprintf("entered_c\n");
+	uint32_t status = GPIOIntStatus(ENGINE_PORT, true);
+	if(status & ENGINE){
+		event = ENGINE_EVENT;
+		UARTprintf("ENG\n");
+	}
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
+}
+	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_6);
+	xTimeISRLastExecuted_C = xTimeNow_C;
+}
+
+void
+Limit_Handler(void){
+	//for PortF
+	static TickType_t xTimeISRLastExecuted_F = 0;
+	
+	//initializations
+	//char ss[40];
+	TickType_t xTimeNow_F, xTimeBetweenInterrupts_F;
+	portBASE_TYPE xHigherPriorityTaskWoken_F = pdFALSE;
+	int32_t event = 0;
+	
+	//delay by counting ticks
+	xTimeNow_F = xTaskGetTickCountFromISR();
+	xTimeBetweenInterrupts_F = xTimeNow_F - xTimeISRLastExecuted_F;
+//			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
+//			UARTprintf(ss);
+	if(xTimeBetweenInterrupts_F > 200){
+	UARTprintf("entered_f\n");
 	uint32_t status = GPIOIntStatus(LIMIT_PORT, true);
-	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6);
 	if(status & LIMIT_UP & LIMIT_DOWN){
 		//***************************************************************
 		//Is this legal??
@@ -275,14 +304,11 @@ Limit_Handler(void){
 		event = LIMIT_DOWN_EVENT;
 		UARTprintf("LD\n");
 	}
-	else if(status & ENGINE){
-		event = ENGINE_EVENT;
-		UARTprintf("ENG\n");
-	}
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
+	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_F);
 }
 	
-	xTimeISRLastExecuted_C = xTimeNow_C;
+	GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
+	xTimeISRLastExecuted_F = xTimeNow_F;
 }
 
 

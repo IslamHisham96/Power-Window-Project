@@ -4,16 +4,9 @@
 /* This program strictly follows HD44780 datasheet for timing. You may want to adjust the amount of delay for your LCD controller. */
 
 
-#define RS 1    /* BIT0 mask */ 
-#define RW 2    /* BIT1 mask */ 
-#define EN 4    /* BIT2 mask */
 
-
-void LCD_nibble_write(unsigned char data, unsigned char control);
-void LCD_command(unsigned char command);
-void LCD_data(unsigned char data);
-void LCD_init(void);
 #include "delay.h"
+#include "lcd.h"
 #include "output_ports.h"
 //Function to delay t microseconds
 
@@ -66,10 +59,10 @@ void LCD_command(unsigned char command)
     LCD_nibble_write(command & 0xF0, 0);   /* upper nibble first */
     LCD_nibble_write(command << 4, 0);     /* then lower nibble */
     
-    if (command < 4)
+    //if (command < 4)
         delayMs(2);         /* commands 1 and 2 need up to 1.64ms */
-    else
-        delayUs(40);        /* all others 40 us */
+   // else
+       // delayUs(40);        /* all others 40 us */
 }
 
 void LCD_data(unsigned char data)
@@ -77,7 +70,7 @@ void LCD_data(unsigned char data)
     LCD_nibble_write(data & 0xF0, RS);    /* upper nibble first */
     LCD_nibble_write(data << 4, RS);      /* then lower nibble  */
     
-    delayUs(40);
+     delayMs(2); 
 }
 
 
