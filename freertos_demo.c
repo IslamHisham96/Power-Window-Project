@@ -48,7 +48,7 @@
 #include "LCD_State.h"
 
 
-
+#define int_diff 25
 
 typedef void (*StateFunction)(int, int);
 StateFunction stateMachines[21];
@@ -119,18 +119,6 @@ ConfigureUART(void)
 //*****************************************************************************
 
 
-void
-Window_Up(void){
-	turnRight();
-}
-void
-Window_Down(void){
-	turnLeft();
-}
-void
-Window_Stop(void){
-	fastStop();
-}
 
 void
 Window_Handler(void){
@@ -152,7 +140,7 @@ Window_Handler(void){
 //			UARTprintf(ss);
 	
 	//UARTprintf("entered_an't\n");
-	if(xTimeBetweenInterrupts_A > 200){
+	if(xTimeBetweenInterrupts_A > int_diff){
 	UARTprintf("entered_a\n");
 	//int32_t s;
 	//char ss[40];
@@ -199,49 +187,56 @@ Window_Handler(void){
 		UARTprintf("DD\n");
 	}
 	else if(status & LOCK){
-		//p_enable = !p_enable;
+		p_enable = !p_enable;
 		event = LOCK_EVENT;
 		UARTprintf("LOCK\n");
 	}
 	
 	else if(status & PASSENGER_UP & PASSENGER_DOWN){
-		//if(p_enable)
-		//Window_Stop();
-		event = PASSENGER_NEUTRAL_EVENT;
+		if(p_enable)
+			event = PASSENGER_NEUTRAL_EVENT;
+		else
+			event = LOCK_EVENT;
 	}
 	
 	else if(status & PASSENGER_UP){
-		//if(p_enable)
-		//Window_Up();
-		if(GPIOPinRead(PASSENGER_PORT,PASSENGER_UP) == 0){
-		//UARTprintf("pressed\n");
-		event = PASSENGER_UP_EVENT;
+		if(p_enable)
+		{
+			if(GPIOPinRead(PASSENGER_PORT,PASSENGER_UP) == 0){
+			//UARTprintf("pressed\n");
+			event = PASSENGER_UP_EVENT;
+			}
+			else{
+			//UARTprintf("released\n");
+			event = PASSENGER_NEUTRAL_EVENT;
+			}
+			UARTprintf("PU\n");
 		}
-		else{
-		//UARTprintf("released\n");
-		event = PASSENGER_NEUTRAL_EVENT;
-		}
-		UARTprintf("PU\n");
+		else
+			event = LOCK_EVENT;
 	}
 	
 	else if(status & PASSENGER_DOWN){
-		//if(p_enable)
-		//Window_Down();
-		if(GPIOPinRead(PASSENGER_PORT,PASSENGER_DOWN) == 0){
-		//UARTprintf("pressed\n");
-		event = PASSENGER_DOWN_EVENT;
+		if(p_enable)
+		{
+			if(GPIOPinRead(PASSENGER_PORT,PASSENGER_DOWN) == 0){
+			//UARTprintf("pressed\n");
+			event = PASSENGER_DOWN_EVENT;
+			}
+			else{
+			//UARTprintf("released\n");
+			event = PASSENGER_NEUTRAL_EVENT;
+			}
+			UARTprintf("PD\n");
 		}
-		else{
-		//UARTprintf("released\n");
-		event = PASSENGER_NEUTRAL_EVENT;
-		}
-		UARTprintf("PD\n");
+		else
+			event = LOCK_EVENT;
 	}
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
 }
 	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	xTimeISRLastExecuted_A = xTimeNow_A;
-	//GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_A);
 }
 void
 Engine_Handler(void){
@@ -259,7 +254,7 @@ Engine_Handler(void){
 	xTimeBetweenInterrupts_C = xTimeNow_C - xTimeISRLastExecuted_C;
 //			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
 //			UARTprintf(ss);
-	if(xTimeBetweenInterrupts_C > 200){
+	if(xTimeBetweenInterrupts_C > int_diff){
 	UARTprintf("entered_c\n");
 	uint32_t status = GPIOIntStatus(ENGINE_PORT, true);
 	if(status & ENGINE){
@@ -270,6 +265,7 @@ Engine_Handler(void){
 }
 	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_6);
 	xTimeISRLastExecuted_C = xTimeNow_C;
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_C);
 }
 
 void
@@ -288,7 +284,7 @@ Limit_Handler(void){
 	xTimeBetweenInterrupts_F = xTimeNow_F - xTimeISRLastExecuted_F;
 //			sprintf(ss,"%d\n",xTaskGetTickCountFromISR());
 //			UARTprintf(ss);
-	if(xTimeBetweenInterrupts_F > 200){
+	if(xTimeBetweenInterrupts_F > int_diff){
 	UARTprintf("entered_f\n");
 	uint32_t status = GPIOIntStatus(LIMIT_PORT, true);
 	if(status & LIMIT_UP & LIMIT_DOWN){
@@ -309,6 +305,7 @@ Limit_Handler(void){
 	
 	GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
 	xTimeISRLastExecuted_F = xTimeNow_F;
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_F);
 }
 
 
@@ -319,6 +316,7 @@ void autoTimerHandler(void)
 	portBASE_TYPE xHigherPriorityTaskWoken_AutoTimer = pdFALSE;	
 	UARTprintf("timer_auto\n");
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_AutoTimer);
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_AutoTimer);
 	
 }
 
@@ -329,7 +327,7 @@ void engineTimerHandler(void)
 	portBASE_TYPE xHigherPriorityTaskWoken_EngineTimer = pdFALSE;
 	UARTprintf("timer_engine\n");
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_EngineTimer);
-	
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_EngineTimer);
 }	
 
 void obstacleTimerHandler(void)
@@ -339,7 +337,7 @@ void obstacleTimerHandler(void)
 	portBASE_TYPE xHigherPriorityTaskWoken_ObstacleTimer = pdFALSE;
 	UARTprintf("timer_obstacle\n");
 	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_ObstacleTimer);	
-	
+	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_ObstacleTimer);
 }
 
 int
@@ -395,7 +393,7 @@ main(void)
 		configureEngineTimer(engineTimerHandler);
 	
 		//create event queue with size 1 to send events (may be changed)
-		eventQueue = xQueueCreate(1,sizeof(uint32_t));
+		eventQueue = xQueueCreate(5,sizeof(uint32_t));
     //
     // Print demo introduction.
     //
@@ -405,8 +403,8 @@ main(void)
 		init_LCD_output();
 		displayString("Neutral");
 		porta_int(Window_Handler);
-		//portf_int(Window_Handler);
-    portc_int(Limit_Handler);
+		portf_int(Limit_Handler);
+    portc_int(Engine_Handler);
 		//
     // Initialize the UART and configure it for 115,200, 8-N-1 operation.
     //
