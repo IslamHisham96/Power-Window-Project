@@ -75,7 +75,7 @@
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>255</CpuCode>
+      <CpuCode>0</CpuCode>
       <DebugOpt>
         <uSim>1</uSim>
         <uTrg>0</uTrg>
@@ -166,24 +166,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< HEAD
-      <ColumnNumber>15</ColumnNumber>
-||||||| merged common ancestors
-      <ColumnNumber>31</ColumnNumber>
-=======
-      <ColumnNumber>21</ColumnNumber>
->>>>>>> 19a75ce460e47e31f233e9263ff4a605a13a2fbc
+      <ColumnNumber>60</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-<<<<<<< HEAD
-      <TopLine>44</TopLine>
-      <CurrentLine>45</CurrentLine>
-||||||| merged common ancestors
-      <TopLine>256</TopLine>
-      <CurrentLine>277</CurrentLine>
-=======
-      <TopLine>39</TopLine>
-      <CurrentLine>66</CurrentLine>
->>>>>>> 19a75ce460e47e31f233e9263ff4a605a13a2fbc
+      <TopLine>349</TopLine>
+      <CurrentLine>370</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\freertos_demo.c</PathWithFileName>
       <FilenameWithoutPath>freertos_demo.c</FilenameWithoutPath>
@@ -310,8 +296,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\third_party\FreeRTOS\Source\tasks.c</PathWithFileName>
       <FilenameWithoutPath>tasks.c</FilenameWithoutPath>
@@ -356,10 +342,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>4</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>54</TopLine>
-      <CurrentLine>69</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\inputs.c</PathWithFileName>
       <FilenameWithoutPath>inputs.c</FilenameWithoutPath>
@@ -374,8 +360,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>2</TopLine>
-      <CurrentLine>3</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\output_ports.c</PathWithFileName>
       <FilenameWithoutPath>output_ports.c</FilenameWithoutPath>
@@ -388,10 +374,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>6</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>30</TopLine>
-      <CurrentLine>52</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\inputs.h</PathWithFileName>
       <FilenameWithoutPath>inputs.h</FilenameWithoutPath>
@@ -420,18 +406,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>37</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-<<<<<<< HEAD
-      <TopLine>12</TopLine>
+      <TopLine>13</TopLine>
       <CurrentLine>13</CurrentLine>
-||||||| merged common ancestors
-      <TopLine>1</TopLine>
-      <CurrentLine>13</CurrentLine>
-=======
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
->>>>>>> 19a75ce460e47e31f233e9263ff4a605a13a2fbc
       <bDave2>0</bDave2>
       <PathWithFileName>.\TaskHandlers.c</PathWithFileName>
       <FilenameWithoutPath>TaskHandlers.c</FilenameWithoutPath>
@@ -444,10 +422,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>19</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>17</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\StateNames.h</PathWithFileName>
       <FilenameWithoutPath>StateNames.h</FilenameWithoutPath>
@@ -460,24 +438,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< HEAD
-      <ColumnNumber>16</ColumnNumber>
-||||||| merged common ancestors
-      <ColumnNumber>37</ColumnNumber>
-=======
-      <ColumnNumber>12</ColumnNumber>
->>>>>>> 19a75ce460e47e31f233e9263ff4a605a13a2fbc
+      <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-<<<<<<< HEAD
-      <TopLine>60</TopLine>
-      <CurrentLine>65</CurrentLine>
-||||||| merged common ancestors
-      <TopLine>22</TopLine>
-      <CurrentLine>15</CurrentLine>
-=======
-      <TopLine>25</TopLine>
-      <CurrentLine>48</CurrentLine>
->>>>>>> 19a75ce460e47e31f233e9263ff4a605a13a2fbc
+      <TopLine>1</TopLine>
+      <CurrentLine>403</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\StateMachinesFunctions.c</PathWithFileName>
       <FilenameWithoutPath>StateMachinesFunctions.c</FilenameWithoutPath>
@@ -522,10 +486,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>27</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>20</TopLine>
-      <CurrentLine>28</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\LCD_State.c</PathWithFileName>
       <FilenameWithoutPath>LCD_State.c</FilenameWithoutPath>
@@ -538,10 +502,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>5</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>30</CurrentLine>
+      <TopLine>22</TopLine>
+      <CurrentLine>35</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Timers.c</PathWithFileName>
       <FilenameWithoutPath>Timers.c</FilenameWithoutPath>

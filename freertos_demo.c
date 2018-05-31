@@ -232,7 +232,7 @@ Window_Handler(void){
 		else
 			event = LOCK_EVENT;
 	}
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
+	xQueueSendToBackFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_A);
 }
 	GPIOIntClear(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 	xTimeISRLastExecuted_A = xTimeNow_A;
@@ -261,7 +261,7 @@ Engine_Handler(void){
 		event = ENGINE_EVENT;
 		UARTprintf("ENG\n");
 	}
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
+	xQueueSendToBackFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_C);
 }
 	GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_6);
 	xTimeISRLastExecuted_C = xTimeNow_C;
@@ -300,7 +300,7 @@ Limit_Handler(void){
 		event = LIMIT_DOWN_EVENT;
 		UARTprintf("LD\n");
 	}
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_F);
+	xQueueSendToBackFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_F);
 }
 	
 	GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);
@@ -315,7 +315,7 @@ void autoTimerHandler(void)
 	int32_t event = AUTO_TIMER_TICK_EVENT;
 	portBASE_TYPE xHigherPriorityTaskWoken_AutoTimer = pdFALSE;	
 	UARTprintf("timer_auto\n");
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_AutoTimer);
+	xQueueSendToBackFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_AutoTimer);
 	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_AutoTimer);
 	
 }
@@ -326,7 +326,7 @@ void engineTimerHandler(void)
 	int32_t event = ENGINE_TIMER_TICK_EVENT;
 	portBASE_TYPE xHigherPriorityTaskWoken_EngineTimer = pdFALSE;
 	UARTprintf("timer_engine\n");
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_EngineTimer);
+	xQueueSendToBackFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_EngineTimer);
 	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_EngineTimer);
 }	
 
@@ -336,7 +336,7 @@ void obstacleTimerHandler(void)
 	int32_t event = OBSTACLE_TIMER_TICK_EVENT;
 	portBASE_TYPE xHigherPriorityTaskWoken_ObstacleTimer = pdFALSE;
 	UARTprintf("timer_obstacle\n");
-	xQueueSendToFrontFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_ObstacleTimer);	
+	xQueueSendToBackFromISR(eventQueue,&event,&xHigherPriorityTaskWoken_ObstacleTimer);	
 	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken_ObstacleTimer);
 }
 
