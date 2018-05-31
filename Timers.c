@@ -15,6 +15,7 @@ void configureAutoTimer(void (*autoTimerHandler)(void))
 
 void enableAutoTimer(void)
 {
+	  ROM_TimerDisable(TIMER0_BASE, TIMER_A);
 		ROM_TimerLoadSet(TIMER0_BASE, TIMER_A, ROM_SysCtlClockGet());
 		ROM_TimerEnable(TIMER0_BASE, TIMER_A);
 }
@@ -33,6 +34,7 @@ void configureEngineTimer(void (*engineTimerHandler)(void))
 
 void enableEngineTimer(void)
 {
+		ROM_TimerDisable(TIMER1_BASE, TIMER_A);
 		ROM_TimerLoadSet(TIMER1_BASE, TIMER_A, 15 * ROM_SysCtlClockGet()); // ROM_SysCtlClockGet() = 1s
 		ROM_TimerEnable(TIMER1_BASE, TIMER_A);
 }
@@ -49,6 +51,7 @@ void configureObstacleTimer(void (*obstacleTimerHandler)(void))
 
 void enableObstacleTimer(void)
 {
+		ROM_TimerDisable(TIMER2_BASE, TIMER_A);
 	  ROM_TimerLoadSet(TIMER2_BASE, TIMER_A, 2 * ROM_SysCtlClockGet());
 	  ROM_TimerEnable(TIMER2_BASE, TIMER_A);
 }

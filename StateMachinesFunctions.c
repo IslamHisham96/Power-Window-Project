@@ -238,7 +238,7 @@ void passengerNeutralSM(int event, int depth){
 	switch(event){
 	
 		case PASSENGER_UP_EVENT:
-				xSemaphoreGive( xTurnRightSemaphore);		
+				xSemaphoreGive(xTurnRightSemaphore);		
 				stateDepth = 0;
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverNeutral;
@@ -249,7 +249,7 @@ void passengerNeutralSM(int event, int depth){
 				enableAutoTimer();
 				break;
 		case PASSENGER_DOWN_EVENT:
-				xSemaphoreGive( xTurnLeftSemaphore);
+				xSemaphoreGive(xTurnLeftSemaphore);
 				stateDepth = 0;
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverNeutral;
