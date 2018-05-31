@@ -7,7 +7,9 @@
 extern SemaphoreHandle_t xTurnRightSemaphore;
 extern SemaphoreHandle_t xTurnLeftSemaphore;
 extern SemaphoreHandle_t xFastStopSemaphore;
+extern SemaphoreHandle_t xDisplaySemaphore;
 
+char* stateForDisplay;
 
 int stateDepth = 3;
 int state[6] = {safe, driverNeutral, passengerNeutral,0,0,0};
@@ -29,7 +31,8 @@ void deadSM(int event, int depth){
 	switch(event){
 	
 		case ENGINE_EVENT:
-			displayString("Neutral");
+			stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverNeutral;
@@ -45,11 +48,13 @@ void iniDriverDownSM (int event, int depth){
 	switch(event){
 	
 		case AUTO_TIMER_TICK_EVENT:
-			displayString("manualDriverDown");
+		stateForDisplay = "manualDriverDown";
+			xSemaphoreGive(xDisplaySemaphore);
 			state[stateDepth - 1] = manualDriverDown;
 			break;
 		case DRIVER_NEUTRAL_EVENT:
-			displayString("autoDriverDown");
+		stateForDisplay = "autoDriverDown";
+			xSemaphoreGive(xDisplaySemaphore);
 			state[stateDepth - 1] = autoDriverDown;
 			break;
 
@@ -62,7 +67,8 @@ void manualDriverDownSM (int event, int depth){
 
 		case DRIVER_NEUTRAL_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
-			displayString("Neutral");
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverNeutral;
@@ -77,11 +83,13 @@ void iniDriverUpSM (int event, int depth){
 	switch(event){
 	
 		case AUTO_TIMER_TICK_EVENT:
-			displayString("manualDriverUp");
+		stateForDisplay = "manualDriverUp";
+			xSemaphoreGive(xDisplaySemaphore);
 			state[stateDepth - 1] = manualDriverUp;
 			break;
 		case DRIVER_NEUTRAL_EVENT:
-			displayString("autoDriverUp");
+		stateForDisplay = "autoDriverUp";
+			xSemaphoreGive(xDisplaySemaphore);
 			state[stateDepth - 1] = autoDriverUp;
 			break;
 
@@ -94,7 +102,9 @@ void manualDriverUpSM (int event, int depth){
 
 		case DRIVER_NEUTRAL_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
-			displayString("Neutral");
+		
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverNeutral;
@@ -118,7 +128,8 @@ void driverDownSM (int event, int depth){
 			break;
 		case LIMIT_DOWN_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
-			displayString("Neutral");
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverNeutral;
@@ -146,7 +157,8 @@ void driverUpSM (int event, int depth){
 			break;
 		case LIMIT_UP_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
-			displayString("Neutral");
+			stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = driverNeutral;
@@ -154,7 +166,8 @@ void driverUpSM (int event, int depth){
 			break;
 		case OBSTACLE_EVENT:
 			xSemaphoreGive(xTurnLeftSemaphore);
-			displayString("emergencyDown");
+		stateForDisplay = "emergencyDown";
+			xSemaphoreGive(xDisplaySemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = safe;
 			state[stateDepth++] = emergencyDown;
@@ -178,7 +191,8 @@ void safeSM(int event, int depth){
 			break;
 		case ENGINE_TIMER_TICK_EVENT:
 			xSemaphoreGive(xFastStopSemaphore);
-			displayString("Engine Off");
+		stateForDisplay = "Engine Off";
+			xSemaphoreGive(xDisplaySemaphore);
 			stateDepth = 0;
 			state[stateDepth++] = dead;
 			//start timer
@@ -272,11 +286,13 @@ void passengerUpSM(int event, int depth){
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverNeutral;
 				state[stateDepth++] = passengerNeutral;
-				displayString("Neutral");
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 				break;
 		case OBSTACLE_EVENT:
 				xSemaphoreGive(xTurnLeftSemaphore);
-				displayString("emergencyDown");
+		stateForDisplay = "emergencyDown";
+			xSemaphoreGive(xDisplaySemaphore);
 				stateDepth = 2;
 				state[stateDepth-1] = emergencyDown;
 				//start timer
@@ -296,11 +312,13 @@ void iniPassengerUpSM(int event, int depth){
 	switch(event){
 	
 		case AUTO_TIMER_TICK_EVENT:
-				displayString("manualPassengerUp");
+		stateForDisplay = "manualPassengerUp";
+			xSemaphoreGive(xDisplaySemaphore);
 			  state[depth] = manualPassengerUp;
 				break;
 		case PASSENGER_NEUTRAL_EVENT:
-				displayString("autoPassengerUp");
+			stateForDisplay = "autoPassengerUp";
+			xSemaphoreGive(xDisplaySemaphore);
 				state[depth] = autoPassengerUp;
 				break;
 
@@ -314,7 +332,8 @@ void manualPassengerUpSM(int event, int depth){
 
 		case PASSENGER_NEUTRAL_EVENT:
 				xSemaphoreGive(xFastStopSemaphore);
-				displayString("Neutral");
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 				stateDepth = 0;
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverNeutral;
@@ -346,7 +365,8 @@ void passengerDownSM(int event, int depth){
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverNeutral;
 				state[stateDepth++] = passengerNeutral;
-				displayString("Neutral");
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 				break;
 
 		default:
@@ -361,11 +381,13 @@ void iniPassengerDownSM(int event, int depth){
 	switch(event){
 	
 		case AUTO_TIMER_TICK_EVENT:
-			 displayString("manualPassengerDown");
+		stateForDisplay = "manualPassengerDown";
+			xSemaphoreGive(xDisplaySemaphore);
 			 state[depth] = manualPassengerDown;
 				break;
 		case PASSENGER_NEUTRAL_EVENT:
-				displayString("autoPassengerDown");
+		stateForDisplay = "autoPassengerDown";
+			xSemaphoreGive(xDisplaySemaphore);
 				state[depth] = autoPassengerDown;
 				break;
 	}
@@ -379,7 +401,8 @@ void manualPassengerDownSM(int event, int depth){
 
 		case PASSENGER_NEUTRAL_EVENT:
 				xSemaphoreGive(xFastStopSemaphore);
-				displayString("Neutral");
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 				stateDepth = 0;
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverNeutral;
@@ -398,7 +421,8 @@ void emergencyDownSM(int event, int depth){
 		case OBSTACLE_TIMER_TICK_EVENT:
 		case LIMIT_DOWN_EVENT:
 				xSemaphoreGive(xFastStopSemaphore);
-				displayString("Neutral");
+		stateForDisplay = "Neutral";
+			xSemaphoreGive(xDisplaySemaphore);
 				stateDepth = 0;
 				state[stateDepth++] = safe;
 				state[stateDepth++] = driverNeutral;

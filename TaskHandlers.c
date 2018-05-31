@@ -2,11 +2,14 @@
 #include "FreeRTOS.h"
 #include "semphr.h"
 #include "output_ports.h"
+#include "LCD_State.h"
 
 extern SemaphoreHandle_t xTurnRightSemaphore;
 extern SemaphoreHandle_t xTurnLeftSemaphore;
 extern SemaphoreHandle_t xFastStopSemaphore;
 extern xQueueHandle eventQueue;
+extern SemaphoreHandle_t xDisplaySemaphore;
+extern char* stateForDisplay;
 extern int state[6];
 
 typedef void (*StateFunction)(int, int);
@@ -50,4 +53,17 @@ xSemaphoreTake( xFastStopSemaphore, portMAX_DELAY );
 	fastStop();
 }
 }
+
+
+void vClearDisplayHandlerTask( void *pvParameters )
+{
+	
+xSemaphoreTake( xDisplaySemaphore, 0 );
+for( ;; )
+{
+xSemaphoreTake( xDisplaySemaphore, portMAX_DELAY );
+	displayString(stateForDisplay);
+}
+}
+
 

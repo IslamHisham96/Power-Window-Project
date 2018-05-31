@@ -58,7 +58,7 @@ StateFunction stateMachines[21];
 SemaphoreHandle_t xTurnRightSemaphore;
 SemaphoreHandle_t xTurnLeftSemaphore;
 SemaphoreHandle_t xFastStopSemaphore;
-
+SemaphoreHandle_t xDisplaySemaphore;
 
 
 xSemaphoreHandle g_pUARTSemaphore;
@@ -372,11 +372,13 @@ main(void)
 	vSemaphoreCreateBinary( xTurnRightSemaphore );
 	vSemaphoreCreateBinary( xTurnLeftSemaphore );
 	vSemaphoreCreateBinary( xFastStopSemaphore );
+	vSemaphoreCreateBinary( xDisplaySemaphore );
 	
 	//Creation of Actuator Tasks with priority higher than Main Task
 	xTaskCreate( vTurnRightHandlerTask, "vTurnRightHandlerTask", 240, NULL, 3, NULL );
 	xTaskCreate( vTurnLeftHandlerTask, "vTurnLeftHandlerTask", 240, NULL, 3, NULL );
 	xTaskCreate( vFastStopHandlerTask, "vFastStopHandlerTask", 240, NULL, 3, NULL );
+	xTaskCreate( vClearDisplayHandlerTask, "vClearDisplayHandlerTask", 240, NULL, 3, NULL );
 	
 	//Create Main Task to receive events and pass it to state machine
 	xTaskCreate( vMainHandlerTask, "vMainHandlerTask", 240, NULL, 1, NULL );

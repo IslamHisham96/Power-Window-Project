@@ -75,7 +75,7 @@
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>0</CpuCode>
+      <CpuCode>255</CpuCode>
       <DebugOpt>
         <uSim>1</uSim>
         <uTrg>0</uTrg>
@@ -166,10 +166,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>60</ColumnNumber>
+      <ColumnNumber>74</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>349</TopLine>
-      <CurrentLine>370</CurrentLine>
+      <TopLine>325</TopLine>
+      <CurrentLine>329</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\freertos_demo.c</PathWithFileName>
       <FilenameWithoutPath>freertos_demo.c</FilenameWithoutPath>
@@ -408,7 +408,7 @@
       <Focus>0</Focus>
       <ColumnNumber>37</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>13</TopLine>
+      <TopLine>12</TopLine>
       <CurrentLine>13</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\TaskHandlers.c</PathWithFileName>
@@ -438,10 +438,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>35</ColumnNumber>
+      <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>403</CurrentLine>
+      <TopLine>389</TopLine>
+      <CurrentLine>404</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\StateMachinesFunctions.c</PathWithFileName>
       <FilenameWithoutPath>StateMachinesFunctions.c</FilenameWithoutPath>
@@ -504,7 +504,7 @@
       <Focus>0</Focus>
       <ColumnNumber>5</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>22</TopLine>
+      <TopLine>27</TopLine>
       <CurrentLine>35</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Timers.c</PathWithFileName>

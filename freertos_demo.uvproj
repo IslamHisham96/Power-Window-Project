@@ -515,6 +515,11 @@
               <FileType>1</FileType>
               <FilePath>.\Timers.c</FilePath>
             </File>
+            <File>
+              <FileName>StateMachinesFunctions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\StateMachinesFunctions.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
