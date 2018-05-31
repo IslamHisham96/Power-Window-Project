@@ -1,8 +1,8 @@
 .\rvmdk\list.o: ..\..\..\..\third_party\FreeRTOS\Source\list.c
-.\rvmdk\list.o: E:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\rvmdk\list.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
 .\rvmdk\list.o: ..\..\..\..\third_party\FreeRTOS\Source\include\FreeRTOS.h
-.\rvmdk\list.o: E:\Keil\ARM\ARMCC\bin\..\include\stddef.h
-.\rvmdk\list.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\list.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\rvmdk\list.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\rvmdk\list.o: .\FreeRTOSConfig.h
 .\rvmdk\list.o: ..\..\..\..\third_party\FreeRTOS\Source\include\projdefs.h
 .\rvmdk\list.o: ..\..\..\..\third_party\FreeRTOS\Source\include\portable.h
