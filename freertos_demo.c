@@ -287,7 +287,7 @@ main(void)
 	xTaskCreate( vFastStopHandlerTask, "vFastStopHandlerTask", 240, NULL, 3, NULL );
 	
 	//Create Main Task to receive events and pass it to state machine
-	xTaskCreate( vMainHandlerTask, "vFastStopHandlerTask", 240, NULL, 1, NULL );
+	xTaskCreate( vMainHandlerTask, "vMainHandlerTask", 240, NULL, 1, NULL );
     //
     // Set the clocking to run at 50 MHz from the PLL.
     //

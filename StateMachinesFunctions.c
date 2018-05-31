@@ -12,7 +12,7 @@ int state[6] = {safe, driverNeutral, passengerNeutral,0,0,0};
 
 typedef void (*StateFunction)(int, int);
 
-extern StateFunction stateMachines[22];
+extern StateFunction stateMachines[21];
 
 void autoDriverUpSM(int event, int depth){}
 void autoDriverDownSM(int event, int depth){}
