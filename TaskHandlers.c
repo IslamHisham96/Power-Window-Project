@@ -3,6 +3,7 @@
 #include "semphr.h"
 #include "output_ports.h"
 #include "LCD_State.h"
+#include "utils/uartstdio.h"
 
 extern SemaphoreHandle_t xTurnRightSemaphore;
 extern SemaphoreHandle_t xTurnLeftSemaphore;
@@ -21,6 +22,9 @@ for( ;; )
 	int event;
 	xQueueReceive(eventQueue,&event,portMAX_DELAY );
 	stateMachines[state[0]](event, 0);
+	delayMs(20);
+	clear();
+	xSemaphoreGive(xDisplaySemaphore);
 }
 }
 
@@ -61,8 +65,11 @@ void vClearDisplayHandlerTask( void *pvParameters )
 xSemaphoreTake( xDisplaySemaphore, 0 );
 for( ;; )
 {
-xSemaphoreTake( xDisplaySemaphore, portMAX_DELAY );
+	
+	xSemaphoreTake( xDisplaySemaphore, portMAX_DELAY );
+	//UARTprintf("disp");
 	displayString(stateForDisplay);
+	//clear();
 }
 }
 

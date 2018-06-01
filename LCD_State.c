@@ -22,14 +22,17 @@ void init_LCD_output(void)
 void clear(void)
 {
 	delayMs(20);
-		LCD_command(0x80);    /* lcd cursor location */	
-	//delayMs(2);
-	LCD_command(0x1);
+	//GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0 | GPIO_PIN_1| GPIO_PIN_2 | GPIO_PIN_3|GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6|GPIO_PIN_7, 0);
+		LCD_command(1);    /* lcd cursor location */	
+	delayMs(20);
+	
+	//GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0 | GPIO_PIN_1| GPIO_PIN_2 | GPIO_PIN_3|GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6|GPIO_PIN_7, 0);
+	LCD_command(0x80);
 }
 
 void displayString(char *s)
 {
-	clear();
+	//clear();
 	int len,i;
 	delayMs(2);
 	len = strlen(s);
@@ -37,5 +40,6 @@ void displayString(char *s)
 	{
 		LCD_data(s[i]);
 	}
+	delayMs(20);
 }
 
